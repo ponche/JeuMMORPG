@@ -34,15 +34,22 @@ class Actor
 		this.currentAnimation = 0 ;
 		this.sprite = new Image() ; 
 		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
-		listeActor.push(this) ; 
+		this.delayFrame = 2 // plus le nombre est important plus le personnage va lentement 
+		this.currentDelayFrame = 0
+		listeActor.push(this) ; // Attention, ne pas crée directement dans le tableau, c'est automatique 
 	}
 	
 	update()
 	{
 		// Mise a jour de actor
-		this.currentFrame++ ; 
-		if(this.currentFrame >= this.nbFrame)
-			this.currentFrame = 0 ; 
+		this.currentDelayFrame++ 
+		if(this.currentDelayFrame >= this.delayFrame) 
+		{
+			this.currentFrame++ ; 
+			this.curentDelayFrame = - 1 ; 
+			if(this.currentFrame >= this.nbFrame)
+				this.currentFrame = 0 ; 
+		}
 	}
 	
 }
