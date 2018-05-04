@@ -73,9 +73,7 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
   
-  for(let i = 0; i < starfields.length; ++i) {
-      starfields[i].update(elapsed);
-    }
+
   
   if (isMouseDown === true)  {
      if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
@@ -93,7 +91,6 @@ const render = function() {
   tileStartY = canvas.height/2-200;
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);  
-  renderBackground();
   renderTiles(tileStartX, tileStartY);
   renderObjects();
   renderUI();
@@ -168,12 +165,6 @@ function renderMouseAndGridPosition() {
 }
 
 function renderObjects() { }
-
-function renderBackground() {     
-    for(let i = 0; i < starfields.length; ++i) {
-      starfields[i].render();
-    }
-}
 
 function renderTiles(x, y) { 
   let tileWidth = 96;
