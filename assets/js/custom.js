@@ -34,7 +34,7 @@ class Actor
 		this.currentAnimation = 0 ;
 		this.sprite = new Image() ; 
 		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
-		this.delayFrame = 2 // plus le nombre est important plus le personnage va lentement 
+		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement 
 		this.currentDelayFrame = 0
 		listeActor.push(this) ; // Attention, ne pas crée directement dans le tableau, c'est automatique 
 	}
@@ -46,7 +46,7 @@ class Actor
 		if(this.currentDelayFrame >= this.delayFrame) 
 		{
 			this.currentFrame++ ; 
-			this.curentDelayFrame = - 1 ; 
+			this.currentDelayFrame = - 1 ; 
 			if(this.currentFrame >= this.nbFrame)
 				this.currentFrame = 0 ; 
 		}
@@ -220,7 +220,7 @@ function renderObjects()
 		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
 		hauteurActor = spriteActor.height / arthur.nbAnimation ; 
 		largeurActor = spriteActor.width / arthur.nbFrame ; 
-		ctx.drawImage(spriteActor, arthur.currentFrame * largeurActor, arthur.currentAnimation * hauteurActor , largeurActor, hauteurActor, 200, 200, largeurActor, hauteurActor) ; 
+		ctx.drawImage(spriteActor, arthur.currentFrame * largeurActor, arthur.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ; 
 	}
 }
 
