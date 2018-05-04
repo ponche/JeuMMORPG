@@ -70,7 +70,7 @@ for(let i = 0; i < tile_textures.length; ++i) {
   tile_images.push(img);
 }
 
-let canvas = document.querySelector(".le-canvas");
+let canvas = document.querySelector("canvas");
 let ctx    = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;  
