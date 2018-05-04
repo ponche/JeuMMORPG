@@ -16,6 +16,7 @@ let isMouseDown = false;
 let tile_images = [];
 let tile_quantity = 36;
 let offsetYMod = 0;
+
 let offsetXMod = 0;
 let listeActor = [] ; 
 
@@ -30,12 +31,15 @@ class Actor
 		this.nbAnimation = 8 ; 
 		this.nbFrame = 9 ; 
 		this.currentFrame = 0 ; 
-		this.currentAnimation = 0 ; 
+		this.currentAnimation = 0 ;
+		this.sprite = new Image() ; 
+		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
 		listeActor.push(this) ; 
 	}
 	
 	update()
 	{
+		// Mise a jour de actor
 		this.currentFrame++ ; 
 		if(this.currentFrame >= this.nbFrame)
 			this.currentFrame = 0 ; 
@@ -203,11 +207,14 @@ function renderMouseAndGridPosition() {
 
 function renderObjects() 
 { 
-	spriteRobot = new Image()
-	spriteRobot.src = "assets/img/game/sprites/characters/robot.png"
-	hauteurRobot = spriteRobot.height / arthur.nbAnimation ; 
-	largeurRobot = spriteRobot.width / arthur.nbFrame ; 
-	ctx.drawImage(spriteRobot, arthur.currentFrame * largeurRobot, arthur.currentAnimation * hauteurRobot , largeurRobot, hauteurRobot, 200, 200, largeurRobot, hauteurRobot) ; 
+	for (let i = 0 ; i < listeActor.length ; i++)
+	{
+		spriteActor = listeActor[i].sprite ;
+		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
+		hauteurActor = spriteActor.height / arthur.nbAnimation ; 
+		largeurActor = spriteActor.width / arthur.nbFrame ; 
+		ctx.drawImage(spriteActor, arthur.currentFrame * largeurActor, arthur.currentAnimation * hauteurActor , largeurActor, hauteurActor, 200, 200, largeurActor, hauteurActor) ; 
+	}
 }
 
 function renderTiles(x, y) {
