@@ -1,3 +1,6 @@
+
+	
+
 let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 
 let gridSize = Math.sqrt(tileMap.length);
@@ -14,6 +17,33 @@ let tile_images = [];
 let tile_quantity = 36;
 let offsetYMod = 0;
 let offsetXMod = 0;
+let listeActor = [] ; 
+
+
+// Class Actor Test
+class Actor
+{
+	constructor(name)
+	{
+		this.name = name ; 
+		this.position = { x: 200, y: 200 } ; 
+		this.nbAnimation = 8 ; 
+		this.nbFrame = 9 ; 
+		this.currentFrame = 0 ; 
+		this.currentAnimation = 0 ; 
+		listeActor.push(this) ; 
+	}
+	
+	update()
+	{
+		this.currentFrame++ ; 
+		if(this.currentFrame >= this.nbFrame)
+			this.currentFrame = 0 ; 
+	}
+	
+}
+
+let arthur = new Actor ; 
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
@@ -48,15 +78,15 @@ window.addEventListener('resize', () => {
 }, false);
 
 function mouseUp(evt) {
-    if (isMouseDown === true) onMouseClick();
+	if (isMouseDown === true) onMouseClick();
   isMouseDown = false;
 }
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
-    x: evt.clientX - rect.left,
-    y: evt.clientY - rect.top
+	x: evt.clientX - rect.left,
+	y: evt.clientY - rect.top
   };
 }
 
@@ -73,17 +103,23 @@ const update = function(elapsed) {
 
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
-
+  
+  // Mise à jour des Actor 
+  for (let i = 0 ; i < listeActor.length ; i++)
+  {
+	  listeActor[i].update() ; 
+  }
+  
 
   // Partie qui controle la supression d'une tuile
   if (isMouseDown === true)  {
-     if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-      var tileIndex = hoverTileY * gridSize + hoverTileX;
-      if (tileIndex < tileMap.length) {
-        let tileType = selectedTileType;// (tileMap[tileIndex] + 1) % tile_textures.length;
-        tileMap[tileIndex] = tileType;
-      }
-    }
+	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
+	  var tileIndex = hoverTileY * gridSize + hoverTileX;
+	  if (tileIndex < tileMap.length) {
+		let tileType = selectedTileType;// (tileMap[tileIndex] + 1) % tile_textures.length;
+		tileMap[tileIndex] = tileType;
+	  }
+	}
   }
 };
 
@@ -115,17 +151,17 @@ function renderTileSelectors() {
   let renderColumn = 0;
   // renderEmptyTileSelector(selectorTileWidth, selectorTileHeight, selectedTileType == tiletype_empty);
   for(let x = 0; x < tile_images.length; ++x) {
-    if (renderColumn >= maxSelectorsPerRow) {
-      renderColumn = 0;
-      renderRow++;
-    }
-    renderTileSelector(
-        selectorTileWidth,
-        selectorTileHeight,
-        renderColumn,
-        renderRow, tile_images[x],
-        x==selectedTileType);
-    renderColumn++;
+	if (renderColumn >= maxSelectorsPerRow) {
+	  renderColumn = 0;
+	  renderRow++;
+	}
+	renderTileSelector(
+		selectorTileWidth,
+		selectorTileHeight,
+		renderColumn,
+		renderRow, tile_images[x],
+		x==selectedTileType);
+	renderColumn++;
   }
 }
 
@@ -142,7 +178,7 @@ function renderTileSelector(width, height, index, row, image, isSelected) {
 
 function renderSelectorBackground(x, y, width, height, isSelected) {
   let isMouseOver = mousePosition.x >= x && mousePosition.x <= x + width &&
-                    mousePosition.y >= y && mousePosition.y <= y + height;
+					mousePosition.y >= y && mousePosition.y <= y + height;
   ctx.beginPath();
   ctx.setLineDash([]);
   ctx.strokeStyle = isSelected ? 'rgba(192, 57, 43,1.0)' : isMouseOver ? 'rgba(192, 57, 43, 0.8)' : 'rgba(0, 0, 0, 0.4)';
@@ -158,14 +194,21 @@ function renderSelectorBackground(x, y, width, height, isSelected) {
 }
 
 function renderMouseAndGridPosition() {
-    let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= gridSize && hoverTileX <= gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
+	let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= gridSize && hoverTileX <= gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
   ctx.font = '12pt Calibri';
   ctx.fillStyle = 'white';
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
 }
 
-function renderObjects() { }
+function renderObjects() 
+{ 
+	spriteRobot = new Image()
+	spriteRobot.src = "assets/img/game/sprites/characters/robot.png"
+	hauteurRobot = spriteRobot.height / arthur.nbAnimation ; 
+	largeurRobot = spriteRobot.width / arthur.nbFrame ; 
+	ctx.drawImage(spriteRobot, arthur.currentFrame * largeurRobot, arthur.currentAnimation * hauteurRobot , largeurRobot, hauteurRobot, 200, 200, largeurRobot, hauteurRobot) ; 
+}
 
 function renderTiles(x, y) {
   let tileWidth = 96;
@@ -173,49 +216,49 @@ function renderTiles(x, y) {
   let tile_half_width = tileWidth / 2;
   let tile_half_height = tileHeight / 2;
   for (let tileX = 0; tileX < gridSize; ++tileX) {
-    for (let tileY = 0; tileY < gridSize; ++tileY) {
-      let renderX = x + (tileX - tileY) * tile_half_width;
-      let renderY = y + (tileX + tileY) * tile_half_height;
-      let tile = tileMap[tileY * gridSize + tileX];
-      if(tile !== tiletype_empty) renderTexturedTile(tile_images[tile], renderX, renderY, 80);
-      else renderTileBackground(renderX, renderY+48, tileWidth, tileHeight);
-    }
+	for (let tileY = 0; tileY < gridSize; ++tileY) {
+	  let renderX = x + (tileX - tileY) * tile_half_width;
+	  let renderY = y + (tileX + tileY) * tile_half_height;
+	  let tile = tileMap[tileY * gridSize + tileX];
+	  if(tile !== tiletype_empty) renderTexturedTile(tile_images[tile], renderX, renderY, 80);
+	  else renderTileBackground(renderX, renderY+48, tileWidth, tileHeight);
+	}
   }
 
   if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-      let renderX = x + (hoverTileX - hoverTileY) * tile_half_width;
-      let renderY = y + (hoverTileX + hoverTileY) * tile_half_height;
-      renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
+	  let renderX = x + (hoverTileX - hoverTileY) * tile_half_width;
+	  let renderY = y + (hoverTileX + hoverTileY) * tile_half_height;
+	  renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
   }
 }
 
 function onMouseClick() {
   // check if we clicked on the grid
   if (!(hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize)) {
-    // check if we click on our selectors
-    let selectorIndex = -1;
-    let renderRow = 0;
-    let renderColumn = 0;
-    let renderX = 20;
-    let renderY = 20;
-    for(let index = 0; index < tile_quantity; ++index){
-      let rowSize = maxSelectorsPerRow;
-      if (renderColumn >= rowSize) {
-        renderColumn = 0;
-        renderRow++;
-      }
-      renderX = 20 + (48 * renderColumn) + (renderColumn * 20);
-      renderY = 20 + (48 * renderRow) + (renderRow * 20);
-      if (mousePosition.x >=renderX && mousePosition.x <= renderX + 48 &&
-          mousePosition.y >= renderY && mousePosition.y <= renderY + 48) {
-        selectorIndex = index;
-        break;
-      }
-      renderColumn++;
-    }
-    if (selectorIndex != -1) {
-      selectedTileType = selectorIndex;
-    }
+	// check if we click on our selectors
+	let selectorIndex = -1;
+	let renderRow = 0;
+	let renderColumn = 0;
+	let renderX = 20;
+	let renderY = 20;
+	for(let index = 0; index < tile_quantity; ++index){
+	  let rowSize = maxSelectorsPerRow;
+	  if (renderColumn >= rowSize) {
+		renderColumn = 0;
+		renderRow++;
+	  }
+	  renderX = 20 + (48 * renderColumn) + (renderColumn * 20);
+	  renderY = 20 + (48 * renderRow) + (renderRow * 20);
+	  if (mousePosition.x >=renderX && mousePosition.x <= renderX + 48 &&
+		  mousePosition.y >= renderY && mousePosition.y <= renderY + 48) {
+		selectorIndex = index;
+		break;
+	  }
+	  renderColumn++;
+	}
+	if (selectorIndex != -1) {
+	  selectedTileType = selectorIndex;
+	}
   }
 }
 
@@ -261,20 +304,22 @@ run();
 
 window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
-    case 37: // Left
-      offsetXMod = offsetXMod - 10;
-    break;
+	case 37: // Left
+	  offsetXMod = offsetXMod - 10;
+	break;
 
-    case 38: // Up
-      offsetYMod = offsetYMod - 10;
-    break;
+	case 38: // Up
+	  offsetYMod = offsetYMod - 10;
+	break;
 
-    case 39: // Right
-      offsetXMod = offsetXMod + 10;
-    break;
+	case 39: // Right
+	  offsetXMod = offsetXMod + 10;
+	break;
 
-    case 40: // Down
-      offsetYMod = offsetYMod + 10;
-    break;
+	case 40: // Down
+	  offsetYMod = offsetYMod + 10;
+	break;
   }
 }, false);
+
+
