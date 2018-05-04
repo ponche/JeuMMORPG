@@ -73,7 +73,7 @@ const update = function(elapsed) {
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
   
 
-  
+  // Partie qui controle la supression d'une tuile
   if (isMouseDown === true)  {
      if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
       var tileIndex = hoverTileY * gridSize + hoverTileX;
@@ -222,11 +222,12 @@ function renderTexturedTile(imgSrc, x, y, tileHeight) {
   ctx.drawImage(imgSrc, x, y+offsetY);
 }
 
+// Pour modifier les couleurs du selecteur, c'est ici
 function renderTileHover(x, y, width, height) {
   ctx.beginPath();  
   ctx.setLineDash([]);
-  ctx.strokeStyle = 'rgba(192, 57, 43, 0.8)';  
-  ctx.fillStyle = 'rgba(192, 57, 43, 0.4)';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';  
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
   ctx.lineWidth = 2;
   ctx.moveTo(x, y);
   ctx.lineTo(x + width/2, y-height/2);  
