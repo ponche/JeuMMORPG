@@ -91,7 +91,15 @@ const update = function(elapsed) {
   // Mise à jour des Actor 
   for (let i = 0 ; i < listeActor.length ; i++)
   {
+	  let actor_y = listeActor[i].position.y - tileStartY  /*listeActor[i].sprite.height*/ ; 
+	  let actor_x = listeActor[i].position.x - tileStartX  /*(listeActor[i].sprite.width / 2 )*/ ; 
+	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
+	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
+	  
 	  listeActor[i].update() ; 
+	  
+	  // Test position Arthur
+	  console.log(arthur.positionMap) ; 
   }
   
 
@@ -158,7 +166,7 @@ const render = function() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   renderTiles(tileStartX, tileStartY);
   renderObjects();
-  renderUI();
+  //renderUI();
 };
 
 const run = function(e) {

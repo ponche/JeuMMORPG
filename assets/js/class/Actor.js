@@ -4,6 +4,7 @@ class Actor
 	{
 		this.name = name ; 
 		this.position = { x: 200, y: 200 } ; 
+		this.positionMap = { x: -1, y: -1 } ; 
 		
 		// a tranferer dans la class Sprite
 		this.nbAnimation = 8 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src 
