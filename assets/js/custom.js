@@ -109,13 +109,13 @@ const update = function(elapsed) {
   let direction = {x: 0, y:0}
 
 	if(isKeyZ)
-		direction.y -= 0.5 ; 
+		direction.y -= 0.5 * arthur.speed ; 
 	if(isKeyS)
-		direction.y += 0.5 ; 
+		direction.y += 0.5 * arthur.speed; 
 	if(isKeyQ)
-		direction.x -= 1 ; 
+		direction.x -= 1 * arthur.speed; 
 	if(isKeyD)
-		direction.x += 1 ; 
+		direction.x += 1 * arthur.speed; 
 	
 	arthur.move(direction.x , direction.y) ; 
 
@@ -184,6 +184,10 @@ function renderMouseAndGridPosition() {
   ctx.fillStyle = 'white';
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
+  
+  // Ajout position Arthur
+  ctx.fillText(`Arthur pos: ${arthur.position.x}, ${arthur.position.y}`, 20, 140);
+  ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
 }
 
 function renderObjects()

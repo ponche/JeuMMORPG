@@ -5,6 +5,7 @@ class Actor
 		this.name = name ;
 		this.position = { x: 500, y: 500 } ; 
 		this.positionMap = { x: -1, y: -1 } ;
+		this.speed = 2 ; 
 
 		// a tranferer dans la class Sprite
 		this.nbAnimation = 8 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
