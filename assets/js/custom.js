@@ -1,6 +1,4 @@
-
-
-
+let size = 10;
 let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 
 let gridSize = Math.sqrt(tileMap.length);
@@ -103,7 +101,7 @@ const update = function(elapsed) {
   // Partie qui controle la supression d'une tuile
   if (isMouseDown === true)  {
 	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-	  
+
 	}
   }
 
@@ -203,7 +201,7 @@ const update = function(elapsed) {
 
 const render = function() {
   tileStartX = canvas.width/2-50+offsetXMod;
-  tileStartY = canvas.height/2-200+offsetYMod;
+	tileStartY = -((size*48)/2)+(canvas.height/2)+offsetYMod;
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   renderTiles(tileStartX, tileStartY);
@@ -327,19 +325,19 @@ run();
 window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
 	case 37: // Left
-	  offsetXMod = offsetXMod - 10;
-	break;
-
-	case 38: // Up
-	  offsetYMod = offsetYMod - 10;
-	break;
-
-	case 39: // Right
 	  offsetXMod = offsetXMod + 10;
 	break;
 
-	case 40: // Down
+	case 38: // Up
 	  offsetYMod = offsetYMod + 10;
+	break;
+
+	case 39: // Right
+	  offsetXMod = offsetXMod - 10;
+	break;
+
+	case 40: // Down
+	  offsetYMod = offsetYMod - 10;
 	break;
 
 	case 81 :

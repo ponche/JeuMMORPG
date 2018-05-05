@@ -1,4 +1,5 @@
-let tileMap = Array(400).fill(0);
+let size = 20;
+let tileMap = Array(size*size).fill(0);
 
 let gridSize = Math.sqrt(tileMap.length);
 let maxSelectorsPerRow = 6;
@@ -94,8 +95,9 @@ const update = function(elapsed) {
 };
 
 const render = function() {
-  tileStartX = canvas.width/2-50+offsetXMod;
-  tileStartY = canvas.height/2-200+offsetYMod;
+  tileStartX = canvas.width/2+offsetXMod-50;
+  tileStartY = -((size*48)/2)+(canvas.height/2)+offsetYMod;
+
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   renderTiles(tileStartX, tileStartY);
@@ -271,19 +273,19 @@ run();
 window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
 	case 37: // Left
-	  offsetXMod = offsetXMod - 10;
-	break;
-
-	case 38: // Up
-	  offsetYMod = offsetYMod - 10;
-	break;
-
-	case 39: // Right
 	  offsetXMod = offsetXMod + 10;
 	break;
 
-	case 40: // Down
+	case 38: // Up
 	  offsetYMod = offsetYMod + 10;
+	break;
+
+	case 39: // Right
+	  offsetXMod = offsetXMod - 10;
+	break;
+
+	case 40: // Down
+	  offsetYMod = offsetYMod - 10;
 	break;
 
 	case 81 :
