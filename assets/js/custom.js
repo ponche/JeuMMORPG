@@ -21,38 +21,7 @@ let offsetXMod = 0;
 let listeActor = [] ; 
 
 
-// Class Actor Test
-class Actor
-{
-	constructor(name)
-	{
-		this.name = name ; 
-		this.position = { x: 200, y: 200 } ; 
-		this.nbAnimation = 8 ; 
-		this.nbFrame = 9 ; 
-		this.currentFrame = 0 ; 
-		this.currentAnimation = 0 ;
-		this.sprite = new Image() ; 
-		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
-		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement 
-		this.currentDelayFrame = 0
-		listeActor.push(this) ; // Attention, ne pas crée directement dans le tableau, c'est automatique 
-	}
-	
-	update()
-	{
-		// Mise a jour de actor
-		this.currentDelayFrame++ 
-		if(this.currentDelayFrame >= this.delayFrame) 
-		{
-			this.currentFrame++ ; 
-			this.currentDelayFrame = - 1 ; 
-			if(this.currentFrame >= this.nbFrame)
-				this.currentFrame = 0 ; 
-		}
-	}
-	
-}
+
 
 let arthur = new Actor ; 
 
@@ -220,7 +189,7 @@ function renderObjects()
 		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
 		hauteurActor = spriteActor.height / arthur.nbAnimation ; 
 		largeurActor = spriteActor.width / arthur.nbFrame ; 
-		ctx.drawImage(spriteActor, arthur.currentFrame * largeurActor, arthur.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ; 
+		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ; 
 	}
 }
 
