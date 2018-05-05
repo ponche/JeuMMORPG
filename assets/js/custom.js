@@ -95,6 +95,9 @@ const update = function(elapsed) {
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
 
 	  listeActor[i].update() ;
+	  // Mise a jour des position absolute 
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX ; 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
   }
 
 
@@ -188,6 +191,11 @@ function renderMouseAndGridPosition() {
   // Ajout position Arthur
   ctx.fillText(`Arthur pos: ${arthur.position.x}, ${arthur.position.y}`, 20, 140);
   ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
+  ctx.fillText(`Arthur World: ${arthur.positionWorld.x}, ${arthur.positionWorld.y}`, 20, 180);
+  
+  
+  // Position de la map 
+  ctx.fillText(`Worlds: ${tileStartX}, ${tileStartY}`, 20, 200);
 }
 
 function renderObjects()

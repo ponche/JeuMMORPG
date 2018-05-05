@@ -5,6 +5,7 @@ class Actor
 		this.name = name ;
 		this.position = { x: 500, y: 500 } ; 
 		this.positionMap = { x: -1, y: -1 } ;
+		this.positionWorld = { x: -1, y: -1 } ; 
 		this.speed = 2 ; 
 
 		// a tranferer dans la class Sprite
@@ -30,6 +31,7 @@ class Actor
 
 	update()
 	{
+		
 		// Mise a jour du sprite
 		if(this.runAnimationSprite)
 		{
@@ -91,8 +93,8 @@ class Actor
 	}
 	move(x, y)
 	{
-		this.position.x += x ;
-		this.position.y += y  ;
+		this.positionWorld.x += x ;
+		this.positionWorld.y += y  ;
 
 	}
 
