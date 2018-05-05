@@ -200,7 +200,7 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
   ctx.fillText(`Arthur World: ${arthur.positionWorld.x}, ${arthur.positionWorld.y}`, 20, 180);
   ctx.fillText(`Arthur IdDecimal: ${arthur.positionMapDecimal.x}, ${arthur.positionMapDecimal.y}`, 20, 200);
-  
+  ctx.fillText(`Arthur IdTille: ${arthur.tileFeet}`, 20, 240);
   
   
   // Position de la map 
