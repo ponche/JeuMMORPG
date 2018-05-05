@@ -1,5 +1,5 @@
 
-	
+
 
 let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 
@@ -13,21 +13,21 @@ let hoverTileX = -1;
 let hoverTileY = -1;
 let tiletype_empty = 0;
 let isMouseDown = false;
-let isKeyZ = false ; 
-let isKeyS = false ; 
-let isKeyQ = false ; 
-let isKeyD = false ; 
+let isKeyZ = false ;
+let isKeyS = false ;
+let isKeyQ = false ;
+let isKeyD = false ;
 let tile_images = [];
 let tile_quantity = 36;
 let offsetYMod = 0;
 
 let offsetXMod = 0;
-let listeActor = [] ; 
+let listeActor = [] ;
 
 
 
 
-let arthur = new Actor ; 
+let arthur = new Actor ;
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
@@ -87,21 +87,18 @@ const update = function(elapsed) {
 
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
-  
-  // Mise à jour des Actor 
+
+  // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)
   {
-	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ; 
-	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ; 
+	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
+	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
-	  
-	  listeActor[i].update() ; 
-	  
-	  // Test position Arthur
-	  console.log(arthur.positionMap) ; 
+
+	  listeActor[i].update() ;
   }
-  
+
 
   // Partie qui controle la supression d'une tuile
   if (isMouseDown === true)  {
@@ -113,50 +110,99 @@ const update = function(elapsed) {
 	  }
 	}
   }
-  
+
   // controleur du personnage Test ( Arthur )
   let direction = {x: 0, y:0}
-  if(isKeyD) // mouvement vers la droite
-  {
-	  arthur.move(1 , 0) ; 
+
+	if(isKeyS && isKeyD) {
+		/*arthur.move(1, 0.5);
+		direction.y = 1;
+		direction.x = 1;*/
+
+		arthur.move(0 , 1) ;
+	  direction.y = 1 ;
+	}
+	else if(isKeyS && isKeyQ) {
+		/*arthur.move(-1, 0.5);
+		direction.x = -1;
+		direction.y = 1;*/
+
+		arthur.move(-1  , 0) ;
+	  direction.x = -1 ;
+	}
+	else if(isKeyZ && isKeyD) {
+		/*arthur.move(1, -0.5);
+		direction.x = 1;
+		direction.y = -1;*/
+
+		arthur.move(1 , 0) ;
 	  direction.x = 1
-  }
-  if(isKeyQ) // Mouvement vers la gauche 
+	}
+	else if(isKeyZ && isKeyQ) {
+		/*arthur.move(-1, -0.5);
+		direction.x = -1;
+		direction.y = -1;*/
+
+		arthur.move(0 , -1) ;
+	  direction.y = -1 ;
+	}
+  else if(isKeyD) // mouvement vers la droite
   {
-	  arthur.move(-1  , 0) ; 
-	  direction.x = -1 ; 
+	  /*arthur.move(1 , 0) ;
+	  direction.x = 1*/
+
+		arthur.move(1, 0.5);
+		direction.y = 1;
+		direction.x = 1;
   }
-  if(isKeyZ) // mouvement vers le haut 
+  else if(isKeyQ) // Mouvement vers la gauche
   {
-	  arthur.move(0 , -1) ; 
-	  direction.y = -1 ; 
+	  /*arthur.move(-1  , 0) ;
+	  direction.x = -1 ;*/
+
+		arthur.move(-1, -0.5);
+		direction.x = -1;
+		direction.y = -1;
   }
-  if(isKeyS) // mouvement vers le bas 
+  else if(isKeyZ) // mouvement vers le haut
   {
-	  arthur.move(0 , 1) ; 
-	  direction.y = 1 ; 
+	  /*arthur.move(0 , -1) ;
+	  direction.y = -1 ;*/
+
+		arthur.move(1, -0.5);
+		direction.x = 1;
+		direction.y = -1;
   }
-  
-  // Changement de animation 
+  else if(isKeyS) // mouvement vers le bas
+  {
+	  /*arthur.move(0 , 1) ;
+	  direction.y = 1 ;*/
+
+		arthur.move(-1, 0.5);
+		direction.x = -1;
+		direction.y = 1;
+  }
+
+  // Changement de animation
   if(direction.x > 0 && direction.y == 0)
 	  arthur.setAnimation(3) ; // animation droite
-  if(direction.x < 0 && direction.y == 0)	
+  if(direction.x < 0 && direction.y == 0)
 	  arthur.setAnimation(4) ;   //animation gauche
   if(direction.x  == 0 && direction.y > 0 )
 	  arthur.setAnimation(6) // animation bas
   if(direction.x ==  0 && direction.y < 0)
 	  arthur.setAnimation(1) ; // animation haut
-  
-  if(direction.x < 0 && direction.y < 0 ) 
-	  arthur.setAnimation(0) ; // en haut a gauche 
-  if(direction.x > 0 && direction.y < 0 ) 
-	  arthur.setAnimation(2) ; // en haut a droite 
-  if(direction.x < 0 && direction.y > 0 ) 
-	  arthur.setAnimation(5) ; // en bas a gauche 
-  if(direction.x > 0 && direction.y > 0 ) 
-	  arthur.setAnimation(7) ; 
-   
-  
+
+  if(direction.x < 0 && direction.y < 0 )
+	  arthur.setAnimation(0) ; // en haut a gauche
+  if(direction.x > 0 && direction.y < 0 )
+	  arthur.setAnimation(2) ; // en haut a droite
+  if(direction.x < 0 && direction.y > 0 )
+	  arthur.setAnimation(5) ; // en bas a gauche
+  if(direction.x > 0 && direction.y > 0 )
+	  arthur.setAnimation(7) ;
+
+
 };
 
 const render = function() {
@@ -166,7 +212,7 @@ const render = function() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   renderTiles(tileStartX, tileStartY);
   renderObjects();
-  //renderUI();
+  renderUI();
 };
 
 const run = function(e) {
@@ -237,15 +283,15 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
 }
 
-function renderObjects() 
-{ 
+function renderObjects()
+{
 	for (let i = 0 ; i < listeActor.length ; i++)
 	{
 		spriteActor = listeActor[i].sprite ;
 		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-		hauteurActor = spriteActor.height / arthur.nbAnimation ; 
-		largeurActor = spriteActor.width / arthur.nbFrame ; 
-		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ; 
+		hauteurActor = spriteActor.height / arthur.nbAnimation ;
+		largeurActor = spriteActor.width / arthur.nbFrame ;
+		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
 	}
 }
 
@@ -358,41 +404,38 @@ window.addEventListener('keydown', function(event) {
 	case 40: // Down
 	  offsetYMod = offsetYMod + 10;
 	break;
-	
-	case 81 : 
-		isKeyQ = true ; 
-		break ; 
-	case 68 : 
-		isKeyD = true ; 
-		break ; 
-	case 90 : 
-		isKeyZ = true ; 
-		break ; 
-	case 83 : 
-		isKeyS = true ; 
-		break ; 
+
+	case 81 :
+		isKeyQ = true ;
+		break ;
+	case 68 :
+		isKeyD = true ;
+		break ;
+	case 90 :
+		isKeyZ = true ;
+		break ;
+	case 83 :
+		isKeyS = true ;
+		break ;
   }
-  
-  
+
+
 }, false);
 
 window.addEventListener('keyup' , function(event) {
-	switch (event.keyCode) 
+	switch (event.keyCode)
 	{
-		case 81 : 
-			isKeyQ = false ; 
-			break ; 
-		case 68 : 
-			isKeyD = false ; 
-			break ; 
-		case 90 : 
-			isKeyZ = false ; 
-			break ; 
-		case 83 : 
-			isKeyS = false ; 
-			break ; 
+		case 81 :
+			isKeyQ = false ;
+			break ;
+		case 68 :
+			isKeyD = false ;
+			break ;
+		case 90 :
+			isKeyZ = false ;
+			break ;
+		case 83 :
+			isKeyS = false ;
+			break ;
 	}
 }, false);
-	
-
-
