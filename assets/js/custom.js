@@ -107,23 +107,47 @@ const update = function(elapsed) {
   }
   
   // controleur du personnage Test ( Arthur )
+  let direction = {x: 0, y:0}
   if(isKeyD) // mouvement vers la droite
   {
 	  arthur.move(1 , 0) ; 
+	  direction.x = 1
   }
   if(isKeyQ) // Mouvement vers la gauche 
   {
 	  arthur.move(-1  , 0) ; 
+	  direction.x = -1 ; 
   }
   if(isKeyZ) // mouvement vers le haut 
   {
 	  arthur.move(0 , -1) ; 
+	  direction.y = -1 ; 
   }
   if(isKeyS) // mouvement vers le bas 
   {
 	  arthur.move(0 , 1) ; 
+	  direction.y = 1 ; 
   }
   
+  // Changement de animation 
+  if(direction.x > 0 && direction.y == 0)
+	  arthur.setAnimation(3) ; // animation droite
+  if(direction.x < 0 && direction.y == 0)	
+	  arthur.setAnimation(4) ;   //animation gauche
+  if(direction.x  == 0 && direction.y > 0 )
+	  arthur.setAnimation(6) // animation bas
+  if(direction.x ==  0 && direction.y < 0)
+	  arthur.setAnimation(1) ; // animation haut
+  
+  if(direction.x < 0 && direction.y < 0 ) 
+	  arthur.setAnimation(0) ; // en haut a gauche 
+  if(direction.x > 0 && direction.y < 0 ) 
+	  arthur.setAnimation(2) ; // en haut a droite 
+  if(direction.x < 0 && direction.y > 0 ) 
+	  arthur.setAnimation(5) ; // en bas a gauche 
+  if(direction.x > 0 && direction.y > 0 ) 
+	  arthur.setAnimation(7) ; 
+   
   
 };
 

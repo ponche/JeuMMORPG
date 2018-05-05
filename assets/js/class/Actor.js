@@ -55,12 +55,15 @@ class Actor
 	// Fonction Sprite
 	setAnimation(newAnimation)
 	{
-		this.currentAnimation = newAnimation ; 
-		this.currentFrame = 0 ; 
-		if(this.currentAnimation >= this.nbAnimation)
+		if(this.currentAnimation != newAnimation)
 		{
-			console.log("Erreur par d'animation trouver");
-			this.currentAnimation = 0 ; 
+			this.currentAnimation = newAnimation ; 
+			this.currentFrame = 0 ; 
+			if(this.currentAnimation >= this.nbAnimation)
+			{
+				console.log("Erreur par d'animation trouver");
+				this.currentAnimation = 0 ; 
+			}
 		}
 	}
 	move(x, y)
