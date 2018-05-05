@@ -108,74 +108,16 @@ const update = function(elapsed) {
   // controleur du personnage Test ( Arthur )
   let direction = {x: 0, y:0}
 
-	if(isKeyS && isKeyD) {
-		/*arthur.move(1, 0.5);
-		direction.y = 1;
-		direction.x = 1;*/
-
-		arthur.move(0 , 1) ;
-	  direction.y = 1 ;
-	}
-	else if(isKeyS && isKeyQ) {
-		/*arthur.move(-1, 0.5);
-		direction.x = -1;
-		direction.y = 1;*/
-
-		arthur.move(-1  , 0) ;
-	  direction.x = -1 ;
-	}
-	else if(isKeyZ && isKeyD) {
-		/*arthur.move(1, -0.5);
-		direction.x = 1;
-		direction.y = -1;*/
-
-		arthur.move(1 , 0) ;
-	  direction.x = 1
-	}
-	else if(isKeyZ && isKeyQ) {
-		/*arthur.move(-1, -0.5);
-		direction.x = -1;
-		direction.y = -1;*/
-
-		arthur.move(0 , -1) ;
-	  direction.y = -1 ;
-	}
-  else if(isKeyD) // mouvement vers la droite
-  {
-	  /*arthur.move(1 , 0) ;
-	  direction.x = 1*/
-
-		arthur.move(1, 0.5);
-		direction.y = 1;
-		direction.x = 1;
-  }
-  else if(isKeyQ) // Mouvement vers la gauche
-  {
-	  /*arthur.move(-1  , 0) ;
-	  direction.x = -1 ;*/
-
-		arthur.move(-1, -0.5);
-		direction.x = -1;
-		direction.y = -1;
-  }
-  else if(isKeyZ) // mouvement vers le haut
-  {
-	  /*arthur.move(0 , -1) ;
-	  direction.y = -1 ;*/
-
-		arthur.move(1, -0.5);
-		direction.x = 1;
-		direction.y = -1;
-  }
-  else if(isKeyS) // mouvement vers le bas
-  {
-	  /*arthur.move(0 , 1) ;
-	  direction.y = 1 ;*/
-
-		arthur.move(-1, 0.5);
-		direction.x = -1;
-		direction.y = 1;
-  }
+	if(isKeyZ)
+		direction.y -= 0.5 ; 
+	if(isKeyS)
+		direction.y += 0.5 ; 
+	if(isKeyQ)
+		direction.x -= 1 ; 
+	if(isKeyD)
+		direction.x += 1 ; 
+	
+	arthur.move(direction.x , direction.y) ; 
 
   // Changement de animation
   if(direction.x > 0 && direction.y == 0)
