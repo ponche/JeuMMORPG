@@ -6,7 +6,7 @@ class Actor
 		this.position = { x: 200, y: 200 } ; 
 		
 		// a tranferer dans la class Sprite
-		this.nbAnimation = 8 ; 
+		this.nbAnimation = 8 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src 
 		this.nbFrame = 9 ; 
 		this.currentFrame = 0 ; 
 		this.currentAnimation = 0 ;
@@ -28,15 +28,22 @@ class Actor
 	update()
 	{
 		// Mise a jour du sprite 
-		if(runAnimationSprite)
+		if(this.runAnimationSprite)
 		{
 			this.currentDelayFrame++ 
 			if(this.currentDelayFrame >= this.delayFrame) 
 			{
-				this.currentFrame++ ; 
-				this.currentDelayFrame = - 1 ; 
-				if(this.currentFrame >= this.nbFrame)
-					this.currentFrame = 0 ; 
+				
+				this.currentDelayFrame = - 1 ;
+
+				if(this.currentFrame < this.nbFrame - 1  )
+					this.currentFrame++ ; 
+				
+				if(this.currentFrame >= this.nbFrame - 1)
+					if(this.loopAnimationSprite)
+						this.currentFrame = 0 ; 
+					
+				
 			}
 		}
 	}
