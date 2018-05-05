@@ -5,7 +5,9 @@ class Actor
 		this.name = name ;
 		this.position = { x: 500, y: 500 } ; 
 		this.positionMap = { x: -1, y: -1 } ;
+		this.positionMapDecimal = { x: -1, y: -1 } ; 
 		this.positionWorld = { x: -1, y: -1 } ; 
+		this.tileFeet = undefined ; 
 		this.speed = 2 ; 
 
 		// a tranferer dans la class Sprite

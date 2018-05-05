@@ -26,6 +26,7 @@ let listeActor = [] ;
 
 
 let arthur = new Actor ;
+arthur.reverseAnimation = true ; 
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
@@ -93,10 +94,16 @@ const update = function(elapsed) {
 	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
+	  
+	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
+	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
+	  
+	  
+	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
 
 	  listeActor[i].update() ;
 	  // Mise a jour des position absolute 
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX ; 
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
   }
 
@@ -192,10 +199,12 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`Arthur pos: ${arthur.position.x}, ${arthur.position.y}`, 20, 140);
   ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
   ctx.fillText(`Arthur World: ${arthur.positionWorld.x}, ${arthur.positionWorld.y}`, 20, 180);
+  ctx.fillText(`Arthur IdDecimal: ${arthur.positionMapDecimal.x}, ${arthur.positionMapDecimal.y}`, 20, 200);
+  
   
   
   // Position de la map 
-  ctx.fillText(`Worlds: ${tileStartX}, ${tileStartY}`, 20, 200);
+  ctx.fillText(`Worlds: ${tileStartX}, ${tileStartY}`, 20, 220);
 }
 
 function renderObjects()
