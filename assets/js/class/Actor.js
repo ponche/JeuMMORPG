@@ -15,6 +15,7 @@ class Actor
 		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement ( "ne prend pas les décimal" ) 
 		this.currentDelayFrame = 0
 		this.loopAnimationSprite = true ; 
+		this.reverseAnimation = false ; 
 		this.runAnimationSprite = true ; 
 		// fin attribut pour la class Sprite  
 		
@@ -30,20 +31,40 @@ class Actor
 		// Mise a jour du sprite 
 		if(this.runAnimationSprite)
 		{
-			this.currentDelayFrame++ 
-			if(this.currentDelayFrame >= this.delayFrame) 
+			if(this.reverseAnimation == false)
 			{
-				
-				this.currentDelayFrame = - 1 ;
-
-				if(this.currentFrame < this.nbFrame - 1  )
-					this.currentFrame++ ; 
-				
-				if(this.currentFrame >= this.nbFrame - 1)
-					if(this.loopAnimationSprite)
-						this.currentFrame = 0 ; 
+				this.currentDelayFrame++ 
+				if(this.currentDelayFrame >= this.delayFrame) 
+				{
 					
-				
+					this.currentDelayFrame = - 1 ;
+
+					if(this.currentFrame < this.nbFrame - 1  )
+						this.currentFrame++ ; 
+					
+					if(this.currentFrame >= this.nbFrame - 1)
+						if(this.loopAnimationSprite)
+							this.currentFrame = 0 ; 
+						
+					
+				}
+			}
+			else
+			{
+				this.currentDelayFrame++ 
+				if(this.currentDelayFrame >= this.delayFrame) 
+				{
+					
+					this.currentDelayFrame = - 1 ;
+
+					if(this.currentFrame >  - 1  )
+						this.currentFrame-- ; 
+					
+					if(this.currentFrame <=  - 1)
+						if(this.loopAnimationSprite)
+							this.currentFrame = this.nbFrame -1 ; 
+						
+				}
 			}
 		}
 	}
