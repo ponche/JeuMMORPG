@@ -1,7 +1,4 @@
-
-
-
-let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
+let tileMap = Array(400).fill(0);
 
 let gridSize = Math.sqrt(tileMap.length);
 let maxSelectorsPerRow = 6;
@@ -22,12 +19,7 @@ let tile_quantity = 36;
 let offsetYMod = 0;
 
 let offsetXMod = 0;
-let listeActor = [] ;
 
-
-
-
-let arthur = new Actor ;
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
@@ -88,116 +80,16 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
-  // Mise à jour des Actor
-  for (let i = 0 ; i < listeActor.length ; i++)
-  {
-	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
-	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
-	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
-	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
-
-	  listeActor[i].update() ;
-  }
-
-
   // Partie qui controle la supression d'une tuile
   if (isMouseDown === true)  {
 	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-	  
+	  var tileIndex = hoverTileY * gridSize + hoverTileX;
+	  if (tileIndex < tileMap.length) {
+		let tileType = selectedTileType;// (tileMap[tileIndex] + 1) % tile_textures.length;
+		tileMap[tileIndex] = tileType;
+	  }
 	}
   }
-
-  // controleur du personnage Test ( Arthur )
-  let direction = {x: 0, y:0}
-
-	if(isKeyS && isKeyD) {
-		/*arthur.move(1, 0.5);
-		direction.y = 1;
-		direction.x = 1;*/
-
-		arthur.move(0 , 1) ;
-	  direction.y = 1 ;
-	}
-	else if(isKeyS && isKeyQ) {
-		/*arthur.move(-1, 0.5);
-		direction.x = -1;
-		direction.y = 1;*/
-
-		arthur.move(-1  , 0) ;
-	  direction.x = -1 ;
-	}
-	else if(isKeyZ && isKeyD) {
-		/*arthur.move(1, -0.5);
-		direction.x = 1;
-		direction.y = -1;*/
-
-		arthur.move(1 , 0) ;
-	  direction.x = 1
-	}
-	else if(isKeyZ && isKeyQ) {
-		/*arthur.move(-1, -0.5);
-		direction.x = -1;
-		direction.y = -1;*/
-
-		arthur.move(0 , -1) ;
-	  direction.y = -1 ;
-	}
-  else if(isKeyD) // mouvement vers la droite
-  {
-	  /*arthur.move(1 , 0) ;
-	  direction.x = 1*/
-
-		arthur.move(1, 0.5);
-		direction.y = 1;
-		direction.x = 1;
-  }
-  else if(isKeyQ) // Mouvement vers la gauche
-  {
-	  /*arthur.move(-1  , 0) ;
-	  direction.x = -1 ;*/
-
-		arthur.move(-1, -0.5);
-		direction.x = -1;
-		direction.y = -1;
-  }
-  else if(isKeyZ) // mouvement vers le haut
-  {
-	  /*arthur.move(0 , -1) ;
-	  direction.y = -1 ;*/
-
-		arthur.move(1, -0.5);
-		direction.x = 1;
-		direction.y = -1;
-  }
-  else if(isKeyS) // mouvement vers le bas
-  {
-	  /*arthur.move(0 , 1) ;
-	  direction.y = 1 ;*/
-
-		arthur.move(-1, 0.5);
-		direction.x = -1;
-		direction.y = 1;
-  }
-
-  // Changement de animation
-  if(direction.x > 0 && direction.y == 0)
-	  arthur.setAnimation(3) ; // animation droite
-  if(direction.x < 0 && direction.y == 0)
-	  arthur.setAnimation(4) ;   //animation gauche
-  if(direction.x  == 0 && direction.y > 0 )
-	  arthur.setAnimation(6) // animation bas
-  if(direction.x ==  0 && direction.y < 0)
-	  arthur.setAnimation(1) ; // animation haut
-
-  if(direction.x < 0 && direction.y < 0 )
-	  arthur.setAnimation(0) ; // en haut a gauche
-  if(direction.x > 0 && direction.y < 0 )
-	  arthur.setAnimation(2) ; // en haut a droite
-  if(direction.x < 0 && direction.y > 0 )
-	  arthur.setAnimation(5) ; // en bas a gauche
-  if(direction.x > 0 && direction.y > 0 )
-	  arthur.setAnimation(7) ;
-
 
 };
 
@@ -218,7 +110,40 @@ const run = function(e) {
 };
 
 function renderUI () {
-  renderMouseAndGridPosition();
+  // renderMouseAndGridPosition();
+  renderTileSelectors();
+}
+
+function renderTileSelectors() {
+  let selectorTileWidth  = 48;
+  let selectorTileHeight = 48;
+  let renderRow = 0;
+  let renderColumn = 0;
+  // renderEmptyTileSelector(selectorTileWidth, selectorTileHeight, selectedTileType == tiletype_empty);
+  for(let x = 0; x < tile_images.length; ++x) {
+	if (renderColumn >= maxSelectorsPerRow) {
+	  renderColumn = 0;
+	  renderRow++;
+	}
+	renderTileSelector(
+		selectorTileWidth,
+		selectorTileHeight,
+		renderColumn,
+		renderRow, tile_images[x],
+		x==selectedTileType);
+	renderColumn++;
+  }
+}
+
+function renderEmptyTileSelector(width, height, isSelected) {
+  renderSelectorBackground(20, 20, width, height, isSelected);
+}
+
+function renderTileSelector(width, height, index, row, image, isSelected) {
+  let renderX = 20 + (width*index) + (index*20);
+  let renderY = 20 + (height*row) + (row*20);
+  renderSelectorBackground(renderX, renderY, width, height, isSelected);
+  ctx.drawImage(image, renderX, renderY, width, height);
 }
 
 function renderSelectorBackground(x, y, width, height, isSelected) {
@@ -248,14 +173,7 @@ function renderMouseAndGridPosition() {
 
 function renderObjects()
 {
-	for (let i = 0 ; i < listeActor.length ; i++)
-	{
-		spriteActor = listeActor[i].sprite ;
-		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-		hauteurActor = spriteActor.height / arthur.nbAnimation ;
-		largeurActor = spriteActor.width / arthur.nbFrame ;
-		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
-	}
+
 }
 
 function renderTiles(x, y) {
@@ -281,7 +199,33 @@ function renderTiles(x, y) {
 }
 
 function onMouseClick() {
-
+  // check if we clicked on the grid
+  if (!(hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize)) {
+	// check if we click on our selectors
+	let selectorIndex = -1;
+	let renderRow = 0;
+	let renderColumn = 0;
+	let renderX = 20;
+	let renderY = 20;
+	for(let index = 0; index < tile_quantity; ++index){
+	  let rowSize = maxSelectorsPerRow;
+	  if (renderColumn >= rowSize) {
+		renderColumn = 0;
+		renderRow++;
+	  }
+	  renderX = 20 + (48 * renderColumn) + (renderColumn * 20);
+	  renderY = 20 + (48 * renderRow) + (renderRow * 20);
+	  if (mousePosition.x >=renderX && mousePosition.x <= renderX + 48 &&
+		  mousePosition.y >= renderY && mousePosition.y <= renderY + 48) {
+		selectorIndex = index;
+		break;
+	  }
+	  renderColumn++;
+	}
+	if (selectorIndex != -1) {
+	  selectedTileType = selectorIndex;
+	}
+  }
 }
 
 // Pour modifier les couleurs du selecteur, c'est ici
