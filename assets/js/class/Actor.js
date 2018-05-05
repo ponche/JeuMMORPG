@@ -56,11 +56,18 @@ class Actor
 	setAnimation(newAnimation)
 	{
 		this.currentAnimation = newAnimation ; 
+		this.currentFrame = 0 ; 
 		if(this.currentAnimation >= this.nbAnimation)
 		{
 			console.log("Erreur par d'animation trouver");
 			this.currentAnimation = 0 ; 
 		}
+	}
+	move(x, y)
+	{
+		this.position.x += x ; 
+		this.position.y += y  ; 
+		
 	}
 	
 	

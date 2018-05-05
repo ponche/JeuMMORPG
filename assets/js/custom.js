@@ -13,6 +13,10 @@ let hoverTileX = -1;
 let hoverTileY = -1;
 let tiletype_empty = 0;
 let isMouseDown = false;
+let isKeyZ = false ; 
+let isKeyS = false ; 
+let isKeyQ = false ; 
+let isKeyD = false ; 
 let tile_images = [];
 let tile_quantity = 36;
 let offsetYMod = 0;
@@ -101,6 +105,26 @@ const update = function(elapsed) {
 	  }
 	}
   }
+  
+  // controleur du personnage Test ( Arthur )
+  if(isKeyD) // mouvement vers la droite
+  {
+	  arthur.move(1 , 0) ; 
+  }
+  if(isKeyQ) // Mouvement vers la gauche 
+  {
+	  arthur.move(-1  , 0) ; 
+  }
+  if(isKeyZ) // mouvement vers le haut 
+  {
+	  arthur.move(0 , -1) ; 
+  }
+  if(isKeyS) // mouvement vers le bas 
+  {
+	  arthur.move(0 , 1) ; 
+  }
+  
+  
 };
 
 const render = function() {
@@ -302,7 +326,41 @@ window.addEventListener('keydown', function(event) {
 	case 40: // Down
 	  offsetYMod = offsetYMod + 10;
 	break;
+	
+	case 81 : 
+		isKeyQ = true ; 
+		break ; 
+	case 68 : 
+		isKeyD = true ; 
+		break ; 
+	case 90 : 
+		isKeyZ = true ; 
+		break ; 
+	case 83 : 
+		isKeyS = true ; 
+		break ; 
   }
+  
+  
 }, false);
+
+window.addEventListener('keyup' , function(event) {
+	switch (event.keyCode) 
+	{
+		case 81 : 
+			isKeyQ = false ; 
+			break ; 
+		case 68 : 
+			isKeyD = false ; 
+			break ; 
+		case 90 : 
+			isKeyZ = false ; 
+			break ; 
+		case 83 : 
+			isKeyS = false ; 
+			break ; 
+	}
+}, false);
+	
 
 
