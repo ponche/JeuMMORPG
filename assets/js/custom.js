@@ -25,13 +25,13 @@ let listeActor = [] ;
 
 
 let arthur = new Actor ;
-arthur.reverseAnimation = true ; 
-arthur.nbAnimation = 8 ; 
-arthur.nbFrame = 9 ; 
+arthur.reverseAnimation = true ;
+arthur.nbAnimation = 8 ;
+arthur.nbFrame = 9 ;
 
-let vasse = new Actor("Vasse","test") ; 
-vasse.positionWorld = { x:0 , y: 300 } ; 
-vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; 
+let vasse = new Actor("Vasse","test") ;
+vasse.positionWorld = { x:0 , y: 300 } ;
+vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ;
 
 
 for(let i = 0; i < tile_quantity; ++i) {
@@ -69,10 +69,10 @@ window.addEventListener('resize', () => {
 function comparateurListeObjet(a,b)
 {
 	if(a.positionZ < b.positionZ)
-		return -1 ; 
+		return -1 ;
 	if(a.positionZ > b.positionZ)
-		return 1 ; 
-	// en cas egalite 
+		return 1 ;
+	// en cas egalite
 	return 0
 }
 
@@ -104,7 +104,7 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
-  
+
 
 
   // Partie qui controle la supression d'une tuile
@@ -118,15 +118,15 @@ const update = function(elapsed) {
   let direction = {x: 0, y:0}
 
 	if(isKeyZ)
-		direction.y -= 0.5 * arthur.speed ; 
+		direction.y -= 0.5 * arthur.speed ;
 	if(isKeyS)
-		direction.y += 0.5 * arthur.speed; 
+		direction.y += 0.5 * arthur.speed;
 	if(isKeyQ)
-		direction.x -= 1 * arthur.speed; 
+		direction.x -= 1 * arthur.speed;
 	if(isKeyD)
-		direction.x += 1 * arthur.speed; 
-	
-	arthur.move(direction.x , direction.y) ; 
+		direction.x += 1 * arthur.speed;
+
+	arthur.move(direction.x , direction.y) ;
 
   // Changement de animation
   if(direction.x > 0 && direction.y == 0)
@@ -146,49 +146,49 @@ const update = function(elapsed) {
 	  arthur.setAnimation(5) ; // en bas a gauche
   if(direction.x > 0 && direction.y > 0 )
 	  arthur.setAnimation(7) ;
-  
+
   // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)
   {
-	  
-	  
-	  
-	  
-	  listeActor[i].update() ; // avant la mise a jour des cordonnée 
-	  
-	  // Mise a jour des position absolute 
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
+
+
+
+
+	  listeActor[i].update() ; // avant la mise a jour des cordonnée
+
+	  // Mise a jour des position absolute
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
-	  
-	  //Mise a jour des position 
+
+	  //Mise a jour des position
 	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
 	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
-	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height)); 
-	  
+	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
+
 	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
 	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
-	  
-	  listeActor[i].tile_heigthWorld = tile_height ; 
-	  listeActor[i].tile_widthWorld = tile_width ; 
-	  
-	  // Mise a jour des position absolute 
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
-	  
+
+	  listeActor[i].tile_heigthWorld = tile_height ;
+	  listeActor[i].tile_widthWorld = tile_width ;
+
+	  // Mise a jour des position absolute
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+
 	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
-	  
-	  
-	 // après les calcul effectuer  
-	  listeActor[i].updateAfterCalcul() ; 
-	  
+
+
+	 // après les calcul effectuer
+	  listeActor[i].updateAfterCalcul() ;
+
 	  // Mise a jour des position absolute pour updateAfterCalcul
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
-	  
-	  
-	  // trie du tableau pour le rendu 
-	  listeActor.sort(comparateurListeObjet) ; 
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+
+
+	  // trie du tableau pour le rendu
+	  listeActor.sort(comparateurListeObjet) ;
   }
 
 
@@ -237,7 +237,7 @@ function renderMouseAndGridPosition() {
   ctx.fillStyle = 'white';
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
-  
+
   // Ajout position Arthur
   ctx.fillText(`Arthur pos: ${arthur.position.x}, ${arthur.position.y}`, 20, 140);
   ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
@@ -245,9 +245,9 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`Arthur IdDecimal: ${arthur.positionMapDecimal.x}, ${arthur.positionMapDecimal.y}`, 20, 200);
   ctx.fillText(`Arthur IdTille: ${arthur.tileFeet}`, 20, 240);
   ctx.fillText(`Arthur positionZ: ${arthur.positionZ}`, 20, 260);
-  
-  
-  // Position de la map 
+
+
+  // Position de la map
   ctx.fillText(`Worlds: ${tileStartX}, ${tileStartY}`, 20, 220);
 }
 
@@ -381,3 +381,9 @@ window.addEventListener('keyup' , function(event) {
 			break ;
 	}
 }, false);
+
+function tilePosToMapPos(tileX, tileY) {
+  let posX = -48*tileY+48*tileX+48;
+  let posY = (48*tileX+48*tileY+48)/2;
+  return {x: posX, y:posY};
+}
