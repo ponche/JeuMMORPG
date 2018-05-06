@@ -33,6 +33,12 @@ class Actor
 
 	update()
 	{
+		//Vérif collision 
+		if(this.tileFeet == 21)
+		{
+			console.log("Collision") ;
+			this.ejectionCollision() ; 
+		}
 		
 		// Mise a jour du sprite
 		if(this.runAnimationSprite)
@@ -98,6 +104,28 @@ class Actor
 		this.positionWorld.x += x ;
 		this.positionWorld.y += y  ;
 
+	}
+	ejectionCollision()
+	{
+		// décision du coté d'expulsion
+		if(this.positionMapDecimal.x - this.positionMap.x > 0.5)
+		{
+			this.move(1 * this.speed, 0.5 *this.speed) ; //en bas a droite
+		}
+		if(this.positionMapDecimal.x - this.positionMap < 0.5)
+		{
+			this.move(-1 * this.speed, -0.5 * this.speed) ; // en haut a gauche
+		}
+		if(this.positionMapDecimal.y - this.positionMap.y > 0.5)
+		{
+			this.move(1 * this.speed, -0.5 * this.speed) ; 
+		}
+		if(this.positionMapDecimal.y - this.positionMap.y < 0.5)
+		{
+			this.move(- 1 * this.speed, 0.5 * this.speed) ; 
+		}
+		
+		
 	}
 
 
