@@ -26,13 +26,13 @@ let listeActor = [] ;
 
 let arthur = new Actor ;
 arthur.reverseAnimation = true ; 
+arthur.nbAnimation = 8 ; 
+arthur.nbFrame = 9 ; 
 
 let vasse = new Actor("Vasse","test") ; 
 vasse.positionWorld = { x:0 , y: 300 } ; 
 vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; 
-vasse.nbAnimation = 1 ; 
-vasse.nbFrame = 1 ; 
- 
+
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
@@ -65,6 +65,17 @@ window.addEventListener('resize', () => {
   maxSelectorsPerRow = canvas.width / 72;
 
 }, false);
+
+function comparateurListeObjet(a,b)
+{
+	if(a.positionZ < b.positionZ)
+		return -1 ; 
+	if(a.positionZ > b.positionZ)
+		return 1 ; 
+	// en cas egalite 
+	return 0
+}
+
 
 function mouseUp(evt) {
 	if (isMouseDown === true) onMouseClick();
@@ -173,7 +184,8 @@ const update = function(elapsed) {
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
 	  
 	  
-	  
+	  // trie du tableau pour le rendu 
+	  listeActor.sort(comparateurListeObjet) ; 
   }
 
 

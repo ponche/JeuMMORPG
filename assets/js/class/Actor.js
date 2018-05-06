@@ -8,6 +8,7 @@ class Actor
 		this.positionMapDecimal = { x: -1, y: -1 } ; // idem
 		this.positionWorld = { x: 20, y: 130 } ; // position du personnage, à modifier pour déplacer le perso. 
 		this.lastPositionWorld = {x: 20, y: 130} ; 
+		this.positionZ = 0 ; 
 		this.tileFeet = undefined ; 
 		this.speed = 2 ; 
 		
@@ -17,8 +18,8 @@ class Actor
 		this.testCollision = false ; 
 
 		// a tranferer dans la class Sprite
-		this.nbAnimation = 8 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
-		this.nbFrame = 9 ;
+		this.nbAnimation = 1 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
+		this.nbFrame = 1 ;
 		this.currentFrame = 0 ;
 		this.currentAnimation = 0 ;
 		this.sprite = new Image() ;
@@ -83,6 +84,8 @@ class Actor
 				}
 			}
 		}
+		// Mise a jour de positionZ 
+		this.positionZ = this.positionMap.x + this.positionMap.y * 9 ;
 	}
 	updateAfterCalcul()
 	{
