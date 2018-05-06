@@ -138,6 +138,10 @@ const update = function(elapsed) {
 	  
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée 
 	  
+	  // Mise a jour des position absolute 
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+	  
 	  //Mise a jour des position 
 	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
 	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
@@ -154,10 +158,12 @@ const update = function(elapsed) {
 	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
 	  
 	  
-	 // après les calcul effectuer
-	  
+	 // après les calcul effectuer  
 	  listeActor[i].updateAfterCalcul() ; 
-	  //listeActor[i].update() ;
+	  
+	  // Mise a jour des position absolute pour updateAfterCalcul
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
 	  
 	  
 	  
