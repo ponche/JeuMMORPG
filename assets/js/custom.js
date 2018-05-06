@@ -169,6 +169,9 @@ const update = function(elapsed) {
 	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
 	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
 	  
+	  listeActor[i].tile_heigthWorld = tile_height ; 
+	  listeActor[i].tile_widthWorld = tile_width ; 
+	  
 	  // Mise a jour des position absolute 
 	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
@@ -241,6 +244,7 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`Arthur World: ${arthur.positionWorld.x}, ${arthur.positionWorld.y}`, 20, 180);
   ctx.fillText(`Arthur IdDecimal: ${arthur.positionMapDecimal.x}, ${arthur.positionMapDecimal.y}`, 20, 200);
   ctx.fillText(`Arthur IdTille: ${arthur.tileFeet}`, 20, 240);
+  ctx.fillText(`Arthur positionZ: ${arthur.positionZ}`, 20, 260);
   
   
   // Position de la map 

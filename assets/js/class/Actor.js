@@ -11,6 +11,8 @@ class Actor
 		this.positionZ = 0 ; 
 		this.tileFeet = undefined ; 
 		this.speed = 2 ; 
+		this.tile_heigthWorld = 0 ; // a supprimer quand scene sera OK
+		this.tile_widthWorld = 0 ; // a supprimer quand scene sera OK
 		
 		
 		//Test Collision
@@ -38,6 +40,8 @@ class Actor
 		// Séparer les composant [Sprite, bodyCollider, etc ] pour une meilleur compréhension du code. a Faire
 		
 		//Attributs Collision
+		this.simulCollision = false ; 
+		this.systemCollision = true 
 		
 	}
 
@@ -85,27 +89,35 @@ class Actor
 			}
 		}
 		// Mise a jour de positionZ 
-		this.positionZ = this.positionMap.x + this.positionMap.y * 9 ;
+		this.positionZ = this.positionMap.x + this.positionMap.y * 10 ;
 	}
 	updateAfterCalcul()
 	{
 		// fonction donc les valeur sont calculer après la fonction update
 		//Vérif collision 
-		if(this.tileFeet == 21 || this.tileFeet == 23)
+		if(this.systemCollision)
 		{
-			console.log("Collision") ;
-			this.testCollision = true ; 
-			
-			// on teleporte sur la dernier position sans collision
-			this.positionWorld.x = this.lastPositionWorld.x ; 
-			this.positionWorld.y = this.lastPositionWorld.y ; 
-		}
-		else
-		{
-			this.testCollision = false ; 
-			// on enregistre la position dans lastPositionWorld
-			this.lastPositionWorld.x = this.positionWorld.x ; 
-			this.lastPositionWorld.y = this.positionWorld.y ; 
+			if(this.tileFeet == 21 || this.tileFeet == 23)
+			{
+				console.log("Collision") ;
+				this.testCollision = true ; 
+				
+				if(this.simulCollision)
+				{	
+					this.positionWorld.x = this.lastPositionWorld.x ; 
+					this.positionWorld.y = this.lastPositionWorld.y ; 
+				}
+			}
+			else
+			{
+				this.testCollision = false ; 
+				// on enregistre la position dans lastPositionWorld
+				if(this.simulCollision)
+				{
+					this.lastPositionWorld.x = this.positionWorld.x ; 
+					this.lastPositionWorld.y = this.positionWorld.y ; 
+				}
+			}
 		}
 		
 	}
@@ -140,6 +152,10 @@ class Actor
 		
  
 	}
+	setPositionGrid(positionGrid)
+	{
+	}
+	
 	ejectionCollision()
 	{
 		
