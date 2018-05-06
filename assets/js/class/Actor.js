@@ -11,11 +11,6 @@ class Actor
 		this.tileFeet = undefined ; 
 		this.speed = 2 ; 
 		
-		// variable récupérer du monde
-		this.tile_heightWorld = 48 ; // Magic Number
-		this.tile_widthWorld = 96 ; 
-		this.tileStartXWorld = 0 ; 
-		this.tileStartYWorld = 0 ; 
 		
 		//Test Collision
 		this.lastdirection = {x: 0, y:0} ; 
@@ -40,6 +35,9 @@ class Actor
 		// instruction : listeActor.push(this) sera remplacer pour prendre en compte la scene par la suite
 
 		// Séparer les composant [Sprite, bodyCollider, etc ] pour une meilleur compréhension du code. a Faire
+		
+		//Attributs Collision
+		
 	}
 
 	update()

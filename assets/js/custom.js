@@ -27,6 +27,13 @@ let listeActor = [] ;
 let arthur = new Actor ;
 arthur.reverseAnimation = true ; 
 
+let vasse = new Actor("Vasse","test") ; 
+vasse.positionWorld = { x:0 , y: 300 } ; 
+vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; 
+vasse.nbAnimation = 1 ; 
+vasse.nbFrame = 1 ; 
+ 
+
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
   if(i == 0) { img.src = ""; } else { img.src = "assets/img/game/tiles/"+i+".png"; }
@@ -234,8 +241,8 @@ function renderObjects()
 	{
 		spriteActor = listeActor[i].sprite ;
 		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-		hauteurActor = spriteActor.height / arthur.nbAnimation ;
-		largeurActor = spriteActor.width / arthur.nbFrame ;
+		hauteurActor = spriteActor.height / listeActor[i].nbAnimation ;
+		largeurActor = spriteActor.width / listeActor[i].nbFrame ;
 		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
 	}
 }
