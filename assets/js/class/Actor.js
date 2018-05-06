@@ -3,12 +3,23 @@ class Actor
 	constructor(name, scene)
 	{
 		this.name = name ;
-		this.position = { x: 500, y: 500 } ; 
-		this.positionMap = { x: -1, y: -1 } ;
-		this.positionMapDecimal = { x: -1, y: -1 } ; 
-		this.positionWorld = { x: -1, y: -1 } ; 
+		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
+		this.positionMap = { x: -1, y: -1 } ; // Valeur en retard. valeur indicatif aucun effet sur changement
+		this.positionMapDecimal = { x: -1, y: -1 } ; // idem
+		this.positionWorld = { x: 20, y: 130 } ; // position du personnage, à modifier pour déplacer le perso. 
+		this.lastPositionWorld = {x: 20, y: 130} ; 
 		this.tileFeet = undefined ; 
 		this.speed = 2 ; 
+		
+		// variable récupérer du monde
+		this.tile_heightWorld = 48 ; // Magic Number
+		this.tile_widthWorld = 96 ; 
+		this.tileStartXWorld = 0 ; 
+		this.tileStartYWorld = 0 ; 
+		
+		//Test Collision
+		this.lastdirection = {x: 0, y:0} ; 
+		this.testCollision = false ; 
 
 		// a tranferer dans la class Sprite
 		this.nbAnimation = 8 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
@@ -33,12 +44,7 @@ class Actor
 
 	update()
 	{
-		//Vérif collision 
-		if(this.tileFeet == 21)
-		{
-			console.log("Collision") ;
-			this.ejectionCollision() ; 
-		}
+		
 		
 		// Mise a jour du sprite
 		if(this.runAnimationSprite)
@@ -80,6 +86,28 @@ class Actor
 			}
 		}
 	}
+	updateAfterCalcul()
+	{
+		// fonction donc les valeur sont calculer après la fonction update
+		//Vérif collision 
+		if(this.tileFeet == 21 || this.tileFeet == 23)
+		{
+			console.log("Collision") ;
+			this.testCollision = true ; 
+			
+			// on teleporte sur la dernier position sans collision
+			this.positionWorld.x = this.lastPositionWorld.x ; 
+			this.positionWorld.y = this.lastPositionWorld.y ; 
+		}
+		else
+		{
+			this.testCollision = false ; 
+			// on enregistre la position dans lastPositionWorld
+			this.lastPositionWorld.x = this.positionWorld.x ; 
+			this.lastPositionWorld.y = this.positionWorld.y ; 
+		}
+		
+	}
 	deleteActor()
 	{
 		// fonction pour retirer actor de la scenne
@@ -101,32 +129,26 @@ class Actor
 	}
 	move(x, y)
 	{
+		// changement de la position de Actor
+		
 		this.positionWorld.x += x ;
-		this.positionWorld.y += y  ;
-
+		this.positionWorld.y += y ;
+		
+		// Si collision c'est UpdateAfterCalcul() qui va teleporter Actor 
+		// à la dernière position sans collision
+		
+ 
 	}
 	ejectionCollision()
 	{
-		// décision du coté d'expulsion
-		if(this.positionMapDecimal.x - this.positionMap.x > 0.5)
-		{
-			this.move(1 * this.speed, 0.5 *this.speed) ; //en bas a droite
-		}
-		if(this.positionMapDecimal.x - this.positionMap < 0.5)
-		{
-			this.move(-1 * this.speed, -0.5 * this.speed) ; // en haut a gauche
-		}
-		if(this.positionMapDecimal.y - this.positionMap.y > 0.5)
-		{
-			this.move(1 * this.speed, -0.5 * this.speed) ; 
-		}
-		if(this.positionMapDecimal.y - this.positionMap.y < 0.5)
-		{
-			this.move(- 1 * this.speed, 0.5 * this.speed) ; 
-		}
+		
+		
+		this.positionWorld.x = this.lastPositionWorld.x ; 
+		this.positionWorld.y = this.lastPositionWorld.y ; 
 		
 		
 	}
+	
 
 
 

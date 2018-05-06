@@ -86,25 +86,7 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
-  // Mise à jour des Actor
-  for (let i = 0 ; i < listeActor.length ; i++)
-  {
-	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
-	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
-	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
-	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
-	  
-	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
-	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
-	  
-	  
-	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
-
-	  listeActor[i].update() ;
-	  // Mise a jour des position absolute 
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
-  }
+  
 
 
   // Partie qui controle la supression d'une tuile
@@ -146,6 +128,40 @@ const update = function(elapsed) {
 	  arthur.setAnimation(5) ; // en bas a gauche
   if(direction.x > 0 && direction.y > 0 )
 	  arthur.setAnimation(7) ;
+  
+  // Mise à jour des Actor
+  for (let i = 0 ; i < listeActor.length ; i++)
+  {
+	  
+	  
+	  
+	  
+	  listeActor[i].update() ; // avant la mise a jour des cordonnée 
+	  
+	  //Mise a jour des position 
+	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
+	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
+	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
+	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height)); 
+	  
+	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
+	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
+	  
+	  // Mise a jour des position absolute 
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; 
+	  
+	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
+	  
+	  
+	 // après les calcul effectuer
+	  
+	  listeActor[i].updateAfterCalcul() ; 
+	  //listeActor[i].update() ;
+	  
+	  
+	  
+  }
 
 
 };
