@@ -30,6 +30,7 @@ arthur.animationSprite.runAnimationSprite = true;
 //arthur.animationSprite.reverseAnimation = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
+arthur.animationSprite.reverseAnimation = true
 tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ]
 
 arthur.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
