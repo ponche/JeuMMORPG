@@ -14,7 +14,7 @@ class Player
 		this.xp = 0 ; 
 		this.level = 1 ; 
 		
-		this.money = 10 000 ; 
+		this.money = 10000 ; 
 		
 		this.sword = undefined ; 
 		this.shield = undefined ; 

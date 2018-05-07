@@ -133,9 +133,9 @@ class Actor
 		  let posY = (48*tileX+48*tileY+48)/2;
 		  return {x: posX, y:posY};
 	}
-	addBehavior(behavior)
+	addBehavior()
 	{
-		this.listeComposant.behavior = behavior ;
+		
 	}
 	addAnimationSprite(src,nbAnimation = 1, nbFrame = 1)
 	{

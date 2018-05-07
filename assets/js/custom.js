@@ -24,12 +24,20 @@ let listeActor = [] ;
 
 
 
-let arthur = new Actor ;
+let arthur = new Actor() ;
 arthur.animationSprite = new SpriteAnimation(arthur) ;
 arthur.animationSprite.runAnimationSprite = true;
 //arthur.animationSprite.reverseAnimation = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
+tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ]
+
+arthur.behavior = new BehaviorComposant(tableauKey , arthur) ; 
+// obliger de mettre les touche dans un tableau, car c'est la seul manière de les passé par référence
+
+
+
+
 
 
 
@@ -312,15 +320,19 @@ window.addEventListener('keydown', function(event) {
 
 	case 81 :
 		isKeyQ = true ;
+		tableauKey[3] = true ; 
 		break ;
 	case 68 :
 		isKeyD = true ;
+		tableauKey[2] = true ; 
 		break ;
 	case 90 :
 		isKeyZ = true ;
+		tableauKey[0] = true ; 
 		break ;
 	case 83 :
 		isKeyS = true ;
+		tableauKey[1] = true ; 
 		break ;
   }
 
@@ -332,15 +344,19 @@ window.addEventListener('keyup' , function(event) {
 	{
 		case 81 :
 			isKeyQ = false ;
+			tableauKey[3] = false ; 
 			break ;
 		case 68 :
 			isKeyD = false ;
+			tableauKey[2] = false ; 
 			break ;
 		case 90 :
 			isKeyZ = false ;
+			tableauKey[0] = false ; 
 			break ;
 		case 83 :
 			isKeyS = false ;
+			tableauKey[1] = false ; 
 			break ;
 	}
 }, false);
