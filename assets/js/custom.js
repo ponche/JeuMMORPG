@@ -131,22 +131,22 @@ const update = function(elapsed) {
 
   // Changement de animation
   if(direction.x > 0 && direction.y == 0)
-	  arthur.setAnimation(3) ; // animation droite
+	  arthur.animationSprite.setAnimation(3) ; // animation droite
   if(direction.x < 0 && direction.y == 0)
-	  arthur.setAnimation(4) ;   //animation gauche
+	  arthur.animationSprite.setAnimation(4) ;   //animation gauche
   if(direction.x  == 0 && direction.y > 0 )
-	  arthur.setAnimation(6) // animation bas
+	  arthur.animationSprite.setAnimation(6) // animation bas
   if(direction.x ==  0 && direction.y < 0)
-	  arthur.setAnimation(1) ; // animation haut
+	  arthur.animationSprite.setAnimation(1) ; // animation haut
 
   if(direction.x < 0 && direction.y < 0 )
-	  arthur.setAnimation(0) ; // en haut a gauche
+	  arthur.animationSprite.setAnimation(0) ; // en haut a gauche
   if(direction.x > 0 && direction.y < 0 )
-	  arthur.setAnimation(2) ; // en haut a droite
+	  arthur.animationSprite.setAnimation(2) ; // en haut a droite
   if(direction.x < 0 && direction.y > 0 )
-	  arthur.setAnimation(5) ; // en bas a gauche
+	  arthur.animationSprite.setAnimation(5) ; // en bas a gauche
   if(direction.x > 0 && direction.y > 0 )
-	  arthur.setAnimation(7) ;
+	  arthur.animationSprite.setAnimation(7) ;
 
   // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)

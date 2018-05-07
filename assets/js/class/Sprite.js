@@ -17,7 +17,7 @@ class SpriteAnimation
 		this.runAnimationSprite = false ; 
 	}
 		
-		update()
+	update()
 	{
 		if(this.runAnimationSprite)
 		{
@@ -55,6 +55,19 @@ class SpriteAnimation
 							this.currentFrame = this.nbFrame -1 ;
 
 				}
+			}
+		}
+	}
+	setAnimation(newAnimation)
+	{
+		if(this.currentAnimation != newAnimation)
+		{
+			this.currentAnimation = newAnimation ;
+			this.currentFrame = 0 ;
+			if(this.currentAnimation >= this.nbAnimation)
+			{
+				console.log("Erreur par d'animation trouver");
+				this.currentAnimation = 0 ;
 			}
 		}
 	}

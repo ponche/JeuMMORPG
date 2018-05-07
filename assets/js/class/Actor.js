@@ -48,8 +48,7 @@ class Actor
 			this.animationSprite.update() ; 
 		if(this.collider != undefined)
 			this.collider.update() ; 
-		
-		
+				
 		
 		// Mise a jour de positionZ 
 		this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
@@ -89,20 +88,7 @@ class Actor
 		// fonction pour retirer actor de la scenne
 	}
 
-	// Fonction Sprite
-	setAnimation(newAnimation)
-	{
-		if(this.currentAnimation != newAnimation)
-		{
-			this.currentAnimation = newAnimation ;
-			this.currentFrame = 0 ;
-			if(this.currentAnimation >= this.nbAnimation)
-			{
-				console.log("Erreur par d'animation trouver");
-				this.currentAnimation = 0 ;
-			}
-		}
-	}
+	
 	move(x, y)
 	{
 		// changement de la position de Actor
@@ -118,10 +104,16 @@ class Actor
 	
 	setPositionGrid(x , y)
 	{
-		let positionRelative = this.tilePosToMapPos(x  , y ) ;
-		positionRelative.x -= (this.sprite.width / this.nbFrame) / 2
-		positionRelative.y -= (this.sprite.height / this.nbAnimation)
-		this.positionWorld = positionRelative ; 
+		if(this.animationSprite != undefined)
+		{
+			let positionRelative = this.tilePosToMapPos(x  , y ) ;
+			positionRelative.x -= (this.animationSprite.sprite.width / this.animationSprite.nbFrame) / 2
+			positionRelative.y -= (this.animationSprite.sprite.height / this.animationSprite.nbAnimation)
+			this.positionWorld = positionRelative ; 
+		}
+		else
+			this.positionWorld = this.tilePosToMapPos(x, y) ; 
+		
 	}
 	
 	
