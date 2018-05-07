@@ -25,8 +25,9 @@ let listeActor = [] ;
 
 
 let arthur = new Actor ;
-arthur.animationSprite = new SpriteAnimation(arthur) ; 
-arthur.animationSprite.reverseAnimation = true ;
+arthur.animationSprite = new SpriteAnimation(arthur) ;
+arthur.animationSprite.runAnimationSprite = true;
+//arthur.animationSprite.reverseAnimation = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
 
@@ -105,48 +106,32 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
-
-
-
-  // Partie qui controle la supression d'une tuile
-  if (isMouseDown === true)  {
-	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-
-	}
+  let changePath = 0;
+  if(isMouseDown === true) {
+    changePath = 1;
+    isMouseDown = false;
   }
 
-  // controleur du personnage Test ( Arthur )
-  let direction = {x: 0, y:0}
-
-	if(isKeyZ)
-		direction.y -= 0.5 * arthur.speed ;
-	if(isKeyS)
-		direction.y += 0.5 * arthur.speed;
-	if(isKeyQ)
-		direction.x -= 1 * arthur.speed;
-	if(isKeyD)
-		direction.x += 1 * arthur.speed;
-
-	arthur.move(direction.x , direction.y) ;
-
-  // Changement de animation
-  if(direction.x > 0 && direction.y == 0)
-	  arthur.animationSprite.setAnimation(3) ; // animation droite
-  if(direction.x < 0 && direction.y == 0)
-	  arthur.animationSprite.setAnimation(4) ;   //animation gauche
-  if(direction.x  == 0 && direction.y > 0 )
-	  arthur.animationSprite.setAnimation(6) // animation bas
-  if(direction.x ==  0 && direction.y < 0)
-	  arthur.animationSprite.setAnimation(1) ; // animation haut
-
-  if(direction.x < 0 && direction.y < 0 )
-	  arthur.animationSprite.setAnimation(0) ; // en haut a gauche
-  if(direction.x > 0 && direction.y < 0 )
-	  arthur.animationSprite.setAnimation(2) ; // en haut a droite
-  if(direction.x < 0 && direction.y > 0 )
-	  arthur.animationSprite.setAnimation(5) ; // en bas a gauche
-  if(direction.x > 0 && direction.y > 0 )
-	  arthur.animationSprite.setAnimation(7) ;
+  // Partie qui controle la supression d'une tuile
+  if (changePath == 1)  {
+    changePath = 0;
+	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
+     if(arthur.positionMap.x != hoverTileX && arthur.positionMap.y != hoverTileY) {
+       var mapObstacles = new PF.Grid(10, 10);
+       mapObstacles.setWalkableAt(5, 2, false);
+       mapObstacles.setWalkableAt(5, 3, false);
+       mapObstacles.setWalkableAt(6, 2, false);
+       mapObstacles.setWalkableAt(6, 3, false);
+       mapObstacles.setWalkableAt(7, 2, false);
+       mapObstacles.setWalkableAt(7, 3, false);
+       var finder = new PF.AStarFinder({
+         allowDiagonal: true
+       });
+       var path = finder.findPath(arthur.positionMap.x, arthur.positionMap.y, hoverTileX, hoverTileY, mapObstacles);
+       arthur.moveInDir(coordsToDir(path[0][0], path[0][1], path[1][0], path[1][1])); 
+     }
+	  }
+  }
 
   // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)
@@ -390,4 +375,51 @@ function tilePosToMapPos(tileX, tileY) {
   let posX = -48*tileY+48*tileX+48;
   let posY = (48*tileX+48*tileY+48)/2;
   return {x: posX, y:posY};
+}
+
+function coordsToDir(x1, y1, x2, y2) {
+  let calc1 = x2 - x1;
+  let calc2 = y2 - y1;
+
+  switch(calc1) {
+    case -1:
+      switch(calc2) {
+        case -1:
+          return "top";
+          break;
+        case 1:
+          return "left";
+          break;
+        case 0:
+          return "topleft";
+          break;
+      }
+      break;
+    case 1:
+      switch(calc2) {
+        case -1:
+          return "right";
+          break;
+        case 1:
+          return "bottom";
+          break;
+        case 0:
+          return "bottomright";
+          break;
+      }
+      break;
+    case 0:
+      switch(calc2) {
+        case -1:
+          return "topright";
+          break;
+        case 1:
+          return "bottomleft";
+          break;
+        case 0:
+          return "Mmh... just don't move !";
+          break;
+      }
+      break;
+  }
 }

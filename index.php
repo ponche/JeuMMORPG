@@ -9,7 +9,8 @@
 <body>
 	<h1>Page de test</h1>
 	<canvas id="canvas">sNavigateur obsolete</canvas>
-	
+
+	<script src="assets/js/class/pathfinding-browser.min.js" ></script>
 	<script src="assets/js/class/Sprite.js" ></script>
 	<script src="assets/js/class/Actor.js" ></script>
 	<script src="assets/js/custom.js" ></script>

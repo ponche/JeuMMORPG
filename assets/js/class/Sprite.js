@@ -1,22 +1,22 @@
-class SpriteAnimation 
+class SpriteAnimation
 {
 	constructor(actor)
 	{
-		this.actor = actor 
-		
-		this.nbAnimation = 1 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src 
-		this.nbFrame = 1 ; 
-		this.currentFrame = 0 ; 
+		this.actor = actor
+
+		this.nbAnimation = 1 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
+		this.nbFrame = 1 ;
+		this.currentFrame = 0 ;
 		this.currentAnimation = 0 ;
-		this.sprite = new Image() ; 
+		this.sprite = new Image() ;
 		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
-		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement ( "ne prend pas les décimal" ) 
+		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement ( "ne prend pas les décimal" )
 		this.currentDelayFrame = 0
-		this.loopAnimationSprite = false ; 
-		this.reverseAnimation = false ; 
-		this.runAnimationSprite = false ; 
+		this.loopAnimationSprite = true ; 
+		this.reverseAnimation = false ;
+		this.runAnimationSprite = false ;
 	}
-		
+
 	update()
 	{
 		if(this.runAnimationSprite)
