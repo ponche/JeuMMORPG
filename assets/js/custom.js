@@ -35,6 +35,12 @@ arthur.animationSprite.nbFrame = 9 ;
 vasse.positionWorld = { x:0 , y: 300 } ;
 vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; */
 
+let vasse = new Actor("Vasse","test") ;
+vasse.animationSprite = new SpriteAnimation(vasse) ;
+vasse.animationSprite.sprite.src = "assets/img/game/sprites/objects/encens.png";
+alert(vasse.animationSprite.sprite.width);
+console.log(vasse.animationSprite.sprite.width);
+
 
 for(let i = 0; i < tile_quantity; ++i) {
   let img = new Image();
