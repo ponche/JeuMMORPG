@@ -152,9 +152,15 @@ class Actor
 		
  
 	}
-	setPositionGrid(positionGrid)
+	
+	setPositionGrid(x , y)
 	{
+		let positionRelative = this.tilePosToMapPos(x  , y ) ;
+		positionRelative.x -= (this.sprite.width / this.nbFrame) / 2
+		positionRelative.y -= (this.sprite.height / this.nbAnimation)
+		this.positionWorld = positionRelative ; 
 	}
+	
 	
 	ejectionCollision()
 	{
@@ -165,8 +171,10 @@ class Actor
 		
 		
 	}
-	
-
-
-
+    tilePosToMapPos(tileX, tileY) 
+	{
+		  let posX = -48*tileY+48*tileX+48;
+		  let posY = (48*tileX+48*tileY+48)/2;
+		  return {x: posX, y:posY};
+	}
 }
