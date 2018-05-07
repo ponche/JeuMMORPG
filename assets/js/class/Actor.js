@@ -133,9 +133,10 @@ class Actor
 		  let posY = (48*tileX+48*tileY+48)/2;
 		  return {x: posX, y:posY};
 	}
-	addBehavior()
+	addBehavior(behavior)
 	{
-		
+		this.behavior = behavior ; 
+		this.behavior.actor = this
 	}
 	addAnimationSprite(src,nbAnimation = 1, nbFrame = 1)
 	{

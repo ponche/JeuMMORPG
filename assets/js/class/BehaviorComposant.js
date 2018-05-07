@@ -2,12 +2,12 @@
 
 class BehaviorComposant 
 {
-	constructor(arrayKey, actor)
+	constructor(arrayKey)
 	{
 		
 		this.arrayKey = arrayKey
 		this.isKeyLeft = arrayKey[3] ; 
-		this.actor = actor ;
+		//this.actor = actor ;
 		
 		
 	}
