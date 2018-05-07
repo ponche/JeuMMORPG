@@ -127,9 +127,21 @@ const update = function(elapsed) {
          allowDiagonal: true
        });
        var path = finder.findPath(arthur.positionMap.x, arthur.positionMap.y, hoverTileX, hoverTileY, mapObstacles);
-       if(path.length >= 2) {
-         arthur.moveInDir(coordsToDir(path[0][0], path[0][1], path[1][0], path[1][1]));
-       }
+
+      let moveCount = 0;
+      let originalLength = path.length;
+
+      if(originalLength >= 2) {
+        var moveArthur=setInterval(progressiveMove,(20/arthur.speed*48));
+      }
+      function progressiveMove() {
+        arthur.moveInDir(coordsToDir(path[moveCount][0], path[moveCount][1], path[moveCount+1][0], path[moveCount+1][1]));
+        moveCount++;
+
+        if(moveCount+1 >= originalLength) {
+          clearInterval(moveArthur);
+        }
+      }
 	  }
   }
 

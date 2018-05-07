@@ -229,18 +229,17 @@ class Actor
 				avancement = avancement + Math.abs(stepY) + Math.abs(stepX);
 			} else if((newTrueActorPosY-trueActorPosY) == 0) {
 				stepY = 0;
-				stepX = (newTrueActorPosX-trueActorPosX)/Math.abs(newTrueActorPosX-trueActorPosX)
+				stepX = (newTrueActorPosX-trueActorPosX)/Math.abs(newTrueActorPosX-trueActorPosX)*2;
 				arthur.move(stepX, 0);
 				avancement = avancement + Math.abs(stepY) + Math.abs(stepX);
 			} else {
-				stepX = (newTrueActorPosX-trueActorPosX)/biggest;
-				stepY = (newTrueActorPosY-trueActorPosY)/biggest;
-				arthur.move(stepX*0.9, stepY*0.9);
-				avancement = avancement + Math.abs(stepY*0.9) + Math.abs(stepX*0.9);
+				stepX = ((newTrueActorPosX-trueActorPosX)/biggest);
+				stepY = ((newTrueActorPosY-trueActorPosY)/biggest);
+				arthur.move(stepX, stepY);
+				avancement = avancement + Math.abs(stepY) + Math.abs(stepX);
 			}
 
 			if(avancement >= Math.abs((newTrueActorPosX-trueActorPosX))+Math.abs((newTrueActorPosY-trueActorPosY))) {
-				console.log(avancement);
 				clearInterval(moving);
 			}
 		}
