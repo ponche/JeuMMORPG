@@ -136,5 +136,13 @@ class Actor
 	{
 		this.listeComposant.behavior = behavior ; 
 	}
+	addAnimationSprite(src,nbAnimation = 1, nbFrame = 1)
+	{
+		this.animationSprite = new Sprite(this) ; 
+		animationSprite.sprite.src = src ; 
+		animationSprite.nbAnimation = nbAnimation ; 
+		animationSprite.nbFrame = nbFrame ; 
+	}
+	
 	
 }
