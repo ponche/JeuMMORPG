@@ -31,15 +31,7 @@ arthur.animationSprite.runAnimationSprite = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
 
-/*/let vasse = new Actor("Vasse","test") ;
-vasse.positionWorld = { x:0 , y: 300 } ;
-vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; */
 
-let vasse = new Actor("Vasse","test") ;
-vasse.animationSprite = new SpriteAnimation(vasse) ;
-vasse.animationSprite.sprite.src = "assets/img/game/sprites/objects/encens.png";
-alert(vasse.animationSprite.sprite.width);
-console.log(vasse.animationSprite.sprite.width);
 
 
 for(let i = 0; i < tile_quantity; ++i) {
@@ -112,45 +104,9 @@ const update = function(elapsed) {
   hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
   hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
-  let changePath = 0;
-  if(isMouseDown === true) {
-    changePath = 1;
-    isMouseDown = false;
-  }
+  
 
-  // Partie qui controle la supression d'une tuile
-  if (changePath == 1)  {
-    changePath = 0;
-	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-       var mapObstacles = new PF.Grid(10, 10);
-       mapObstacles.setWalkableAt(5, 2, false);
-       mapObstacles.setWalkableAt(5, 3, false);
-       mapObstacles.setWalkableAt(6, 2, false);
-       mapObstacles.setWalkableAt(6, 3, false);
-       mapObstacles.setWalkableAt(7, 2, false);
-       mapObstacles.setWalkableAt(7, 3, false);
-       var finder = new PF.AStarFinder({
-         allowDiagonal: true
-       });
-       var path = finder.findPath(arthur.positionMap.x, arthur.positionMap.y, hoverTileX, hoverTileY, mapObstacles);
-
-      let moveCount = 0;
-      let originalLength = path.length;
-
-      if(originalLength >= 2) {
-        var moveArthur=setInterval(progressiveMove,(20/arthur.speed*48));
-      }
-      function progressiveMove() {
-        arthur.moveInDir(coordsToDir(path[moveCount][0], path[moveCount][1], path[moveCount+1][0], path[moveCount+1][1]));
-        moveCount++;
-
-        if(moveCount+1 >= originalLength) {
-          clearInterval(moveArthur);
-        }
-      }
-	  }
-  }
-
+  
   // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)
   {
