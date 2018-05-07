@@ -28,7 +28,7 @@ let arthur = new Actor ;
 arthur.animationSprite = new SpriteAnimation(arthur) ; 
 arthur.animationSprite.reverseAnimation = true ;
 arthur.animationSprite.nbAnimation = 8 ;
-arthur.sprite.nbFrame = 9 ;
+arthur.animationSprite.nbFrame = 9 ;
 
 /*/let vasse = new Actor("Vasse","test") ;
 vasse.positionWorld = { x:0 , y: 300 } ;
@@ -162,8 +162,8 @@ const update = function(elapsed) {
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
 
 	  //Mise a jour des position
-	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].sprite.height / listeActor[i].nbAnimation) ;
-	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].sprite.width / listeActor[i].nbFrame) / 2 ) ;
+	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].animationSprite.sprite.height / listeActor[i].animationSprite.nbAnimation) ;
+	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].animationSprite.sprite.width / listeActor[i].animationSprite.nbFrame) / 2 ) ;
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
 
@@ -260,9 +260,9 @@ function renderObjects()
 		{
 			spriteActor = listeActor[i].animationSprite.sprite ;
 			//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-			hauteurActor = spriteActor.height / listeActor[i].nbAnimation ;
-			largeurActor = spriteActor.width / listeActor[i].nbFrame ;
-			ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
+			hauteurActor = spriteActor.height / listeActor[i].animationSprite.nbAnimation ;
+			largeurActor = spriteActor.width / listeActor[i].animationSprite.nbFrame ;
+			ctx.drawImage(spriteActor, listeActor[i].animationSprite.currentFrame * largeurActor, listeActor[i].animationSprite.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
 		}
 	}
 }
