@@ -13,7 +13,7 @@ class BehaviorComposant
 	collision(actorCollision)
 	{
 	}
-	clickMouse()
+	clickMouse(x, y)
 	{
 	}
 	
