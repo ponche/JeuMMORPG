@@ -10,7 +10,8 @@ class Actor
 		this.lastPositionWorld = {x: 20, y: 130} ;
 		this.positionZ = 0 ;
 		this.tileFeet = undefined ;
-		this.speed = 2 ;
+		
+		this.speed = 2 ; // class Player Controler 
 		this.tile_heigthWorld = 0 ; // a supprimer quand scene sera OK
 		this.tile_widthWorld = 0 ; // a supprimer quand scene sera OK
 

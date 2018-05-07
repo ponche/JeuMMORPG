@@ -1,7 +1,8 @@
 class PlayerControlerKeyboard extends BehaviorComposant 
 {
-	constructor(keyUp, keyDown, keyRight, keyLeft)
+	constructor(actor, keyUp, keyDown, keyRight, keyLeft)
 	{
+		super(actor) ; 
 		this.isKeyUp = keyUp ;
 		this.isKeyDown = keyDown ; 
 		this.isKeyRight = keyRight ; 
