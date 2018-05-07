@@ -32,7 +32,7 @@ arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
 tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ]
 
-arthur.addBehavior( new BehaviorComposant(tableauKey)) ; 
+arthur.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 // obliger de mettre les touche dans un tableau, car c'est la seul manière de les passé par référence
 
 

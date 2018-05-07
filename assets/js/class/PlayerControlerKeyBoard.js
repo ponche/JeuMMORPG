@@ -1,33 +1,32 @@
-/*class PlayerControlerKeyboard extends BehaviorComposant 
+class PlayerControlerKeyBoard extends BehaviorComposant
 {
-	constructor()
+	constructor(arrayKey)
 	{
+		super() ; 
+		// this.actor est mis dans la fonction addBehavior!!! 
 		
-		//this.actor = super.actor ; 
-		this.actor = super.actor; 
-		this.isKeyUp = arrayKey[0] ;
-		this.isKeyDown = arrayKey[1] ; 
-		this.isKeyRight = arrayKey[2] ; 
+		this.arrayKey = arrayKey
 		this.isKeyLeft = arrayKey[3] ; 
 		
+		
+		
 	}
-	
 	update()
 	{
 		let direction = {x: 0, y:0 } ; 
-		if(this.isKeyUp)
-			direction.y -= 0.5 * actor.speed ; 
-		if(this.isKeyDown)
-			direction.y += 0.5 * actor.speed ; 
-		if(this.isKeyRight)
-			direction.x += 1 * actor.speed ; 
-		if(this.isKeyLeft)
-			direction.x -= 1 * actor.speed ; 
+		if(this.arrayKey[0])
+			direction.y -= 0.5 * this.actor.speed ; 
+		if(this.arrayKey[1])
+			direction.y += 0.5 * this.actor.speed ; 
+		if(this.arrayKey[2])
+			direction.x += 1 * this.actor.speed ; 
+		if(this.arrayKey[3])
+			direction.x -= 1 * this.actor.speed ; 
 		
-		super.actor.move(direction.x, direction.y) ; 
+		this.actor.move(direction.x, direction.y) ; 
 		
 		// if actor is a robot 
-		/*if(.actor.animationSprite != undefined) 
+		if(this.actor.animationSprite != undefined) 
 		{
 			// Changement de animation
 		  if(direction.x > 0 && direction.y == 0)
@@ -47,8 +46,15 @@
 			  this.actor.animationSprite.setAnimation(5) ; // en bas a gauche
 		  if(direction.x > 0 && direction.y > 0 )
 			  this.actor.animationSprite.setAnimation(7) ;
-		
-		
+		}
 	}
+	collision(actorCollision)
+	{
+	}
+	clickMouse(x, y)
+	{
+	}
+	
 }
-*/
+
+	
