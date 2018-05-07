@@ -43,10 +43,25 @@ class Actor
 		this.simulCollision = false ; 
 		this.systemCollision = true 
 		
+		// Gestion des composant
+		//this.listeComposant = { behavior: undefined , sound : undefined, sprite: undefined, collider: undefined} ; 
+		this.behavior = undefined ; 
+		this.sound = undefined ; 
+		this.collider = undefined ; 
+		this.animationSprite = undefined ; 
+		
+		
 	}
 
 	update()
 	{
+		// Mise a jour des composant 
+		if(this.behavior != undefined)
+			this.behavior.update() ; 
+		if(this.animationSprite != undefined)
+			this.animationSprite.update() ; 
+		if(this.collider != undefined)
+			this.collider.update() ; 
 		
 		
 		// Mise a jour du sprite
@@ -89,7 +104,7 @@ class Actor
 			}
 		}
 		// Mise a jour de positionZ 
-		this.positionZ = this.positionMap.x + this.positionMap.y * 10 ;
+		this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
 	}
 	updateAfterCalcul()
 	{
@@ -177,4 +192,9 @@ class Actor
 		  let posY = (48*tileX+48*tileY+48)/2;
 		  return {x: posX, y:posY};
 	}
+	addBehavior(behavior)
+	{
+		this.listeComposant.behavior = behavior ; 
+	}
+	
 }

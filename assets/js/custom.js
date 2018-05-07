@@ -255,11 +255,14 @@ function renderObjects()
 {
 	for (let i = 0 ; i < listeActor.length ; i++)
 	{
-		spriteActor = listeActor[i].sprite ;
-		//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-		hauteurActor = spriteActor.height / listeActor[i].nbAnimation ;
-		largeurActor = spriteActor.width / listeActor[i].nbFrame ;
-		ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
+		if(listeActor[i].animationSprite != undefined)
+		{
+			spriteActor = listeActor[i].animationSprite.sprite ;
+			//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
+			hauteurActor = spriteActor.height / listeActor[i].nbAnimation ;
+			largeurActor = spriteActor.width / listeActor[i].nbFrame ;
+			ctx.drawImage(spriteActor, listeActor[i].currentFrame * largeurActor, listeActor[i].currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
+		}
 	}
 }
 
