@@ -8,10 +8,11 @@
 
 <body>
 	<h1>Page de test</h1>
-	<canvas id="canvas">Navigateur obsolete</canvas>
+	<canvas id="canvas">sNavigateur obsolete</canvas>
 	
-	<script src="assets/js/class/Actor.js" /></script>
-	<script src="assets/js/custom.js" /></script>
+	<script src="assets/js/class/Sprite.js" ></script>
+	<script src="assets/js/class/Actor.js" ></script>
+	<script src="assets/js/custom.js" ></script>
 	
 </body>
 

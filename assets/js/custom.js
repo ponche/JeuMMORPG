@@ -25,13 +25,14 @@ let listeActor = [] ;
 
 
 let arthur = new Actor ;
-arthur.reverseAnimation = true ;
-arthur.nbAnimation = 8 ;
-arthur.nbFrame = 9 ;
+arthur.animationSprite = new SpriteAnimation(arthur) ; 
+arthur.animationSprite.reverseAnimation = true ;
+arthur.animationSprite.nbAnimation = 8 ;
+arthur.sprite.nbFrame = 9 ;
 
-let vasse = new Actor("Vasse","test") ;
+/*/let vasse = new Actor("Vasse","test") ;
 vasse.positionWorld = { x:0 , y: 300 } ;
-vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ;
+vasse.sprite.src = "assets/img/game/sprites/objects/encens.png" ; */
 
 
 for(let i = 0; i < tile_quantity; ++i) {
