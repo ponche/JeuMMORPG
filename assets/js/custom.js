@@ -116,7 +116,6 @@ const update = function(elapsed) {
   if (changePath == 1)  {
     changePath = 0;
 	 if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
-     if(arthur.positionMap.x != hoverTileX && arthur.positionMap.y != hoverTileY) {
        var mapObstacles = new PF.Grid(10, 10);
        mapObstacles.setWalkableAt(5, 2, false);
        mapObstacles.setWalkableAt(5, 3, false);
@@ -128,8 +127,9 @@ const update = function(elapsed) {
          allowDiagonal: true
        });
        var path = finder.findPath(arthur.positionMap.x, arthur.positionMap.y, hoverTileX, hoverTileY, mapObstacles);
-       arthur.moveInDir(coordsToDir(path[0][0], path[0][1], path[1][0], path[1][1])); 
-     }
+       if(path.length >= 2) {
+         arthur.moveInDir(coordsToDir(path[0][0], path[0][1], path[1][0], path[1][1]));
+       }
 	  }
   }
 

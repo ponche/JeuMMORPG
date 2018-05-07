@@ -234,8 +234,8 @@ class Actor
 			} else {
 				stepX = (newTrueActorPosX-trueActorPosX)/biggest;
 				stepY = (newTrueActorPosY-trueActorPosY)/biggest;
-				arthur.move(stepX*1.5, stepY*1.5);
-				avancement = avancement + Math.abs(stepY*1.5) + Math.abs(stepX*1.5);
+				arthur.move(stepX*0.9, stepY*0.9);
+				avancement = avancement + Math.abs(stepY*0.9) + Math.abs(stepX*0.9);
 			}
 
 			if(avancement >= Math.abs((newTrueActorPosX-trueActorPosX))+Math.abs((newTrueActorPosY-trueActorPosY))) {
