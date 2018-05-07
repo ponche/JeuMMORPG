@@ -5,9 +5,7 @@ class PlayerControlerKeyBoard extends BehaviorComposant
 		super() ; 
 		// this.actor est mis dans la fonction addBehavior!!! 
 		
-		this.arrayKey = arrayKey
-		this.isKeyLeft = arrayKey[3] ; 
-		
+		this.arrayKey = arrayKey;
 		
 		
 	}
@@ -48,12 +46,7 @@ class PlayerControlerKeyBoard extends BehaviorComposant
 			  this.actor.animationSprite.setAnimation(7) ;
 		}
 	}
-	collision(actorCollision)
-	{
-	}
-	clickMouse(x, y)
-	{
-	}
+	
 	
 }
 

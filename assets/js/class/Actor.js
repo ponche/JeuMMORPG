@@ -32,7 +32,7 @@ class Actor
 
 		// Gestion des composant
 		//this.listeComposant = { behavior: undefined , sound : undefined, sprite: undefined, collider: undefined} ;
-		this.behavior = undefined ;
+		this.behavior = [] ;
 		this.sound = undefined ;
 		this.collider = undefined ;
 		this.animationSprite = undefined ;
@@ -43,12 +43,14 @@ class Actor
 	update()
 	{
 		// Mise a jour des composant
-		if(this.behavior != undefined)
-			this.behavior.update() ;
+		/*if(this.behavior != undefined)
+			this.behavior.update() ;*/
 		if(this.animationSprite != undefined)
 			this.animationSprite.update() ;
 		if(this.collider != undefined)
 			this.collider.update() ;
+		for(let i = 0 ; i < this.behavior.length ; i++)
+			this.behavior[i].update() ; 
 
 
 		// Mise a jour de positionZ
@@ -135,8 +137,8 @@ class Actor
 	}
 	addBehavior(behavior)
 	{
-		this.behavior = behavior ; 
-		this.behavior.actor = this
+		this.behavior.push(behavior) ; 
+		behavior.actor = this
 	}
 	addAnimationSprite(src,nbAnimation = 1, nbFrame = 1)
 	{
