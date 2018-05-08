@@ -33,14 +33,14 @@ let world = new Scene(listeActor) ;
 
 // Creation des Actor , par la suite ça sera dans scenes. (sauf pour les joueurs qui seront spawnmer ) .
 
-let arthur = new Actor("Arthur", world) ;
+let arthur = world.addActor("Arthur", 5, 5) ; 
 arthur.animationSprite = new SpriteAnimation(arthur) ;
 arthur.animationSprite.runAnimationSprite = true;
 //arthur.animationSprite.reverseAnimation = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
 arthur.animationSprite.reverseAnimation = true
-//let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; 
+ 
 
 arthur.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 // obliger de mettre les touche dans un tableau, car c'est la seul manière de les passé par référence

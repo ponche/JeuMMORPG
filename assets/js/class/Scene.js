@@ -20,6 +20,15 @@ class Scene
 		// 1 - chargement de la (map fichier JSON)
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
 		// 3 - chagement de player en récupérant les information dans la class Player
+		let bodyPlayer = world.addActor("Player", 5, 5) ; 
+		bodyPlayer.animationSprite = new SpriteAnimation(arthur) ;
+		bodyPlayer.animationSprite.runAnimationSprite = true;
+		//arthur.animationSprite.reverseAnimation = true;
+		bodyPlayer.animationSprite.nbAnimation = 8 ;
+		bodyPlayer.animationSprite.nbFrame = 9 ;
+		bodyPlayer.animationSprite.reverseAnimation = true
+		
+		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()

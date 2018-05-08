@@ -9,6 +9,9 @@
 <body>
 	<h1>Page de test</h1>
 	<canvas id="canvas">sNavigateur obsolete</canvas>
+	
+	<!-- Test librairy JSON.cycle.js -->
+	<script src="vendor/cycle.js" ></script>
 
 	<script src="assets/js/class/pathfinding-browser.min.js" ></script>
 	
