@@ -23,6 +23,7 @@ class Player
 		
 		
 		// Position du spawm du joueur lors du chargement de la Maps
+		this.positionSpawm = {x: 5, y: 5} ; 
 		
 		
 		

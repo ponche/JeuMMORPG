@@ -3,6 +3,7 @@ class Actor
 	constructor(name, scene)
 	{
 		this.name = name ;
+		this.scene = scene ; 
 		
 		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
 		this.positionMap = { x: -1, y: -1 } ; 
@@ -21,7 +22,7 @@ class Actor
 		this.lastdirection = {x: 0, y:0} ;
 		this.testCollision = false ;
 
-		listeActor.push(this) ; // Attention, ne pas crée directement dans le tableau, c'est automatique
+		//listeActor.push(this) ; // C'est la class Scene qui gere les ajout . Fonction supprimer. 
 
 		// instruction : listeActor.push(this) sera remplacer pour prendre en compte la scene par la suite
 

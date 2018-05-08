@@ -26,14 +26,14 @@ let listeActor = [] ;
 
 
 // Création de la scene 
-let world = new Scene() ; 
+let world = new Scene(listeActor) ; 
 
 
 
 
 // Creation des Actor , par la suite ça sera dans scenes. (sauf pour les joueurs qui seront spawnmer ) .
 
-let arthur = new Actor() ;
+let arthur = new Actor("Arthur", world) ;
 arthur.animationSprite = new SpriteAnimation(arthur) ;
 arthur.animationSprite.runAnimationSprite = true;
 //arthur.animationSprite.reverseAnimation = true;
@@ -138,9 +138,9 @@ const update = function(elapsed) {
 	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
 
-	  //Mise a jour des position
-	  let actor_y = listeActor[i].position.y - tileStartY + ( listeActor[i].animationSprite.sprite.height / listeActor[i].animationSprite.nbAnimation) ;
-	  let actor_x = listeActor[i].position.x - tileStartX  + ((listeActor[i].animationSprite.sprite.width / listeActor[i].animationSprite.nbFrame) / 2 ) ;
+	  //Mise a jour des position  Retirer les animationSprite, c'est pas fessable
+	  let actor_y = listeActor[i].position.y - tileStartY ;
+	  let actor_x = listeActor[i].position.x - tileStartX  ;
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
 

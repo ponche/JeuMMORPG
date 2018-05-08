@@ -15,6 +15,10 @@ class SpriteAnimation
 		this.loopAnimationSprite = true ; 
 		this.reverseAnimation = false ;
 		this.runAnimationSprite = false ;
+		this.offsetSprite = {x: 0, y:0} ; 
+		this.offsetSprite.x -= (this.sprite.width / this.nbFrame) /2 ; 
+		this.offsetSprite.y -= this.sprite.height / this.nbAnimation ; 
+		
 	}
 
 	update()
@@ -70,5 +74,9 @@ class SpriteAnimation
 				this.currentAnimation = 0 ;
 			}
 		}
+	}
+	loadSprite(src)
+	{
+		sprite.src = src ; 
 	}
 }
