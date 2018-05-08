@@ -1,12 +1,13 @@
 class Scene 
 {
-	constructor(listeActor)
+	constructor(listeActor, ctx )
 	{
 		this.tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 		this.gridSize = Math.sqrt(this.tileMap.length); 
 		this.listeActor = listeActor ; // temporaire pour les test 
 		this.tileStartX = 0 ; 
 		this.tileStartY = 0 ; 
+		this.ctx = ctx ; 
 		
 		// Référence au player 
 		this.player = undefined ; 
@@ -21,7 +22,7 @@ class Scene
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
 		// 3 - chagement de player en récupérant les information dans la class Player
 		let bodyPlayer = world.addActor("Player", 5, 5) ; 
-		bodyPlayer.animationSprite = new SpriteAnimation(arthur) ;
+		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		//arthur.animationSprite.reverseAnimation = true;
 		bodyPlayer.animationSprite.nbAnimation = 8 ;

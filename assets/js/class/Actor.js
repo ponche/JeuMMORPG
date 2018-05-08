@@ -109,15 +109,7 @@ class Actor
 
 	setPositionGrid(x , y)
 	{
-		if(this.animationSprite != undefined)
-		{
-			let positionRelative = this.tilePosToMapPos(x  , y ) ;
-			positionRelative.x -= (this.animationSprite.sprite.width / this.animationSprite.nbFrame) / 2
-			positionRelative.y -= (this.animationSprite.sprite.height / this.animationSprite.nbAnimation)
-			this.positionWorld = positionRelative ;
-		}
-		else
-			this.positionWorld = this.tilePosToMapPos(x, y) ;
+		this.positionWorld = this.tilePosToMapPos(x, y) ;
 
 	}
 
