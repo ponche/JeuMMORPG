@@ -4,8 +4,8 @@ class Actor
 	{
 		this.name = name ;
 		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
-		this.positionMap = { x: -1, y: -1 } ; // Valeur en retard. valeur indicatif aucun effet sur changement
-		this.positionMapDecimal = { x: -1, y: -1 } ; // idem
+		this.positionMap = { x: -1, y: -1 } ; 
+		this.positionMapDecimal = { x: -1, y: -1 } ; 
 		this.positionWorld = { x: 20, y: 130 } ; // position du personnage, à modifier pour déplacer le perso.
 		this.lastPositionWorld = {x: 20, y: 130} ;
 		this.positionZ = 0 ;
@@ -138,7 +138,7 @@ class Actor
 	addBehavior(behavior)
 	{
 		this.behavior.push(behavior) ; 
-		behavior.actor = this
+		behavior.actor = this ; 
 	}
 	addAnimationSprite(src,nbAnimation = 1, nbFrame = 1)
 	{

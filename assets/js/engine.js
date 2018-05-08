@@ -1,6 +1,6 @@
 let size = 10;
-let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
-let gridSize = Math.sqrt(tileMap.length);
+//let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
+//let gridSize = Math.sqrt(tileMap.length);
 let maxSelectorsPerRow = 6;
 let selectedTileType = 0;
 let tileStartX = 0;
@@ -18,11 +18,20 @@ let tile_images = [];
 let tile_quantity = 36;
 let offsetYMod = 0;
 
+let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; 
+
 let offsetXMod = 0;
 let listeActor = [] ;
 
 
 
+// Création de la scene 
+let world = new Scene() ; 
+
+
+
+
+// Creation des Actor , par la suite ça sera dans scenes. (sauf pour les joueurs qui seront spawnmer ) .
 
 let arthur = new Actor() ;
 arthur.animationSprite = new SpriteAnimation(arthur) ;
@@ -31,7 +40,7 @@ arthur.animationSprite.runAnimationSprite = true;
 arthur.animationSprite.nbAnimation = 8 ;
 arthur.animationSprite.nbFrame = 9 ;
 arthur.animationSprite.reverseAnimation = true
-tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ]
+//let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; 
 
 arthur.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 // obliger de mettre les touche dans un tableau, car c'est la seul manière de les passé par référence
@@ -105,7 +114,7 @@ const setup = function() {
 };
 
 const update = function(elapsed) {
-  let tile_height = 48;
+  let tile_height = 48; // Magic Number
   let tile_width = 96;
   let mouse_y = mousePosition.y-tileStartY;
   let mouse_x = mousePosition.x-tileStartX;
@@ -145,7 +154,7 @@ const update = function(elapsed) {
 	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
 
-	  listeActor[i].tileFeet = tileMap[listeActor[i].positionMap.y * gridSize + listeActor[i].positionMap.x]
+	  listeActor[i].tileFeet = world.tileMap[listeActor[i].positionMap.y * world.gridSize + listeActor[i].positionMap.x]
 
 
 	 // après les calcul effectuer
@@ -201,7 +210,7 @@ function renderSelectorBackground(x, y, width, height, isSelected) {
 }
 
 function renderMouseAndGridPosition() {
-	let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= gridSize && hoverTileX <= gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
+	let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= world.gridSize && hoverTileX <= world.gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
   ctx.font = '12pt Calibri';
   ctx.fillStyle = 'white';
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
@@ -240,17 +249,17 @@ function renderTiles(x, y) {
   let tileHeight = 48;
   let tile_half_width = tileWidth / 2;
   let tile_half_height = tileHeight / 2;
-  for (let tileX = 0; tileX < gridSize; ++tileX) {
-	for (let tileY = 0; tileY < gridSize; ++tileY) {
+  for (let tileX = 0; tileX < world.gridSize; ++tileX) {
+	for (let tileY = 0; tileY < world.gridSize; ++tileY) {
 	  let renderX = x + (tileX - tileY) * tile_half_width;
 	  let renderY = y + (tileX + tileY) * tile_half_height;
-	  let tile = tileMap[tileY * gridSize + tileX];
+	  let tile = world.tileMap[tileY * world.gridSize + tileX];
 	  if(tile !== tiletype_empty) renderTexturedTile(tile_images[tile], renderX, renderY, 80);
 	  else renderTileBackground(renderX, renderY+48, tileWidth, tileHeight);
 	}
   }
 
-  if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < gridSize && hoverTileY < gridSize) {
+  if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < world.gridSize && hoverTileY < world.gridSize) {
 	  let renderX = x + (hoverTileX - hoverTileY) * tile_half_width;
 	  let renderY = y + (hoverTileX + hoverTileY) * tile_half_height;
 	  renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
