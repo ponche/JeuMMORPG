@@ -47,7 +47,7 @@ class ArcadeBody extends BehaviorComposant
 	
 	verifCollision(tableauTile)
 	{
-		for(let = i ; i < tableauTile.length ; i++)
+		for(let i = 0 ; i < tableauTile.length ; i++)
 		{
 			if(this.actor.tileFeet == tableauTile[i])
 				return true ; 
