@@ -8,11 +8,18 @@ class Scene
 		this.tileStartX = 0 ; 
 		this.tileStartY = 0 ; 
 		
+		// Référence au player 
+		this.player = undefined ; 
+		
 	}
 	
 	loadScene(fileJson)
 	{
-		// chargement de la map 
+		// 1 - suppression de tous les actor 
+		this.deleteAllActor() ; 
+		// 1 - chargement de la map 
+		// 2 - chargement des actor de la maps
+		// 3 - chagement de player en récupérant les information dans la class Player
 	}
 	deleteScene()
 	{
@@ -24,12 +31,18 @@ class Scene
 	}
 	addActorCanvas(x, y) 
 	{
+		// cette fois ci en position canvas
 	}
 	deleteAllActor()
 	{
 		// Supprime tous les actor 
 		this.listeActor.splice(0, this.listeActor.length) ; 
 	}
+	deleteActor(name)
+	{
+		// supprime actor en cherchant par le noms 
+	}
+	
 	
 	
 	

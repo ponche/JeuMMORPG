@@ -3,6 +3,7 @@ class Actor
 	constructor(name, scene)
 	{
 		this.name = name ;
+		
 		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
 		this.positionMap = { x: -1, y: -1 } ; 
 		this.positionMapDecimal = { x: -1, y: -1 } ; 

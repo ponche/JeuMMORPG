@@ -22,6 +22,9 @@ class Player
 		this.shoes = undefined ; 
 		
 		
+		// Position du spawm du joueur lors du chargement de la Maps
+		
+		
 		
 	}
 	recevoirDegats(puissance)
