@@ -17,4 +17,6 @@ class PlayerLogDebuger extends BehaviorComposant
 		  this.ctx.fillText(`Arthur IdTille: ${this.actor.tileFeet}`, 20, 240);
 		  this.ctx.fillText(`Arthur positionZ: ${thisActor.positionZ}`, 20, 260);
 	}
+}
+
 			

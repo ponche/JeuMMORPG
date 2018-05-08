@@ -22,7 +22,7 @@ class Scene
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
 		// 3 - chagement de player en récupérant les information dans la class Player
 		
-		//
+		// Player de test sera modifé par la suite 
 		let bodyPlayer = world.addActor("Player", 5, 5) ; 
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
@@ -32,6 +32,7 @@ class Scene
 		bodyPlayer.animationSprite.reverseAnimation = true
 		
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
+		bodyPlayer.addBehavior( new ArcadeBody([22, 23] , bodyPlayer)) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()

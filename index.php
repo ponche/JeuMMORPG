@@ -20,8 +20,8 @@
 	
 	<script src="assets/js/class/BehaviorComposant.js" ></script>
 	<script src="assets/js/class/BehaviorComposant/PlayerControlerKeyBoard.js" ></script>
-	<script src="assert/js/class/BehaviorComposant/PlayerLogDebuger.js" ></script>
-	<script src="assert/js/class/BehaviorComposant/ArcadeBody.js" ></script>
+	<script src="assets/js/class/BehaviorComposant/PlayerLogDebuger.js" ></script>
+	<script src="assets/js/class/BehaviorComposant/ArcadeBody.js" ></script>
 	
 	
 	<script src="assets/js/class/Sprite.js" ></script>
