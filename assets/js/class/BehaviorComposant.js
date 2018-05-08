@@ -6,10 +6,10 @@ class BehaviorComposant
 	{
 		console.log("constructeur BehaviorComposant") ; 	
 	}
-	update() {}
-	collision(actorCollision) {}
-	clickMouse(x, y) {}
-	updateAfterCalcul() {}
+	update() {} ; 
+	collision(actorCollision) {} ; 
+	clickMouse(x, y) {} ; 
+	updateAfterCalcul() {} ; 
 	
 }
 

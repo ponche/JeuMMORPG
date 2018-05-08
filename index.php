@@ -8,7 +8,7 @@
 
 <body>
 	<h1>Page de test</h1>
-	<canvas id="canvas">sNavigateur obsolete</canvas>
+	<canvas id="canvas">Navigateur obsolete</canvas>
 	
 	<!-- Test librairy JSON.cycle.js -->
 	<script src="vendor/cycle.js" ></script>
@@ -19,7 +19,10 @@
 	<script src="assets/js/class/Scene.js" ></script>
 	
 	<script src="assets/js/class/BehaviorComposant.js" ></script>
-	<script src="assets/js/class/PlayerControlerKeyBoard.js" ></script>
+	<script src="assets/js/class/BehaviorComposant/PlayerControlerKeyBoard.js" ></script>
+	<script src="assert/js/class/BehaviorComposant/PlayerLogDebuger.js" ></script>
+	<script src="assert/js/class/BehaviorComposant/ArcadeBody.js" ></script>
+	
 	
 	<script src="assets/js/class/Sprite.js" ></script>
 	<script src="assets/js/class/Actor.js" ></script>

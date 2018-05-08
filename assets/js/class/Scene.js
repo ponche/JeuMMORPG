@@ -21,6 +21,8 @@ class Scene
 		// 1 - chargement de la (map fichier JSON)
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
 		// 3 - chagement de player en récupérant les information dans la class Player
+		
+		//
 		let bodyPlayer = world.addActor("Player", 5, 5) ; 
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;

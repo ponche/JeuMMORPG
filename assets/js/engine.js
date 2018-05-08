@@ -111,8 +111,9 @@ function getMousePos(canvas, evt) {
 }
 
 
-const setup = function() {
-
+const setup = function() 
+{
+	world.loadScene() ; 
 };
 
 const update = function(elapsed) {
