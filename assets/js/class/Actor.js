@@ -67,8 +67,8 @@ class Actor
 	move(x, y)
 	{
 		// changement de la position de Actor
-		this.positionWorld.x += x ;
-		this.positionWorld.y += y ;
+		this.position.x += x ;
+		this.position.y += y ;
 
 	}
 

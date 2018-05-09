@@ -118,8 +118,8 @@ const update = function(elapsed) {
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée
 
 	  // Mise a jour des position absolute
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; // a modifié TileStart sera supprimé 
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; // idem 
+	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; // a modifié TileStart sera supprimé 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; // idem */
 
 	  
 	  let actor_y = listeActor[i].position.y - tileStartY ; // idem tileStart sera supprimé
@@ -136,8 +136,8 @@ const update = function(elapsed) {
 	  listeActor[i].tile_widthWorld = tile_width ;
 
 	  // Mise a jour des position absolute
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;*/
 
 	  listeActor[i].tileFeet = world.tileMap[listeActor[i].positionMap.y * world.gridSize + listeActor[i].positionMap.x]
 
@@ -146,8 +146,8 @@ const update = function(elapsed) {
 	  listeActor[i].updateAfterCalcul() ;
 
 	  // Mise a jour des position absolute pour updateAfterCalcul
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;*/
 
 
 	  // trie du tableau pour le rendu
@@ -162,8 +162,9 @@ const render = function() {
 	tileStartY = -((size*48)/2)+(canvas.height/2)+offsetYMod;
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  //renderTiles(tileStartX, tileStartY);  Commenter pour les test de création de map 
+  //renderTiles(tileStartX, tileStartY);  
   renderObjects();
+  renderTiles(tileStartX, tileStartY); 
   renderUI();
 };
 
