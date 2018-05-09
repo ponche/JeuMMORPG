@@ -21,10 +21,10 @@ class ArcadeBody extends BehaviorComposant
 	{
 		// fonction donc les valeur sont calculer après la fonction update
 		//Vérif collision
-		if(this.systemCollisionTile)
+		if(this.actor.arcadeBody.systemCollisionTile)
 		{
 			
-			if(verifCollision(this.arraySolideTile))
+			if(this.verifCollision(this.arraySolideTile))
 			{
 				console.log("Collision in composant") ;
 				this.testCollision = true ;
