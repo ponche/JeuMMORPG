@@ -4,16 +4,12 @@ class Scene
 	{
 		this.tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 		this.gridSize = Math.sqrt(this.tileMap.length); 
+		this.listeActor = listeActor ; // temporaire pour les test 
 		this.tileStartX = 0 ; 
-		this.tileStartY = 0 ;  
-		// Tous la partie du haut est à transféré dans le composant MapRenderer 
-		
-		
-		// les element de la scene . 
-		this.listeActor = listeActor ; // temporaire pour les tests 
+		this.tileStartY = 0 ; 
 		this.ctx = ctx ; 
 		
-		// Référence au player pour stocker les information du joueur. 
+		// Référence au player 
 		this.player = undefined ; 
 		
 	}
@@ -30,6 +26,7 @@ class Scene
 		let bodyPlayer = world.addActor("Player", 5, 5) ; 
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
+		//arthur.animationSprite.reverseAnimation = true;
 		bodyPlayer.animationSprite.nbAnimation = 8 ;
 		bodyPlayer.animationSprite.nbFrame = 9 ;
 		bodyPlayer.animationSprite.reverseAnimation = true
@@ -37,7 +34,6 @@ class Scene
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 		bodyPlayer.addBehavior( new ArcadeBody([22, 23] , bodyPlayer)) ; 
 		bodyPlayer.addBehavior( new PlayerLogDebuger(this.ctx)) ; 
-		
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()
@@ -45,7 +41,7 @@ class Scene
 		// supprime la tileMap et la listeActor
 		this.deleteAllActor() ; 
 	}
-	addActor(name, x, y, actorMapRender)
+	addActor(name, x, y)
 	{
 		// Ajout un actor en position Tuile 
 		let newActor = new Actor(name, this) ;
@@ -71,7 +67,7 @@ class Scene
 	deleteAllActor()
 	{
 		// Supprime tous les actor 
-		this.listeActor = [] ; 
+		this.listeActor.splice(0, this.listeActor.length) ; 
 	}
 	deleteActor(name)
 	{
