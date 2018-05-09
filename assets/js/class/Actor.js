@@ -58,6 +58,11 @@ class Actor
 			this.behavior[i].updateAfterCalcul() ; 
 
 	}
+	render() 
+	{
+		for(let i = 0 ; i < this.behavior.length ; i++)
+			this.behavior[i].render() ; 
+	}
 	
 	move(x, y)
 	{

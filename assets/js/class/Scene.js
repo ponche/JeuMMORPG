@@ -30,9 +30,10 @@ class Scene
 		bodyPlayer.animationSprite.nbAnimation = 8 ;
 		bodyPlayer.animationSprite.nbFrame = 9 ;
 		bodyPlayer.animationSprite.reverseAnimation = true
-		
+		// Ajoute des composant a acteur 
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 		bodyPlayer.addBehavior( new ArcadeBody([22, 23] , bodyPlayer)) ; 
+		bodyPlayer.addBehavior( new PlayerLogDebuger(this.ctx)) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()

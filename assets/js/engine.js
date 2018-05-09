@@ -244,6 +244,9 @@ function renderObjects()
 			largeurActor = spriteActor.width / listeActor[i].animationSprite.nbFrame ;
 			ctx.drawImage(spriteActor, listeActor[i].animationSprite.currentFrame * largeurActor, listeActor[i].animationSprite.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
 		}
+		// Appel de la fonction render() des objet 
+		listeActor[i].render() ; 
+		
 	}
 }
 

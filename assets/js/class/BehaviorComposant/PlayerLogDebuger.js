@@ -4,9 +4,11 @@ class PlayerLogDebuger extends BehaviorComposant
 	{
 		super() ; 
 		
+		this.ctx = ctx ; 
+		
 		
 	}
-	update()
+	render()
 	{
 			// Ajout position Actor
 		  this.ctx.fillText(`Player pos: ${this.actor.position.x}, ${this.actor.position.y}`, 20, 140);
@@ -15,7 +17,10 @@ class PlayerLogDebuger extends BehaviorComposant
 		  this.ctx.fillText(`Player IdDecimal: ${this.actor.positionMapDecimal.x}, ${this.actor.positionMapDecimal.y}`, 20, 200);
 		  this.ctx.fillText(`Player IdTille: ${this.actor.tileFeet}`, 20, 240);
 		  this.ctx.fillText(`Player positionZ: ${this.actor.positionZ}`, 20, 260);
+		  
+		  // problème Override de la fonction render() ; 
 	}
+	
 }
 
 			
