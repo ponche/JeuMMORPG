@@ -75,7 +75,7 @@ function comparateurListeObjet(a,b)
 	return 0
 }
 
-// variable isMouseDown à envoyé par référence au actor et référence  composant 
+// variable isMouseDown à envoyé par référence au actor et composant 
 function mouseUp(evt) {
 	if (isMouseDown === true) onMouseClick();
   isMouseDown = false;
@@ -162,7 +162,7 @@ const render = function() {
 	tileStartY = -((size*48)/2)+(canvas.height/2)+offsetYMod;
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  renderTiles(tileStartX, tileStartY);
+  //renderTiles(tileStartX, tileStartY);  Commenter pour les test de création de map 
   renderObjects();
   renderUI();
 };

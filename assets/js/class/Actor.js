@@ -8,8 +8,8 @@ class Actor
 		this.positionWorld = { x: 20, y: 130 } ; // position du personnage, à modifier pour déplacer le perso.
 		
 		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
-		this.positionMap = { x: -1, y: -1 } ; 
-		this.positionMapDecimal = { x: -1, y: -1 } ; 
+		this.positionMap = { x: -1, y: -1 } ;  // sera probablement suprimé 
+		this.positionMapDecimal = { x: -1, y: -1 } ;  // sera probablement suprimé 
 		
 		this.positionZ = 0 ;
 		this.tileFeet = undefined ; // indicateur de type de cellule
