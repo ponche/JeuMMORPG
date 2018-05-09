@@ -17,9 +17,9 @@ class PlayerControlerKeyBoard extends BehaviorComposant
 		if(this.arrayKey[1])
 			direction.y += 0.5 * this.actor.speed ; 
 		if(this.arrayKey[2])
-			direction.x += 1 * this.actor.speed ; 
-		if(this.arrayKey[3])
 			direction.x -= 1 * this.actor.speed ; 
+		if(this.arrayKey[3])
+			direction.x += 1 * this.actor.speed ; 
 		
 		this.actor.move(direction.x, direction.y) ; 
 		

@@ -1,46 +1,21 @@
-let size = 10;
-//let tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
-//let gridSize = Math.sqrt(tileMap.length);
-let maxSelectorsPerRow = 6;
-let selectedTileType = 0;
-let tileStartX = 0;
-let tileStartY = 0;
-let mousePosition = {x:0,y:0};
+
+let mousePosition = {x:0,y:0}; 
+
+let isMouseDown = false; // variable global peut accéder partous 
 
 
-let hoverTileX = -1;
-let hoverTileY = -1;
-let tiletype_empty = 0;
-let isMouseDown = false; // à envoyé par référence pour transmettre au composant 
-let isKeyZ = false ; // faire un tableau avec un norme pour envoyé par référence (deja fait, révision) 
-let isKeyS = false ;
-let isKeyQ = false ;
-let isKeyD = false ;
-let tile_images = [];
-let tile_quantity = 36;
-let offsetYMod = 0; // offset sera la position de actor 
-let offsetXMod = 0; // idem 
+let tableauKey = [false, false, false, false] ; // touche de controle mouvement 
+let tableauFleche = [false, false, false , false ] ; 
 
-let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; // touche de controle mouvement 
 
 
 let listeActor = [] ;
-
-
-
-for(let i = 0; i < tile_quantity; ++i) {
-  let img = new Image();
-  if(i == 0) { img.src = ""; } else { img.src = "assets/img/game/tiles/"+i+".png"; }
-  tile_images.push(img);
-}
-
 
 // recupération du canvas et du context 
 let canvas = document.querySelector("canvas");
 let ctx    = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-maxSelectorsPerRow = canvas.width / 72;
 
 
 // addEventListener 
@@ -59,7 +34,6 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  maxSelectorsPerRow = canvas.width / 72;
 
 }, false);
 
@@ -100,54 +74,33 @@ const setup = function()
 };
 
 const update = function(elapsed) {
-  let tile_height = 48; // Magic Number
-  let tile_width = 96;
-  let mouse_y = mousePosition.y-tileStartY;
-  let mouse_x = mousePosition.x-tileStartX;
-
-  hoverTileX = Math.floor((mouse_y / tile_height) + (mouse_x / tile_width)) -1;
-  hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
-
-  
-
-  
+    
   // Mise à jour des Actor
   for (let i = 0 ; i < listeActor.length ; i++)
   {
 
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée
 
-	  // Mise a jour des position absolute
-	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; // a modifié TileStart sera supprimé 
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; // idem */
-
-	  
-	  let actor_y = listeActor[i].position.y - tileStartY ; // idem tileStart sera supprimé
-	  let actor_x = listeActor[i].position.x - tileStartX  ; // idem 
 	  
 	  // ça sera a MapRenderer de géré ça . 
-	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
+	  /*listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
 
 	  listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
 	  listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
 
 	  listeActor[i].tile_heigthWorld = tile_height ;
-	  listeActor[i].tile_widthWorld = tile_width ;
+	  listeActor[i].tile_widthWorld = tile_width ;*/
 
 	  // Mise a jour des position absolute
 	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
 	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;*/
 
-	  listeActor[i].tileFeet = world.tileMap[listeActor[i].positionMap.y * world.gridSize + listeActor[i].positionMap.x]
+	  //listeActor[i].tileFeet = world.tileMap[listeActor[i].positionMap.y * world.gridSize + listeActor[i].positionMap.x]
 
 
 	 // après les calcul effectuer
 	  listeActor[i].updateAfterCalcul() ;
-
-	  // Mise a jour des position absolute pour updateAfterCalcul
-	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;*/
 
 
 	  // trie du tableau pour le rendu
@@ -158,13 +111,10 @@ const update = function(elapsed) {
 };
 
 const render = function() {
-  tileStartX = canvas.width/2-50+offsetXMod;
-	tileStartY = -((size*48)/2)+(canvas.height/2)+offsetYMod;
   ctx.fillStyle = '#151d26';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  //renderTiles(tileStartX, tileStartY);  
+   
   renderObjects();
-  renderTiles(tileStartX, tileStartY); 
   renderUI();
 };
 
@@ -178,34 +128,11 @@ function renderUI () {
   renderMouseAndGridPosition();
 }
 
-function renderSelectorBackground(x, y, width, height, isSelected) {
-  let isMouseOver = mousePosition.x >= x && mousePosition.x <= x + width &&
-					mousePosition.y >= y && mousePosition.y <= y + height;
-  ctx.beginPath();
-  ctx.setLineDash([]);
-  ctx.strokeStyle = isSelected ? 'rgba(192, 57, 43,1.0)' : isMouseOver ? 'rgba(192, 57, 43, 0.8)' : 'rgba(0, 0, 0, 0.4)';
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-  ctx.lineWidth = isSelected ? 4 : 2;
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + width, y);
-  ctx.lineTo(x + width, y + height);
-  ctx.lineTo(x, y + height);
-  ctx.lineTo(x, y);
-  ctx.stroke();
-  ctx.fill();
-}
-
-function renderMouseAndGridPosition() {
-	let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= world.gridSize && hoverTileX <= world.gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
+function renderMouseAndGridPosition() 
+{
   ctx.font = '12pt Calibri';
   ctx.fillStyle = 'white';
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
-  ctx.fillText(`${mouse_over_grid}`, 20, 120);
-
-
-
-  // Position de la map
-  ctx.fillText(`Worlds: ${tileStartX}, ${tileStartY}`, 20, 220);
 }
 
 function renderObjects()
@@ -226,68 +153,9 @@ function renderObjects()
 	}
 }
 
-function renderTiles(x, y) {
-  let tileWidth = 96;
-  let tileHeight = 48;
-  let tile_half_width = tileWidth / 2;
-  let tile_half_height = tileHeight / 2;
-  for (let tileX = 0; tileX < world.gridSize; ++tileX) {
-	for (let tileY = 0; tileY < world.gridSize; ++tileY) {
-	  let renderX = x + (tileX - tileY) * tile_half_width;
-	  let renderY = y + (tileX + tileY) * tile_half_height;
-	  let tile = world.tileMap[tileY * world.gridSize + tileX];
-	  if(tile !== tiletype_empty) renderTexturedTile(tile_images[tile], renderX, renderY, 80);
-	  else renderTileBackground(renderX, renderY+48, tileWidth, tileHeight);
-	}
-  }
-
-  if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < world.gridSize && hoverTileY < world.gridSize) {
-	  let renderX = x + (hoverTileX - hoverTileY) * tile_half_width;
-	  let renderY = y + (hoverTileX + hoverTileY) * tile_half_height;
-	  renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
-  }
-}
-
 // Renvoyé l'action du clic à actor est au référence . 
 function onMouseClick() {
 
-}
-
-// Pour modifier les couleurs du selecteur, c'est ici
-function renderTileHover(x, y, width, height) {
-  ctx.beginPath();
-  ctx.setLineDash([]);
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.lineWidth = 2;
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + width/2, y-height/2);
-  ctx.lineTo(x + width, y);
-  ctx.lineTo(x + width/2, y + height/2);
-  ctx.lineTo(x, y);
-  ctx.stroke();
-  ctx.fill();
-}
-
-function renderTileBackground(x, y, width, height) {
-  ctx.beginPath();
-  ctx.setLineDash([5, 5]);
-  ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-  ctx.fillStyle = 'rgba(25,34, 44,0.2)';
-  ctx.lineWidth = 1;
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + width/2, y-height/2);
-  ctx.lineTo(x + width, y);
-  ctx.lineTo(x + width/2, y + height/2);
-  ctx.lineTo(x, y);
-  ctx.stroke();
-  ctx.fill();
-}
-
-function renderTexturedTile(imgSrc, x, y, tileHeight) {
-  let offsetY = tileHeight - imgSrc.height;
-
-  ctx.drawImage(imgSrc, x, y+offsetY);
 }
 
 let world = new Scene(listeActor, ctx) ; // création de l'univers ( Big bang ) 
@@ -298,28 +166,28 @@ run();
 window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
 	case 37: // Left
-	  offsetXMod = offsetXMod + 10;
+	  tableauFleche[2] = true ; 
 	break;
 
 	case 38: // Up
-	  offsetYMod = offsetYMod + 10;
+	  tableauFleche[0] = true; 
 	break;
 
 	case 39: // Right
-	  offsetXMod = offsetXMod - 10;
+	  tableauFleche[3] = true ; 
 	break;
 
 	case 40: // Down
-	  offsetYMod = offsetYMod - 10;
+	  tableauFleche[1] = true ; 
 	break;
 
 	case 81 :
 		isKeyQ = true ;
-		tableauKey[3] = true ; 
+		tableauKey[2] = true ; 
 		break ;
 	case 68 :
 		isKeyD = true ;
-		tableauKey[2] = true ; 
+		tableauKey[3] = true ; 
 		break ;
 	case 90 :
 		isKeyZ = true ;
@@ -339,11 +207,11 @@ window.addEventListener('keyup' , function(event) {
 	{
 		case 81 :
 			isKeyQ = false ;
-			tableauKey[3] = false ; 
+			tableauKey[2] = false ; 
 			break ;
 		case 68 :
 			isKeyD = false ;
-			tableauKey[2] = false ; 
+			tableauKey[3] = false ; 
 			break ;
 		case 90 :
 			isKeyZ = false ;
@@ -353,7 +221,22 @@ window.addEventListener('keyup' , function(event) {
 			isKeyS = false ;
 			tableauKey[1] = false ; 
 			break ;
-	}
+		case 37: // Left
+		  tableauFleche[2] = false ; 
+		break;
+
+		case 38: // Up
+		  tableauFleche[0] = false; 
+		break;
+
+		case 39: // Right
+		  tableauFleche[3] = false ; 
+		break;
+
+		case 40: // Down
+		  tableauFleche[1] = false ; 
+		break;
+		}
 }, false);
 
 function tilePosToMapPos(tileX, tileY) {
@@ -363,50 +246,3 @@ function tilePosToMapPos(tileX, tileY) {
 }
 
 
-// On laisee de coté pour le moment, pas avant d'avoir une bonne structure. sinon tu devra tou refaire 
-function coordsToDir(x1, y1, x2, y2) {
-  let calc1 = x2 - x1;
-  let calc2 = y2 - y1;
-
-  switch(calc1) {
-    case -1:
-      switch(calc2) {
-        case -1:
-          return "top";
-          break;
-        case 1:
-          return "left";
-          break;
-        case 0:
-          return "topleft";
-          break;
-      }
-      break;
-    case 1:
-      switch(calc2) {
-        case -1:
-          return "right";
-          break;
-        case 1:
-          return "bottom";
-          break;
-        case 0:
-          return "bottomright";
-          break;
-      }
-      break;
-    case 0:
-      switch(calc2) {
-        case -1:
-          return "topright";
-          break;
-        case 1:
-          return "bottomleft";
-          break;
-        case 0:
-          return "Mmh... just don't move !";
-          break;
-      }
-      break;
-  }
-}

@@ -18,11 +18,11 @@ class MapRenderer extends BehaviorComposant
 		this.tile_quantity = 36;
 		
 		// generation de la map 
-		for(let i = 0; i < tile_quantity; ++i) 
+		for(let i = 0; i < this.tile_quantity; ++i) 
 		{
 			let img = new Image();
 			if(i == 0) { img.src = ""; } else { img.src = "assets/img/game/tiles/"+i+".png"; }
-			tile_images.push(img);
+			this.tile_images.push(img);
 		}
 		  
 		 
@@ -64,16 +64,16 @@ class MapRenderer extends BehaviorComposant
 				let renderX = x + (tileX - tileY) * tile_half_width;
 				let renderY = y + (tileX + tileY) * tile_half_height;
 				let tile = this.tileMap[tileY * this.gridSize + tileX];
-				if(tile !== tiletype_empty) renderTexturedTile(tile_images[tile], renderX, renderY, 80);
+				if(tile !== this.tiletype_empty) this.renderTexturedTile(this.tile_images[tile], renderX, renderY, 80);
 				else renderTileBackground(renderX, renderY+48, tileWidth, tileHeight);
 			}
 		}
 		
-		if (hoverTileX >= 0 && hoverTileY >= 0 && hoverTileX < this.gridSize && hoverTileY < this.gridSize) 
+		if (this.hoverTileX >= 0 && this.hoverTileY >= 0 && this.hoverTileX < this.gridSize && this.hoverTileY < this.gridSize) 
 		{
-			let renderX = x + (hoverTileX - hoverTileY) * tile_half_width;
-			let renderY = y + (hoverTileX + hoverTileY) * tile_half_height;
-			renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
+			let renderX = x + (this.hoverTileX - this.hoverTileY) * tile_half_width;
+			let renderY = y + (this.hoverTileX + this.hoverTileY) * tile_half_height;
+			this.renderTileHover(renderX, renderY+48, tileWidth, tileHeight);
 		}
 	}
 	
@@ -99,6 +99,22 @@ class MapRenderer extends BehaviorComposant
 		let offsetY = tileHeight - imgSrc.height;
 
 		this.ctx.drawImage(imgSrc, x, y+offsetY);
+	}
+	// Pour modifier les couleurs du selecteur, c'est ici
+	renderTileHover(x, y, width, height) 
+	{
+		  this.ctx.beginPath();
+		  this.ctx.setLineDash([]);
+		  this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+		  this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+		  this.ctx.lineWidth = 2;
+		  this.ctx.moveTo(x, y);
+		  this.ctx.lineTo(x + width/2, y-height/2);
+		  this.ctx.lineTo(x + width, y);
+		  this.ctx.lineTo(x + width/2, y + height/2);
+		  this.ctx.lineTo(x, y);
+		  this.ctx.stroke();
+		  this.ctx.fill();
 	}
 }
 		
