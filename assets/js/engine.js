@@ -216,6 +216,7 @@ function renderMouseAndGridPosition() {
 	let mouse_over_grid = hoverTileX >= 0 && hoverTileY >= 0 && hoverTileY <= world.gridSize && hoverTileX <= world.gridSize ? `Grid: ${hoverTileX}, ${hoverTileY}` : "";
   ctx.font = '12pt Calibri';
   ctx.fillStyle = 'white';
+  
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
 
@@ -250,6 +251,7 @@ function renderObjects()
 	}
 }
 
+// A tranférer dans MapRenderer 
 function renderTiles(x, y) {
   let tileWidth = 96;
   let tileHeight = 48;
@@ -292,6 +294,7 @@ function renderTileHover(x, y, width, height) {
   ctx.fill();
 }
 
+// à Tranférer dans Map Renderer
 function renderTileBackground(x, y, width, height) {
   ctx.beginPath();
   ctx.setLineDash([5, 5]);
@@ -307,6 +310,7 @@ function renderTileBackground(x, y, width, height) {
   ctx.fill();
 }
 
+// A tranférer dans map renderer 
 function renderTexturedTile(imgSrc, x, y, tileHeight) {
   let offsetY = tileHeight - imgSrc.height;
 
@@ -318,10 +322,12 @@ let world = new Scene(listeActor, ctx) ;
 setup();
 run();
 
+// Faire un tableau de touche configurable, pas de touche direct. dans les calcul !!!! 
+// regrouper en catégorie 
 window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
 	case 37: // Left
-	  offsetXMod = offsetXMod + 10;
+	  offsetXMod = offsetXMod + 10; 
 	break;
 
 	case 38: // Up
@@ -379,12 +385,14 @@ window.addEventListener('keyup' , function(event) {
 	}
 }, false);
 
+// à tranférer dans MapRenderer 
 function tilePosToMapPos(tileX, tileY) {
   let posX = -48*tileY+48*tileX+48;
   let posY = (48*tileX+48*tileY+48)/2;
   return {x: posX, y:posY};
 }
 
+// à tranférer dans un BehaviorComposant 
 function coordsToDir(x1, y1, x2, y2) {
   let calc1 = x2 - x1;
   let calc2 = y2 - y1;
