@@ -8,7 +8,7 @@ class BehaviorComposant
 	}
 	update() {} ; 
 	collision(actorCollision) {} ; 
-	clickMouse(x, y) {} ; 
+	clickDown() {} ; 
 	updateAfterCalcul() {} ; 
 	render() {} ; 
 	

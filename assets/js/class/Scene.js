@@ -18,7 +18,6 @@ class Scene
 	{
 		// 1 - suppression de tous les actor 
 		this.deleteScene() ; 
-		// 1 - chargement de la (map fichier JSON)
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
 		// 3 - chagement de player en récupérant les information dans la class Player
 		

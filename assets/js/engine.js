@@ -25,25 +25,6 @@ let listeActor = [] ;
 
 
 
-// Création de la scene 
-
-
-
-
-
-// Creation des Actor , par la suite ça sera dans scenes. (sauf pour les joueurs qui seront spawnmer ) .
-
-/*let arthur = world.addActor("Arthur", 5, 5) ; 
-arthur.animationSprite = new SpriteAnimation(arthur) ;
-arthur.animationSprite.runAnimationSprite = true;
-//arthur.animationSprite.reverseAnimation = true;
-arthur.animationSprite.nbAnimation = 8 ;
-arthur.animationSprite.nbFrame = 9 ;
-arthur.animationSprite.reverseAnimation = true*/
- 
-
-//arthur.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
-// obliger de mettre les touche dans un tableau, car c'est la seul manière de les passé par référence
 
 
 
@@ -219,13 +200,6 @@ function renderMouseAndGridPosition() {
   ctx.fillText(`Mouse: ${mousePosition.x}, ${mousePosition.y}`, 20, 100);
   ctx.fillText(`${mouse_over_grid}`, 20, 120);
 
-  // Ajout position Arthur
-  /*ctx.fillText(`Arthur pos: ${arthur.position.x}, ${arthur.position.y}`, 20, 140);
-  ctx.fillText(`Arthur posID: ${arthur.positionMap.x}, ${arthur.positionMap.y}`, 20, 160);
-  ctx.fillText(`Arthur World: ${arthur.positionWorld.x}, ${arthur.positionWorld.y}`, 20, 180);
-  ctx.fillText(`Arthur IdDecimal: ${arthur.positionMapDecimal.x}, ${arthur.positionMapDecimal.y}`, 20, 200);
-  ctx.fillText(`Arthur IdTille: ${arthur.tileFeet}`, 20, 240);
-  ctx.fillText(`Arthur positionZ: ${arthur.positionZ}`, 20, 260);*/
 
 
   // Position de la map
