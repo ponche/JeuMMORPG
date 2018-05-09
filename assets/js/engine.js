@@ -6,30 +6,25 @@ let selectedTileType = 0;
 let tileStartX = 0;
 let tileStartY = 0;
 let mousePosition = {x:0,y:0};
+
+
 let hoverTileX = -1;
 let hoverTileY = -1;
 let tiletype_empty = 0;
-let isMouseDown = false;
-let isKeyZ = false ;
+let isMouseDown = false; // à envoyé par référence pour transmettre au composant 
+let isKeyZ = false ; // faire un tableau avec un norme pour envoyé par référence (deja fait, révision) 
 let isKeyS = false ;
 let isKeyQ = false ;
 let isKeyD = false ;
 let tile_images = [];
 let tile_quantity = 36;
-let offsetYMod = 0;
+let offsetYMod = 0; // offset sera la position de actor 
+let offsetXMod = 0; // idem 
 
-let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; 
+let tableauKey = [isKeyZ, isKeyS, isKeyD, isKeyQ] ; // touche de controle mouvement 
 
-let offsetXMod = 0;
+
 let listeActor = [] ;
-
-
-
-
-
-
-
-
 
 
 
@@ -40,6 +35,7 @@ for(let i = 0; i < tile_quantity; ++i) {
 }
 
 
+// recupération du canvas et du context 
 let canvas = document.querySelector("canvas");
 let ctx    = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -47,7 +43,7 @@ canvas.height = window.innerHeight;
 maxSelectorsPerRow = canvas.width / 72;
 
 
-
+// addEventListener 
 canvas.addEventListener('mousemove', evt => mousePosition = getMousePos(canvas, evt), false);
 window.addEventListener('touchmove', evt => {
   mousePosition = getMousePos(canvas, evt);
@@ -67,6 +63,8 @@ window.addEventListener('resize', () => {
 
 }, false);
 
+
+// fonction de trie de tableau 
 function comparateurListeObjet(a,b)
 {
 	if(a.positionZ < b.positionZ)
@@ -77,12 +75,13 @@ function comparateurListeObjet(a,b)
 	return 0
 }
 
-
+// variable isMouseDown à envoyé par référence au actor et référence  composant 
 function mouseUp(evt) {
 	if (isMouseDown === true) onMouseClick();
   isMouseDown = false;
 }
 
+// valeur de return a envoyé par référence pour les actor et composant 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
@@ -94,6 +93,9 @@ function getMousePos(canvas, evt) {
 
 const setup = function() 
 {
+	// 1- Init du jeu 
+	// 2- connextion au serveur Node.js ( pas pour tous de suite ) 
+	// 3- chargement de la map 
 	world.loadScene() ; 
 };
 
@@ -113,18 +115,17 @@ const update = function(elapsed) {
   for (let i = 0 ; i < listeActor.length ; i++)
   {
 
-
-
-
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée
 
 	  // Mise a jour des position absolute
-	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;
+	  listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ; // a modifié TileStart sera supprimé 
+	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ; // idem 
 
-	  //Mise a jour des position  Retirer les animationSprite, c'est pas fessable
-	  let actor_y = listeActor[i].position.y - tileStartY ;
-	  let actor_x = listeActor[i].position.x - tileStartX  ;
+	  
+	  let actor_y = listeActor[i].position.y - tileStartY ; // idem tileStart sera supprimé
+	  let actor_x = listeActor[i].position.x - tileStartX  ; // idem 
+	  
+	  // ça sera a MapRenderer de géré ça . 
 	  listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
 
@@ -246,6 +247,7 @@ function renderTiles(x, y) {
   }
 }
 
+// Renvoyé l'action du clic à actor est au référence . 
 function onMouseClick() {
 
 }
@@ -287,7 +289,7 @@ function renderTexturedTile(imgSrc, x, y, tileHeight) {
   ctx.drawImage(imgSrc, x, y+offsetY);
 }
 
-let world = new Scene(listeActor, ctx) ; 
+let world = new Scene(listeActor, ctx) ; // création de l'univers ( Big bang ) 
 
 setup();
 run();
@@ -359,6 +361,8 @@ function tilePosToMapPos(tileX, tileY) {
   return {x: posX, y:posY};
 }
 
+
+// On laisee de coté pour le moment, pas avant d'avoir une bonne structure. sinon tu devra tou refaire 
 function coordsToDir(x1, y1, x2, y2) {
   let calc1 = x2 - x1;
   let calc2 = y2 - y1;
