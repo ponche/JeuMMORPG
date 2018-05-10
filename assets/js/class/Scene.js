@@ -2,7 +2,7 @@ class Scene
 {
 	constructor(listeActor, ctx )
 	{
-		this.ctx = ctx ; 
+		 
 				
 		this.listeActor = listeActor ; // temporaire pour les test 
 		
@@ -21,12 +21,12 @@ class Scene
 		// 3 - chagement de player en récupérant les information dans la class Player
 		
 		// Creation de la scene 
-		let map = world.addActor("Map" , 200, 200) ; 
-		map.addBehavior( new MapRenderer(this.ctx)) ; 
+		let map = world.addActor("Map" , 600, 150) ; 
+		map.addBehavior( new MapRenderer()) ; 
 		map.addBehavior( new PlayerControlerKeyBoard(tableauFleche)) ; 
 		
 		// Player de test sera modifé par la suite 
-		let bodyPlayer = world.addActor("Player", 200, 200) ; 
+		let bodyPlayer = world.addActor("Player", 600, 300) ; 
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		//arthur.animationSprite.reverseAnimation = true;
@@ -48,7 +48,7 @@ class Scene
 	{
 		// Ajout un actor en position Tuile 
 		let newActor = new Actor(name, this) ;
-		newActor.setPositionGrid(x , y) ; 
+		newActor.setPosition(x , y) ; 
 		this.listeActor.push(newActor) ;
 		return newActor ; 
 	}

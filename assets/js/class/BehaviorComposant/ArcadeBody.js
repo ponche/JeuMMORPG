@@ -11,7 +11,7 @@ class ArcadeBody extends BehaviorComposant
 		this.actor.arcadeBody.systemCollisionTile = true ; 
 		this.actor.arcadeBody.systemCollisionActor = true ; 
 		
-		this.lastPositionWorld = {x: -1, y: -1} ; 
+		this.lastPosition = {x: -1, y: -1} ; 
 		this.arraySolideTile = arraySolideTile ; 
 		
 	}
@@ -29,8 +29,8 @@ class ArcadeBody extends BehaviorComposant
 				console.log("Collision in composant") ;
 				this.testCollision = true ;
 
-				this.actor.positionWorld.x = this.lastPositionWorld.x ;
-				this.actor.positionWorld.y = this.lastPositionWorld.y ;
+				this.actor.position.x = this.lastPositionWorld.x ;
+				this.actor.position.y = this.lastPositionWorld.y ;
 				
 			}
 			else
@@ -38,8 +38,8 @@ class ArcadeBody extends BehaviorComposant
 				this.testCollision = false ;
 				// on enregistre la position dans lastPositionWorld
 				
-				this.lastPositionWorld.x = this.actor.positionWorld.x ;
-				this.lastPositionWorld.y = this.actor.positionWorld.y ;
+				this.lastPosition.x = this.actor.position.x ;
+				this.lastPosition.y = this.actor.position.y ;
 				
 			}
 		}

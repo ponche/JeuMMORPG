@@ -1,10 +1,9 @@
 class MapRenderer extends BehaviorComposant 
 {
-	constructor(ctx)
+	constructor()
 	{
 		super() ;
 		
-		this.ctx = ctx ; 
 		// Declaration des attributs ici 
 		this.tileMap = [14, 23, 23, 23, 23, 23, 23, 23, 23, 13, 21, 32, 33, 33, 28, 33, 33, 33, 31, 20, 21, 34, 1, 1, 34, 18, 22, 17, 34, 20, 21, 34, 1, 1, 34, 16, 23, 19, 34, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 25, 33, 33, 24, 33, 33, 33, 27, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 34, 1, 1, 34, 1, 1, 1, 34, 20, 21, 29, 33, 33, 26, 33, 33, 33, 30, 20, 11, 22, 22, 22, 22, 22, 22, 22, 22, 12]
 		this.gridSize = Math.sqrt(this.tileMap.length); 
@@ -80,41 +79,41 @@ class MapRenderer extends BehaviorComposant
 	renderTileBackground(x, y, width, height) 
 	{
 		// Dessine arrière plan sur une casse vide 
-		this.ctx.beginPath();
-		this.ctx.setLineDash([5, 5]);
-		this.ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-		this.ctx.fillStyle = 'rgba(25,34, 44,0.2)';
-		this.ctx.lineWidth = 1;
-		this.ctx.moveTo(x, y);
-		this.ctx.lineTo(x + width/2, y-height/2);
-		this.ctx.lineTo(x + width, y);
-		this.ctx.lineTo(x + width/2, y + height/2);
-		this.ctx.lineTo(x, y);
-		this.ctx.stroke();
-		this.ctx.fill();
+		ctx.beginPath();
+		ctx.setLineDash([5, 5]);
+		ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+		ctx.fillStyle = 'rgba(25,34, 44,0.2)';
+		ctx.lineWidth = 1;
+		ctx.moveTo(x, y);
+		ctx.lineTo(x + width/2, y-height/2);
+		ctx.lineTo(x + width, y);
+		ctx.lineTo(x + width/2, y + height/2);
+		ctx.lineTo(x, y);
+		ctx.stroke();
+		ctx.fill();
 	}
 	
     renderTexturedTile(imgSrc, x, y, tileHeight) 
 	{
 		let offsetY = tileHeight - imgSrc.height;
 
-		this.ctx.drawImage(imgSrc, x, y+offsetY);
+		ctx.drawImage(imgSrc, x, y+offsetY);
 	}
 	// Pour modifier les couleurs du selecteur, c'est ici
 	renderTileHover(x, y, width, height) 
 	{
-		  this.ctx.beginPath();
-		  this.ctx.setLineDash([]);
-		  this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-		  this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-		  this.ctx.lineWidth = 2;
-		  this.ctx.moveTo(x, y);
-		  this.ctx.lineTo(x + width/2, y-height/2);
-		  this.ctx.lineTo(x + width, y);
-		  this.ctx.lineTo(x + width/2, y + height/2);
-		  this.ctx.lineTo(x, y);
-		  this.ctx.stroke();
-		  this.ctx.fill();
+		  ctx.beginPath();
+		  ctx.setLineDash([]);
+		  ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+		  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+		  ctx.lineWidth = 2;
+		  ctx.moveTo(x, y);
+		  ctx.lineTo(x + width/2, y-height/2);
+		  ctx.lineTo(x + width, y);
+		  ctx.lineTo(x + width/2, y + height/2);
+		  ctx.lineTo(x, y);
+		  ctx.stroke();
+		  ctx.fill();
 	}
 }
 		

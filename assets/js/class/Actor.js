@@ -5,23 +5,12 @@ class Actor
 		this.name = name ;
 		this.scene = scene ; 
 		
-		this.positionWorld = { x: 20, y: 130 } ; // position du personnage, à modifier pour déplacer le perso.
-		
 		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
-		this.positionMap = { x: -1, y: -1 } ;  // sera probablement suprimé 
-		this.positionMapDecimal = { x: -1, y: -1 } ;  // sera probablement suprimé 
-		
-		this.positionZ = 0 ;
-		this.tileFeet = undefined ; // indicateur de type de cellule
 				
 		this.speed = 2 ; // class Player Controler ?? 
 		
 		// Attributs Colider 
 		this.isSolid = false ; // Mettre false pour un trigger et un fantome ; 
-
-		
-
-
 
 		//Attributs Collision
 		this.simulCollision = false ; // à deplacer dans ArcadeBody
@@ -49,7 +38,7 @@ class Actor
 
 
 		// Mise a jour de positionZ
-		this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
+		//this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
 		// animationSprite ??
 	}
 	updateAfterCalcul()
@@ -71,10 +60,15 @@ class Actor
 		this.position.y += y ;
 
 	}
+	setPosition(x, y)
+	{
+		this.position.x = x ; 
+		this.position.y = y ; 
+	}
 
 	setPositionGrid(x , y)
 	{
-		this.positionWorld = this.tilePosToMapPos(x, y) ;
+		// A refaire 
 
 	}
 	
