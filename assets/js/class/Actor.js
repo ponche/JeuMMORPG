@@ -80,12 +80,12 @@ class Actor
 		this.behavior.push(behavior) ; 
 		behavior.actor = this ; // les autres langage ne permet pas ce genre de bidouiles 
 	}
-	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1,)
+	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1)
 	{
-		this.animationSprite = new SpriteAnimation(this) ;
-		this.animationSprite.sprite.src = src ;
-		this.animationSprite.nbAnimation = nbAnimation ;
-		this.animationSprite.nbFrame = nbFrame ;
+		this.animationSprite = new SpriteAnimation(this, src, nbFrame, nbAnimation) ;
+		//this.animationSprite.sprite.src = src ;
+		//this.animationSprite.nbAnimation = nbAnimation ;
+		//this.animationSprite.nbFrame = nbFrame ;
 	}
 	addCollider(offsetBox, dimensionBox)
 	{

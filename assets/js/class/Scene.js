@@ -27,11 +27,11 @@ class Scene
 		
 		// Player de test sera modifé par la suite 
 		let bodyPlayer = world.addActor("Player", 600, 300) ; 
-		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer) ;
+		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "assets/img/game/sprites/characters/robot.png", 9, 8 ) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		//arthur.animationSprite.reverseAnimation = true;
-		bodyPlayer.animationSprite.nbAnimation = 8 ;
-		bodyPlayer.animationSprite.nbFrame = 9 ;
+		//bodyPlayer.animationSprite.nbAnimation = 8 ;
+		//bodyPlayer.animationSprite.nbFrame = 9 ;
 		bodyPlayer.animationSprite.reverseAnimation = true
 		// Ajoute des composant a acteur 
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
@@ -40,7 +40,8 @@ class Scene
 		
 		// Cactus de test 
 		let cactus = world.addActor("Cactus", 800, 200) ; 
-		cactus.addAnimationSprite("assets/img/game/sprites/objects/encens.png") ; 
+		cactus.addAnimationSprite("assets/img/game/sprites/objects/encens.png") ;
+		cactus.addBehavior( new PlayerLogDebuger()) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()

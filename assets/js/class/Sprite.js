@@ -1,22 +1,22 @@
 class SpriteAnimation
 {
-	constructor(actor, buildCollider = true)
+	constructor(actor, src, nbFrame = 1, nbAnimation = 1,  buildCollider = true)
 	{
 		this.actor = actor
 
-		this.nbAnimation = 1 ; // attention variable utilsé dans la boucle de rendu jusqu'a sprite.src
-		this.nbFrame = 1 ;
+		this.nbAnimation = nbAnimation ; 
+		this.nbFrame = nbFrame ;
 		this.currentFrame = 0 ;
 		this.currentAnimation = 0 ;
 		this.sprite = new Image() ;
-		this.sprite.src  = "assets/img/game/sprites/characters/robot.png"
+		this.sprite.src  = src //"assets/img/game/sprites/characters/robot.png"
 		this.delayFrame = 3 // plus le nombre est important plus le personnage va lentement ( "ne prend pas les décimal" )
 		this.currentDelayFrame = 0
 		this.loopAnimationSprite = true ; 
 		this.reverseAnimation = false ;
 		this.runAnimationSprite = false ;
-		this.largeurActor = this.sprite.height / this.nbAnimation ; 
-		this.hauteurActor = this.sprite.width / this.nbFrame ; 
+		this.hauteurActor = this.sprite.height / this.nbAnimation ; 
+		this.largeurActor = this.sprite.width / this.nbFrame ; 
 		this.offsetSprite = {x: 0, y:0} ; 
 		this.offsetSprite.x = (this.sprite.width / this.nbFrame) /2 ; 
 		this.offsetSprite.y = this.sprite.height / this.nbAnimation ; 
@@ -24,8 +24,8 @@ class SpriteAnimation
 		{
 			let offsetPointA = {x: 0, y: 0 } ; 
 			let dimensionSprite = {x: 0, y: 0 } ; 
-			offsetPointA.x = - this.offsetSprite.x ; 
-			offsetPointA.y = - this.offsetSprite.y ; 
+			offsetPointA.x =  - this.offsetSprite.x ; 
+			offsetPointA.y =  - this.offsetSprite.y ; 
 			dimensionSprite.x = this.largeurActor ; 
 			dimensionSprite.y = this.hauteurActor ; 
 			this.actor.addCollider(offsetPointA, dimensionSprite) ; 
