@@ -7,6 +7,7 @@ class Actor
 		
 		this.position = { x: 0, y: 0 } ; 
 		this.positionAbs =  {x: 0, y: 0 } ;
+		this.positionZ = 0 ; 
 				
 		this.speed = 2 ; 
 		
@@ -31,8 +32,8 @@ class Actor
 		// Mise a jour des composant
 		if(this.animationSprite != undefined)
 			this.animationSprite.update() ;
-		/*if(this.collider != undefined)
-			this.collider.update() ;*/
+		if(this.collider != undefined)
+			this.collider.update() ;
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].update() ; 
 		
@@ -88,17 +89,9 @@ class Actor
 		animationSprite.nbAnimation = nbAnimation ;
 		animationSprite.nbFrame = nbFrame ;
 	}
-	addColider(xa, ya, xb, yb)
+	addCollider(offsetBox, dimensionBox)
 	{
-		// Rectangle de collision 
-		// a point en haut a gauche. 
-		// b point en bas a droite 
-		this.collider = {} ; // espace de noms ; 
-		this.collider.xa = xa ; 
-		this.collider.ya = ya ; 
-		this.collider.xb = xb ; 
-		this.collider.yb = yb ; 
-		// Position relative à l'origine de actor 
+		this.collider = new Collider(this, offsetBox, dimensionBox) ; 	
 	}
 	
 	

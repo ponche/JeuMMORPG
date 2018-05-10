@@ -1,6 +1,6 @@
 class SpriteAnimation
 {
-	constructor(actor)
+	constructor(actor, buildColider = true)
 	{
 		this.actor = actor
 
@@ -15,9 +15,15 @@ class SpriteAnimation
 		this.loopAnimationSprite = true ; 
 		this.reverseAnimation = false ;
 		this.runAnimationSprite = false ;
+		this.largeurActor = this.sprite.height / this.nbAnimation ; 
+		this.hauteurActor = this.sprite.width / this.nbFrame ; 
 		this.offsetSprite = {x: 0, y:0} ; 
 		this.offsetSprite.x += (this.sprite.width / this.nbFrame) /2 ; 
 		this.offsetSprite.y += this.sprite.height / this.nbAnimation ; 
+		if(buildColider)
+		{
+			// A faire 
+		}
 		
 		
 	}
