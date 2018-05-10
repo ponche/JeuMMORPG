@@ -7,12 +7,11 @@ class Actor
 		
 		this.position = { x: 0, y: 0 } ; 
 		this.positionAbs =  {x: 0, y: 0 } ;
+		this.positionIso = {x: 0, y: 0 } ; 
 		this.positionZ = 0 ; 
+		this.diagonalMax = 1600 ; // Magic Number grace au test terrain . varie selon les écrans . 
 				
-		this.speed = 2 ; 
-		
-		// Attributs Colider 
-		this.isSolid = false ; // Mettre false pour un trigger et un fantome ; 
+		this.speed = 2 ;  
 
 
 		// Gestion des composant
@@ -20,6 +19,7 @@ class Actor
 		this.sound = undefined ;
 		this.collider = undefined ; // Définir la boite de collision 
 		this.animationSprite = undefined ;
+		this.player = undefined ; 
 
 
 	}
@@ -27,7 +27,8 @@ class Actor
 	update()
 	{
 		//Mise à jour de la position absolut. temporaire mon système n'est pas encore pret. 
-		this.positionAbs = this.position
+		this.positionAbs = this.position ; 
+		this.positionIso = this.mapPosToTilePos(this.positionAbs.x, this.positionAbs.y) ; 
 		
 		// Mise a jour des composant
 		if(this.animationSprite != undefined)
@@ -41,6 +42,7 @@ class Actor
 
 		// Mise a jour de positionZ
 		//this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
+		this.positionZ = this.positionIso.x + this.positionIso.y * this.diagonalMax ; 
 		// animationSprite ??
 	}
 	updateAfterCalcul()
@@ -80,7 +82,7 @@ class Actor
 	addBehavior(behavior)
 	{
 		this.behavior.push(behavior) ; 
-		behavior.actor = this ; 
+		behavior.actor = this ; // les autres langage ne permet pas ce genre de bidouiles 
 	}
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1,)
 	{
@@ -101,6 +103,15 @@ class Actor
 		  let posX = -48*tileY+48*tileX+48;
 		  let posY = (48*tileX+48*tileY+48)/2;
 		  return {x: posX, y:posY};
+	}
+	mapPosToTilePos(actor_x, actor_y)
+	{
+		let tile_width = 2 ; 
+		let tile_height = 1 ;
+		let positionIso = {x: -1, y: -1 } ; 
+		positionIso.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
+		positionIso.y = (-actor_x / tile_width) + (actor_y / tile_height);
+		return positionIso ; 
 	}
 
 	
