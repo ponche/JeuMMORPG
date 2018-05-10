@@ -16,8 +16,9 @@ class SpriteAnimation
 		this.reverseAnimation = false ;
 		this.runAnimationSprite = false ;
 		this.offsetSprite = {x: 0, y:0} ; 
-		this.offsetSprite.x -= (this.sprite.width / this.nbFrame) /2 ; 
-		this.offsetSprite.y -= this.sprite.height / this.nbAnimation ; 
+		this.offsetSprite.x += (this.sprite.width / this.nbFrame) /2 ; 
+		this.offsetSprite.y += this.sprite.height / this.nbAnimation ; 
+		
 		
 	}
 
@@ -78,5 +79,20 @@ class SpriteAnimation
 	loadSprite(src)
 	{
 		sprite.src = src ; 
+	}
+	render()
+	{
+
+		let spriteActor = this.sprite ;
+		
+		let hauteurActor = spriteActor.height / this.nbAnimation ;
+		let largeurActor = spriteActor.width / this.nbFrame ;
+		
+		let positionX = this.actor.positionAbs.x  - (largeurActor / 2)  ;
+		let positionY = this.actor.positionAbs.y  - hauteurActor ;
+		
+		
+		ctx.drawImage(spriteActor, this.currentFrame * largeurActor, this.currentAnimation * hauteurActor , largeurActor, hauteurActor, positionX, positionY , largeurActor, hauteurActor) ;
+		
 	}
 }

@@ -6,6 +6,7 @@ class Actor
 		this.scene = scene ; 
 		
 		this.position = { x: 0, y: 0 } ; 
+		this.positionAbs =  {x: 0, y: 0 } ;
 				
 		this.speed = 2 ; 
 		
@@ -24,6 +25,9 @@ class Actor
 
 	update()
 	{
+		//Mise à jour de la position absolut. temporaire mon système n'est pas encore pret. 
+		this.positionAbs = this.position
+		
 		// Mise a jour des composant
 		if(this.animationSprite != undefined)
 			this.animationSprite.update() ;
@@ -46,6 +50,8 @@ class Actor
 	}
 	render() 
 	{
+		if(this.animationSprite != undefined)
+			this.animationSprite.render() ; 
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].render() ; 
 	}

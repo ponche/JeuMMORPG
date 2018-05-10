@@ -137,14 +137,14 @@ function renderObjects()
 {
 	for (let i = 0 ; i < listeActor.length ; i++)
 	{
-		if(listeActor[i].animationSprite != undefined)
+		/*if(listeActor[i].animationSprite != undefined)
 		{
 			spriteActor = listeActor[i].animationSprite.sprite ;
 			//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
 			hauteurActor = spriteActor.height / listeActor[i].animationSprite.nbAnimation ;
 			largeurActor = spriteActor.width / listeActor[i].animationSprite.nbFrame ;
 			ctx.drawImage(spriteActor, listeActor[i].animationSprite.currentFrame * largeurActor, listeActor[i].animationSprite.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
-		}
+		}*/
 		// Appel de la fonction render() des objet 
 		listeActor[i].render() ; 
 		
