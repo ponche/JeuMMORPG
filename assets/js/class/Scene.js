@@ -37,6 +37,10 @@ class Scene
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 
 		bodyPlayer.addBehavior( new ArcadeBody([22, 23] , bodyPlayer)) ; 
 		bodyPlayer.addBehavior( new PlayerLogDebuger()) ; 
+		
+		// Cactus de test 
+		let cactus = world.addActor("Cactus", 800, 200) ; 
+		cactus.addAnimationSprite("assets/img/game/sprites/objects/encens.png") ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	deleteScene()

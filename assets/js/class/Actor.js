@@ -84,10 +84,10 @@ class Actor
 	}
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1,)
 	{
-		this.animationSprite = new Sprite(this) ;
-		animationSprite.sprite.src = src ;
-		animationSprite.nbAnimation = nbAnimation ;
-		animationSprite.nbFrame = nbFrame ;
+		this.animationSprite = new SpriteAnimation(this) ;
+		this.animationSprite.sprite.src = src ;
+		this.animationSprite.nbAnimation = nbAnimation ;
+		this.animationSprite.nbFrame = nbFrame ;
 	}
 	addCollider(offsetBox, dimensionBox)
 	{
