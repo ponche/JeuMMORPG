@@ -54,6 +54,13 @@ class Actor
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].render() ; 
 	}
+	collision(otherActor)
+	{
+		// Une collision a eu lieu
+		for(let i = 0 ; i < this.behavior.length ; i++)
+			this.behavior[i].collision(otherActor) ; 
+	}
+	
 	
 	move(x, y)
 	{
@@ -83,9 +90,6 @@ class Actor
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1)
 	{
 		this.animationSprite = new SpriteAnimation(this, src, nbFrame, nbAnimation) ;
-		//this.animationSprite.sprite.src = src ;
-		//this.animationSprite.nbAnimation = nbAnimation ;
-		//this.animationSprite.nbFrame = nbFrame ;
 	}
 	addCollider(offsetBox, dimensionBox)
 	{

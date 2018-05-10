@@ -29,9 +29,6 @@ class Scene
 		let bodyPlayer = world.addActor("Player", 600, 300) ; 
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "assets/img/game/sprites/characters/robot.png", 9, 8 ) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
-		//arthur.animationSprite.reverseAnimation = true;
-		//bodyPlayer.animationSprite.nbAnimation = 8 ;
-		//bodyPlayer.animationSprite.nbFrame = 9 ;
 		bodyPlayer.animationSprite.reverseAnimation = true
 		// Ajoute des composant a acteur 
 		bodyPlayer.addBehavior( new PlayerControlerKeyBoard(tableauKey)) ; 

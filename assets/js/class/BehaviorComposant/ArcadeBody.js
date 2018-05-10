@@ -24,7 +24,7 @@ class ArcadeBody extends BehaviorComposant
 		if(this.actor.arcadeBody.systemCollisionTile)
 		{
 			
-			if(this.verifCollision(this.arraySolideTile))
+			if(this.verifCollisionTiles(this.arraySolideTile))
 			{
 				console.log("Collision in composant") ;
 				this.testCollision = true ;
@@ -43,9 +43,57 @@ class ArcadeBody extends BehaviorComposant
 				
 			}
 		}
+		
+		
+		// Collision entre actor 
+		if(this.actor.arcadeBody.systemCollisionActor)
+		{
+			// On vérifié tous les actor 
+			for(let i = 0 ; i < listeActor.length ; i++ ) 
+			{
+				if(this.actor === listeActor[i])
+					continue ; 
+				
+				if(listeActor[i].collider != undefined)
+				{
+					// Actor a bien une boite de collision  on fait le test 
+					if(this.verifCollisionActor(listeActor[i].collider)) 
+					{
+						console.log("collisionActor") ; 
+						// on informe other Actor de la collision 
+						listeActor[i].collision(this.actor) ;
+					}
+				}
+			}
+			
+			
+		}
+	}
+	verifCollisionActor(otherCollider)
+	{
+		// Test de collision entre les 2 actor
+		let collision = true ; 
+		let ActorA_PointA = this.actor.collider.pointA ; 
+		let ActorA_PointB = this.actor.collider.pointB ; 
+		
+		let ActorB_PointA = otherCollider.pointA ; 
+		let ActorB_PointB = otherCollider.pointB ; 
+		
+		// si tous les test échoue, il à collision
+		if(ActorA_PointB.x < ActorB_PointA.x) // right
+			collision = false ; 
+		if(ActorA_PointB.y < ActorB_PointA.y) // dowm 
+			collision = false ; 
+		if(ActorA_PointA.x > ActorB_PointB.x) // left 
+			collision = false ; 
+		if(ActorA_PointA.y > ActorB_PointB.y) // top
+			collision = false ; 
+			
+		return collision ; 
+			
 	}
 	
-	verifCollision(tableauTile)
+	verifCollisionTiles(tableauTile)
 	{
 		for(let i = 0 ; i < tableauTile.length ; i++)
 		{
