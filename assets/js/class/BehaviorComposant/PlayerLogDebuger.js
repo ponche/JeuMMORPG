@@ -19,12 +19,12 @@ class PlayerLogDebuger extends BehaviorComposant
 		  
 		  
 		  // Affiche position actor 
-		  //ctx.beginPath() ; 
-		  ctx.moveTo(this.actor.positionAbs.x , this.actor.positionAbs.y) ; 
+		  ctx.beginPath() ; 
+		  ctx.moveTo(this.actor.positionAbs.x, this.actor.positionAbs.y + 10 ) ; 
+		  ctx.lineTo(this.actor.positionAbs.x , this.actor.positionAbs.y) ; 
 		  ctx.lineTo(this.actor.positionAbs.x + 10 , this.actor.positionAbs.y) ; 
+		  ctx.closePath() ; 
 		  
-		  ctx.moveTo(this.actor.positionAbs.x , this.actor.positionAbs.y) ; 
-		  ctx.lineTo(this.actor.positionAbs.x, this.actor.positionAbs.y + 10 ) ; 
 		  ctx.stroke() ; 
 	}  
 	
