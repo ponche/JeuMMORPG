@@ -1,6 +1,6 @@
 class SpriteAnimation
 {
-	constructor(actor, buildColider = true)
+	constructor(actor, buildCollider = true)
 	{
 		this.actor = actor
 
@@ -18,11 +18,17 @@ class SpriteAnimation
 		this.largeurActor = this.sprite.height / this.nbAnimation ; 
 		this.hauteurActor = this.sprite.width / this.nbFrame ; 
 		this.offsetSprite = {x: 0, y:0} ; 
-		this.offsetSprite.x += (this.sprite.width / this.nbFrame) /2 ; 
-		this.offsetSprite.y += this.sprite.height / this.nbAnimation ; 
-		if(buildColider)
+		this.offsetSprite.x = (this.sprite.width / this.nbFrame) /2 ; 
+		this.offsetSprite.y = this.sprite.height / this.nbAnimation ; 
+		if(buildCollider)
 		{
-			// A faire 
+			let offsetPointA = {x: 0, y: 0 } ; 
+			let dimensionSprite = {x: 0, y: 0 } ; 
+			offsetPointA.x = - this.offsetSprite.x ; 
+			offsetPointA.y = - this.offsetSprite.y ; 
+			dimensionSprite.x = this.largeurActor ; 
+			dimensionSprite.y = this.hauteurActor ; 
+			this.actor.addCollider(offsetPointA, dimensionSprite) ; 
 		}
 		
 		

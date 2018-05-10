@@ -38,12 +38,8 @@ class Actor
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].update() ; 
 		
-
-
 		// Mise a jour de positionZ
-		//this.positionZ = this.positionMapDecimal.x + this.positionMapDecimal.y * 10 ;
 		this.positionZ = this.positionIso.x + this.positionIso.y * this.diagonalMax ; 
-		// animationSprite ??
 	}
 	updateAfterCalcul()
 	{
@@ -109,7 +105,7 @@ class Actor
 		let tile_width = 2 ; 
 		let tile_height = 1 ;
 		let positionIso = {x: -1, y: -1 } ; 
-		positionIso.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
+		positionIso.x = (actor_y / tile_height) + (actor_x / tile_width) ;
 		positionIso.y = (-actor_x / tile_width) + (actor_y / tile_height);
 		return positionIso ; 
 	}
