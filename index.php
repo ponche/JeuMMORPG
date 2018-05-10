@@ -7,7 +7,6 @@
 </head>
 
 <body>
-	<h1>Page de test</h1>
 	<canvas id="canvas">Navigateur obsolete</canvas>
 	
 	<!-- Test librairy JSON.cycle.js -->

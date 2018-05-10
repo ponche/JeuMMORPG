@@ -5,16 +5,13 @@ class Actor
 		this.name = name ;
 		this.scene = scene ; 
 		
-		this.position = { x: 0, y: 0 } ; // ne pas utilises pour les calcul de actor
+		this.position = { x: 0, y: 0 } ; 
 				
-		this.speed = 2 ; // class Player Controler ?? 
+		this.speed = 2 ; 
 		
 		// Attributs Colider 
 		this.isSolid = false ; // Mettre false pour un trigger et un fantome ; 
 
-		//Attributs Collision
-		this.simulCollision = false ; // à deplacer dans ArcadeBody
-		this.systemCollision = true ; // idem 
 
 		// Gestion des composant
 		this.behavior = [] ;

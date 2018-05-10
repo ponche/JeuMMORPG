@@ -21,7 +21,7 @@ canvas.height = window.innerHeight;
 // addEventListener 
 canvas.addEventListener('mousemove', evt => mousePosition = getMousePos(canvas, evt), false);
 window.addEventListener('touchmove', evt => {
-  mousePosition = getMousePos(canvas, evt);
+  mousePosition = sd(canvas, evt);
   evt.preventDefault();
 }, false);
 
@@ -49,13 +49,11 @@ function comparateurListeObjet(a,b)
 	return 0
 }
 
-// variable isMouseDown à envoyé par référence au actor et composant 
 function mouseUp(evt) {
 	if (isMouseDown === true) onMouseClick();
   isMouseDown = false;
 }
 
-// valeur de return a envoyé par référence pour les actor et composant 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
