@@ -18,8 +18,8 @@ class Collider
 	update()
 	{
 		// mise à jour de la box de collision 
-		this.pointA.x = this.actor.positionAbs.x + this.offsetBox.x ;
-		this.pointA.y = this.actor.positionAbs.y + this.offsetBox.y ; 
+		this.pointA.x = this.actor.position.x + this.offsetBox.x ;
+		this.pointA.y = this.actor.position.y + this.offsetBox.y ; 
 		
 		this.pointB.x = this.pointA.x + this.dimensionBox.x ; 
 		this.pointB.y = this.pointA.y + this.dimensionBox.y ; 

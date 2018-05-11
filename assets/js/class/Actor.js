@@ -5,8 +5,8 @@ class Actor
 		this.name = name ;
 		this.scene = scene ; 
 		
-		this.position = { x: 0, y: 0 } ; 
-		this.positionAbs =  {x: 0, y: 0 } ;
+		this.position = { x: 0, y: 0 } ; // positionAbs pour les calcul dans les canvas, et system. 
+		this.positionRel =  {x: 0, y: 0 } ; // Position Abs, sera position . remplacer par positionRel . 
 		this.positionIso = {x: 0, y: 0 } ; 
 		this.positionZ = 0 ; 
 		this.diagonalMax = 1600 ; // Magic Number grace au test terrain . varie selon les écrans . 
@@ -27,8 +27,10 @@ class Actor
 	update()
 	{
 		//Mise à jour de la position absolut. temporaire mon système n'est pas encore pret. 
-		this.positionAbs = this.position ; 
-		this.positionIso = this.mapPosToTilePos(this.positionAbs.x, this.positionAbs.y) ; 
+		//this.positionAbs.x = this.position.x ; 
+		//this.positionAbs.y = this.position.y ; 
+		
+		this.positionIso = this.mapPosToTilePos(this.position.x, this.position.y) ; 
 		
 		// Mise a jour des composant
 		if(this.animationSprite != undefined)
@@ -39,7 +41,11 @@ class Actor
 			this.behavior[i].update() ; 
 		
 		// Mise a jour de positionZ
-		this.positionZ = this.positionIso.x + this.positionIso.y * this.diagonalMax ; 
+		this.positionZ = this.positionIso.x + this.positionIso.y * this.diagonalMax ;
+		
+		// on met à jour la position Abs après les calcul 
+		//this.positionAbs.x = this.position.x ; 
+		//this.positionAbs.y = this.position.y ; 
 	}
 	updateAfterCalcul()
 	{
@@ -74,6 +80,11 @@ class Actor
 		this.position.x = x ; 
 		this.position.y = y ; 
 	}
+	setPositionAbs(x, y)
+	{
+		let positionReturn = {x: 0 , y: 0 } ; 
+	}
+	
 
 	setPositionGrid(x , y)
 	{
@@ -87,9 +98,9 @@ class Actor
 		this.behavior.push(behavior) ; 
 		behavior.actor = this ; // les autres langage ne permet pas ce genre de bidouiles 
 	}
-	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1)
+	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1, buildCollider = true)
 	{
-		this.animationSprite = new SpriteAnimation(this, src, nbFrame, nbAnimation) ;
+		this.animationSprite = new SpriteAnimation(this, src, nbFrame, nbAnimation, buildCollider) ;
 	}
 	addCollider(offsetBox, dimensionBox)
 	{

@@ -1,8 +1,15 @@
 class PlayerLogDebuger extends BehaviorComposant
 {
-	constructor()
+	constructor(actor)
 	{
 		super() ; 
+		
+		this.actor = actor ; 
+		
+		// Création d'un objet debug pour modifier les valeur
+		this.actor.debug = {} ; 
+		
+		this.actor.debug.infoPos = false ; 
 		
 		
 		
@@ -10,18 +17,21 @@ class PlayerLogDebuger extends BehaviorComposant
 	render()
 	{
 			// Ajout position Actor
-		ctx.font = '12pt Calibri';
-		ctx.fillStyle = 'white';	
-		ctx.fillText(`Player posRel: ${this.actor.position.x}, ${this.actor.position.y}`, 20, 140);
-		ctx.fillText(`Player posIso: ${this.actor.positionIso.x}, ${this.actor.positionIso.y}`, 20, 160);
+		if(this.actor.debug.infoPos)
+		{
+			ctx.font = '12pt Calibri';
+			ctx.fillStyle = 'white';	
+			ctx.fillText(`Player posRel: ${this.actor.position.x}, ${this.actor.position.y}`, 20, 140);
+			ctx.fillText(`Player posIso: ${this.actor.positionIso.x}, ${this.actor.positionIso.y}`, 20, 160);
+		}
 		  
 		  
 		  // Affiche origine actor 
 		ctx.strokeStyle =  'blue' ; 
 		ctx.beginPath() ; 
-		ctx.moveTo(this.actor.positionAbs.x, this.actor.positionAbs.y + 10 ) ; 
-		ctx.lineTo(this.actor.positionAbs.x , this.actor.positionAbs.y) ; 
-		ctx.lineTo(this.actor.positionAbs.x + 10 , this.actor.positionAbs.y) ; 
+		ctx.moveTo(this.actor.position.x, this.actor.position.y + 10 ) ; 
+		ctx.lineTo(this.actor.position.x , this.actor.position.y) ; 
+		ctx.lineTo(this.actor.position.x + 10 , this.actor.position.y) ; 
 		ctx.closePath() ; 
 		  
 		ctx.stroke() ; 

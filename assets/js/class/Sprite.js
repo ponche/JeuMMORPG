@@ -100,8 +100,8 @@ class SpriteAnimation
 		let hauteurActor = spriteActor.height / this.nbAnimation ;
 		let largeurActor = spriteActor.width / this.nbFrame ;
 		
-		let positionX = this.actor.positionAbs.x  - (largeurActor / 2)  ;
-		let positionY = this.actor.positionAbs.y  - hauteurActor ;
+		let positionX = this.actor.position.x  - (largeurActor / 2)  ;
+		let positionY = this.actor.position.y  - hauteurActor ;
 		
 		
 		ctx.drawImage(spriteActor, this.currentFrame * largeurActor, this.currentAnimation * hauteurActor , largeurActor, hauteurActor, positionX, positionY , largeurActor, hauteurActor) ;

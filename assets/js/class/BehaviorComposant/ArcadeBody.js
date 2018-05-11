@@ -6,13 +6,15 @@ class ArcadeBody extends BehaviorComposant
 		
 		this.actor = actor 
 		
-		// Creation du variable dans Actor pour pourvoir la commande de l'extérieur 
+		// Creation d'une variable dans Actor pour pourvoir la commander de l'extérieur 
 		this.actor.arcadeBody = {} ; 
-		this.actor.arcadeBody.systemCollisionTile = true ; 
+		this.actor.arcadeBody.systemCollisionTile = false ; // système desactiver. des adaptation a faire pour le remettre en route. 
 		this.actor.arcadeBody.systemCollisionActor = true ; 
 		
 		this.lastPosition = {x: -1, y: -1} ; 
 		this.arraySolideTile = arraySolideTile ; 
+		
+		this.collisionWall = false ; 
 		
 	}
 	
@@ -21,7 +23,7 @@ class ArcadeBody extends BehaviorComposant
 	{
 		// fonction donc les valeur sont calculer après la fonction update
 		//Vérif collision
-		if(this.actor.arcadeBody.systemCollisionTile)
+		/*if(this.actor.arcadeBody.systemCollisionTile) // à voir comment réactiver  cette partie 
 		{
 			
 			if(this.verifCollisionTiles(this.arraySolideTile))
@@ -29,8 +31,8 @@ class ArcadeBody extends BehaviorComposant
 				console.log("Collision in composant") ;
 				this.testCollision = true ;
 
-				this.actor.position.x = this.lastPositionWorld.x ;
-				this.actor.position.y = this.lastPositionWorld.y ;
+				this.actor.position.x = this.lastPosition.x ;
+				this.actor.position.y = this.lastPosition.y ;
 				
 			}
 			else
@@ -42,7 +44,7 @@ class ArcadeBody extends BehaviorComposant
 				this.lastPosition.y = this.actor.position.y ;
 				
 			}
-		}
+		}*/
 		
 		
 		// Collision entre actor 
@@ -60,10 +62,25 @@ class ArcadeBody extends BehaviorComposant
 					if(this.verifCollisionActor(listeActor[i].collider)) 
 					{
 						console.log("collisionActor") ; 
-						// on informe other Actor de la collision 
-						listeActor[i].collision(this.actor) ;
+						this.collisionWall = true ; 
+						
+						if(listeActor[i].collider.isSolid)
+						{
+							// on le teleporte
+							this.actor.position.x = this.lastPosition.x ;
+							this.actor.position.y = this.lastPosition.y ;
+						}
+						else
+							listeActor[i].collision(this.actor) ;
 					}
 				}
+			}
+			
+			// On met à jour la dernier position 
+			if(this.collisionWall == false )
+			{
+				this.lastPosition.x = this.actor.position.x ; 
+				this.lastPosition.y = this.actor.position.y ; 
 			}
 			
 			
