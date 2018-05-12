@@ -18,6 +18,7 @@ class Scene
 		// 1 - suppression de tous les actor 
 		this.deleteScene() ; 
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
+		this.addPrefab(fileJson) ; 
 		// 3 - chagement de player en récupérant les information dans la class Player
 		
 		// Creation de la scene 
@@ -40,6 +41,13 @@ class Scene
 		cactus.addAnimationSprite("assets/img/game/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
+	}
+	addPrefab(fileJson)
+	{
+		// A Antoire de la crée
+		/*
+		la fonction doit ajouter objet dans la listeActor 
+		*/
 	}
 	deleteScene()
 	{

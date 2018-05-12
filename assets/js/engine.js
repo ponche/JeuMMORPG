@@ -7,8 +7,6 @@ let isMouseDown = false; // variable global peut accéder partous
 let tableauKey = [false, false, false, false] ; // touche de controle mouvement 
 let tableauFleche = [false, false, false , false ] ; 
 
-
-
 let listeActor = [] ;
 
 // recupération du canvas et du context 
