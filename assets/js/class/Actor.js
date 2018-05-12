@@ -49,6 +49,11 @@ class Actor
 	}
 	updateAfterCalcul()
 	{
+		// Mise a jour des boite de collision 
+		if(this.collider != undefined)
+			this.collider.updateAfterCalcul() ; 
+
+		// Mise a jour des composant 
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].updateAfterCalcul() ; 
 

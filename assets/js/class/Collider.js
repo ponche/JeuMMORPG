@@ -15,7 +15,7 @@ class Collider
 		this.isSolid = false ; // mettre vrai pour faire des mur , false pour des trigger 
 	}
 	
-	update()
+	updateAfterCalcul()
 	{
 		// mise à jour de la box de collision 
 		this.pointA.x = this.actor.position.x + this.offsetBox.x ;
@@ -23,6 +23,9 @@ class Collider
 		
 		this.pointB.x = this.pointA.x + this.dimensionBox.x ; 
 		this.pointB.y = this.pointA.y + this.dimensionBox.y ; 
+	}
+	update() 
+	{
 	}
 	
 		
