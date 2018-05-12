@@ -8,13 +8,12 @@ class ArcadeBody extends BehaviorComposant
 		
 		// Creation d'une variable dans Actor pour pourvoir la commander de l'extérieur 
 		this.actor.arcadeBody = {} ; 
-		this.actor.arcadeBody.systemCollisionTile = false ; // système desactiver. des adaptation a faire pour le remettre en route. 
+		//this.actor.arcadeBody.systemCollisionTile = false ; // système desactiver. des adaptation a faire pour le remettre en route. 
 		this.actor.arcadeBody.systemCollisionActor = true ; 
 		
 		this.lastPosition = {x: -1, y: -1} ; 
-		this.arraySolideTile = arraySolideTile ; 
+		//this.arraySolideTile = arraySolideTile ; 
 		
-		this.collisionWall = false ; 
 		
 	}
 	
@@ -61,7 +60,6 @@ class ArcadeBody extends BehaviorComposant
 					// Actor a bien une boite de collision  on fait le test 
 					if(this.verifCollisionActor(listeActor[i].collider)) 
 					{
-						console.log("collisionActor") ; 
 						this.collisionWall = true ; 
 						
 						if(listeActor[i].collider.isSolid)
@@ -77,13 +75,8 @@ class ArcadeBody extends BehaviorComposant
 			}
 			
 			// On met à jour la dernier position 
-			if(this.collisionWall == false )
-			{
-				this.lastPosition.x = this.actor.position.x ; 
-				this.lastPosition.y = this.actor.position.y ; 
-			}
-			
-			
+			this.lastPosition.x = this.actor.position.x ; 
+			this.lastPosition.y = this.actor.position.y ; 
 		}
 	}
 	verifCollisionActor(otherCollider)

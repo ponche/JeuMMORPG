@@ -8,12 +8,9 @@ class PlayerLogDebuger extends BehaviorComposant
 		
 		// Création d'un objet debug pour modifier les valeur
 		this.actor.debug = {} ; 
-		
-		this.actor.debug.infoPos = false ; 
-		
-		
-		
+		this.actor.debug.infoPos = false ; 	
 	}
+	
 	render()
 	{
 			// Ajout position Actor
@@ -28,6 +25,7 @@ class PlayerLogDebuger extends BehaviorComposant
 		  
 		  // Affiche origine actor 
 		ctx.strokeStyle =  'blue' ; 
+		ctx.lineWidth = 2;
 		ctx.beginPath() ; 
 		ctx.moveTo(this.actor.position.x, this.actor.position.y + 10 ) ; 
 		ctx.lineTo(this.actor.position.x , this.actor.position.y) ; 
@@ -43,8 +41,7 @@ class PlayerLogDebuger extends BehaviorComposant
 			ctx.strokeRect(this.actor.collider.pointA.x , this.actor.collider.pointA.y , this.actor.collider.dimensionBox.x, this.actor.collider.dimensionBox.y) ; 
 			  
 		}
-		  
-		  
+		    
 	}  
 	
 }

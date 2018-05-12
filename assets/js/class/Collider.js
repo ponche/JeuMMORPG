@@ -12,7 +12,7 @@ class Collider
 		this.pointA = { x: -1 , y: -1 } ; 
 		this.pointB = { x: -1 , y: -1 } ; 
 		
-		this.isSolid = false ; // mettre vrai pour faire des mur , false pour des trigger 
+		this.isSolid = true ; // mettre vrai pour faire des mur , false pour des trigger 
 	}
 	
 	updateAfterCalcul()

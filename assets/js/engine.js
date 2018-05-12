@@ -79,7 +79,6 @@ const update = function(elapsed) {
 
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée
 
-	  
 	  // ça sera a MapRenderer de géré ça . 
 	  /*listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
 	  listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
@@ -89,13 +88,6 @@ const update = function(elapsed) {
 
 	  listeActor[i].tile_heigthWorld = tile_height ;
 	  listeActor[i].tile_widthWorld = tile_width ;*/
-
-	  // Mise a jour des position absolute
-	  /*listeActor[i].position.x = listeActor[i].positionWorld.x + tileStartX  ;
-	  listeActor[i].position.y = listeActor[i].positionWorld.y + tileStartY ;*/
-
-	  //listeActor[i].tileFeet = world.tileMap[listeActor[i].positionMap.y * world.gridSize + listeActor[i].positionMap.x]
-
 
 	 // après les calcul effectuer
 	  listeActor[i].updateAfterCalcul() ;
@@ -136,19 +128,8 @@ function renderMouseAndGridPosition()
 function renderObjects()
 {
 	for (let i = 0 ; i < listeActor.length ; i++)
-	{
-		/*if(listeActor[i].animationSprite != undefined)
-		{
-			spriteActor = listeActor[i].animationSprite.sprite ;
-			//spriteActor.src = "assets/img/game/sprites/characters/robot.png"
-			hauteurActor = spriteActor.height / listeActor[i].animationSprite.nbAnimation ;
-			largeurActor = spriteActor.width / listeActor[i].animationSprite.nbFrame ;
-			ctx.drawImage(spriteActor, listeActor[i].animationSprite.currentFrame * largeurActor, listeActor[i].animationSprite.currentAnimation * hauteurActor , largeurActor, hauteurActor, listeActor[i].position.x, listeActor[i].position.y , largeurActor, hauteurActor) ;
-		}*/
-		// Appel de la fonction render() des objet 
 		listeActor[i].render() ; 
 		
-	}
 }
 
 // Renvoyé l'action du clic à actor est au référence . 
@@ -180,19 +161,15 @@ window.addEventListener('keydown', function(event) {
 	break;
 
 	case 81 :
-		isKeyQ = true ;
 		tableauKey[2] = true ; 
 		break ;
 	case 68 :
-		isKeyD = true ;
 		tableauKey[3] = true ; 
 		break ;
 	case 90 :
-		isKeyZ = true ;
 		tableauKey[0] = true ; 
 		break ;
 	case 83 :
-		isKeyS = true ;
 		tableauKey[1] = true ; 
 		break ;
   }
@@ -204,19 +181,15 @@ window.addEventListener('keyup' , function(event) {
 	switch (event.keyCode)
 	{
 		case 81 :
-			isKeyQ = false ;
 			tableauKey[2] = false ; 
 			break ;
 		case 68 :
-			isKeyD = false ;
 			tableauKey[3] = false ; 
 			break ;
 		case 90 :
-			isKeyZ = false ;
 			tableauKey[0] = false ; 
 			break ;
 		case 83 :
-			isKeyS = false ;
 			tableauKey[1] = false ; 
 			break ;
 		case 37: // Left
