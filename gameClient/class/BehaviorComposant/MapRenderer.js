@@ -20,7 +20,7 @@ class MapRenderer extends BehaviorComposant
 		for(let i = 0; i < this.tile_quantity; ++i) 
 		{
 			let img = new Image();
-			if(i == 0) { img.src = ""; } else { img.src = "assets/img/game/tiles/"+i+".png"; }
+			if(i == 0) { img.src = ""; } else { img.src = "gameClient/assets/img/tiles/"+i+".png"; }
 			this.tile_images.push(img);
 		}
 	}

@@ -18,7 +18,7 @@ class Scene
 		// 1 - suppression de tous les actor 
 		this.deleteScene() ; 
 		// 2 - chargement des actor de la maps (idem fichier JSON) 
-		this.addPrefab(fileJson) ; 
+		//this.listeActor = this.getPrefab(fileJson) ; 
 		// 3 - chagement de player en récupérant les information dans la class Player
 		
 		// Creation de la scene 
@@ -28,7 +28,7 @@ class Scene
 		
 		// Player de test sera modifé par la suite 
 		let bodyPlayer = world.addActor("Player", 600, 300) ; 
-		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "assets/img/game/sprites/characters/robot.png", 9, 8 ) ;
+		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "gameClient/assets/img/sprites/characters/robot.png", 9, 8 ) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		bodyPlayer.animationSprite.reverseAnimation = true
 		// Ajoute des composant a acteur 
@@ -38,7 +38,7 @@ class Scene
 		
 		// Cactus de test 
 		let cactus = world.addActor("Cactus", 800, 200) ; 
-		cactus.addAnimationSprite("assets/img/game/sprites/objects/encens.png") ;
+		cactus.addAnimationSprite("gameClient/assets/img/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
@@ -49,6 +49,15 @@ class Scene
 		la fonction doit ajouter objet dans la listeActor 
 		*/
 	}
+	getPrefab(fileJson)
+	{
+		// prepare la requete syncrone 
+		xhr.open("GET", "http://localhost/JeuMMORPG/" + fileJson , false) ; 
+		// Envoi de la requette 
+		xhr.send() ; 
+		console.log(xhr.responseText) ; 
+	}
+		
 	deleteScene()
 	{
 		// supprime la tileMap et la listeActor
