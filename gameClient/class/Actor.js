@@ -3,7 +3,9 @@ class Actor
 	constructor(name)
 	{
 		this.name = name ;
-		//this.scene = scene ;  Supprimer car prefab trop gros. duplication de donnee
+
+		this.childrenActor = [] ;
+		this.parentActor = undefined ;
 
 		this.position = { x: 0, y: 0 } ; // positionAbs pour les calcul dans les canvas, et system.
 		this.positionRel =  {x: 0, y: 0 } ; // Position Abs, sera position . remplacer par positionRel .
@@ -55,7 +57,6 @@ class Actor
 		// Mise a jour des composant
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].updateAfterCalcul() ;
-
 	}
 	render()
 	{
@@ -70,14 +71,11 @@ class Actor
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].collision(otherActor) ;
 	}
-
-
 	move(x, y)
 	{
 		// changement de la position de Actor
 		this.position.x += x ;
 		this.position.y += y ;
-
 	}
 	setPosition(x, y)
 	{
@@ -88,19 +86,21 @@ class Actor
 	{
 		let positionReturn = {x: 0 , y: 0 } ;
 	}
-
-
 	setPositionGrid(x , y)
 	{
 		// A refaire
 
 	}
-
 	// Fonction ajoute de composante
 	addBehavior(behavior)
 	{
 		this.behavior.push(behavior) ;
-		behavior.actor = this ; // les autres langage ne permet pas ce genre de bidouiles
+		behavior.actor = this ;
+	}
+	addChildActor(childActor)
+	{
+		this.childrenActor.push(childActor) ;
+		childActor.parentActor = this ;
 	}
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1, buildCollider = true)
 	{
@@ -110,7 +110,6 @@ class Actor
 	{
 		this.collider = new Collider(this, offsetBox, dimensionBox) ;
 	}
-
 
 	// Fonction utilitaire
     tilePosToMapPos(tileX, tileY)
@@ -128,6 +127,4 @@ class Actor
 		positionIso.y = (-actor_x / tile_width) + (actor_y / tile_height);
 		return positionIso ;
 	}
-
-
 }

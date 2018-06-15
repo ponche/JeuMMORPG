@@ -36,6 +36,9 @@ class Scene
 		bodyPlayer.addBehavior( new ArcadeBody([22, 23] , bodyPlayer)) ;
 		bodyPlayer.addBehavior( new PlayerLogDebuger(bodyPlayer)) ;
 
+		//Ajout Player comme enfant de Map
+		map.addChildActor(bodyPlayer) ; 
+
 		// Cactus de test
 		let cactus = world.addActor("Cactus", 800, 200) ;
 		cactus.addAnimationSprite("gameClient/assets/img/sprites/objects/encens.png") ;
@@ -57,17 +60,7 @@ class Scene
 	}
 	testJson(actor)
 	{
-		//let protoActor = actor.__proto__ ;
-		let actorDecycle = JSON.decycle(actor) ;
-		//let actorString = JSON.stringify(actorDecycle) ;
-		// actorString peut etre sauver dans un file JSON
-		// opération inverse
-		//let prefabDecycle = JSON.parse(actorString) ;
-		let prefab = JSON.retrocycle(actorDecycle) ;
-		return actorDecycle ;
-		//let prefabDecycle = JSON.parse(actorString)
-		let prefab = JSON.retrocycle(prefabDecycle) ;
-		return prefab ;
+
 	}
 
 	deleteScene()
@@ -116,5 +109,5 @@ class Scene
 		}
 		console.log("pas d'actor trouve pour " + name ) ;
 		return false ;
-	}	
+	}
 }
