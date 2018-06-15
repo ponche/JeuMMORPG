@@ -134,6 +134,20 @@ class Actor
 		childActor.parentActor = this ;
 		return childActor ;
 	}
+	getChilActor(name)
+	{
+		for(let i = 0 ; i < this.childrenActor.length ; i++)
+		{
+			if(this.childrenActor[i].name == name)
+				return this.childrenActor[i] ;
+			else
+			{
+				let actorFound = this.childrenActor[i].getChilActor(name) ;
+				if(actorFound != undefined)
+					return actorFound ; 
+			}
+		}
+	}
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1, buildCollider = true)
 	{
 		this.animationSprite = new SpriteAnimation(this, src, nbFrame, nbAnimation, buildCollider) ;

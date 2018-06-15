@@ -40,7 +40,7 @@ class Scene
 		//map.addChildActor(bodyPlayer) ;
 
 		// Cactus de test
-		let cactus = world.addActor("Cactus", 800, 200) ;
+		let cactus = bodyPlayer.addChildActor("Cactus", 75, 75) ;
 		cactus.addAnimationSprite("gameClient/assets/img/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ;
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
@@ -81,6 +81,12 @@ class Scene
 		{
 			if(listeActor[i].name == name)
 				return listeActor[i] ;
+			else
+			{
+				let actorFound = listeActor[i].getChilActor(name) ;
+				if(actorFound != undefined)
+					return actorFound ;
+			}
 
 		}
 		console.log("pas d'actor trouve pour " + name ) ;
