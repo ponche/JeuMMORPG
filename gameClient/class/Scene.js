@@ -57,14 +57,23 @@ class Scene
 	}
 	testJson(actor)
 	{
+<<<<<<< HEAD
 		//let protoActor = actor.__proto__ ; 
+=======
+>>>>>>> 1b82ef3bf182bd177fea552ea01fabb8478523ce
 		let actorDecycle = JSON.decycle(actor) ;
 		//let actorString = JSON.stringify(actorDecycle) ; 
 		// actorString peut etre sauver dans un file JSON
 		// opération inverse
+<<<<<<< HEAD
 		//let prefabDecycle = JSON.parse(actorString) ; 
 		let prefab = JSON.retrocycle(actorDecycle) ; 
 		return actorDecycle ; 
+=======
+		//let prefabDecycle = JSON.parse(actorString)
+		let prefab = JSON.retrocycle(prefabDecycle) ; 
+		return prefab ; 
+>>>>>>> 1b82ef3bf182bd177fea552ea01fabb8478523ce
 	}
 		
 	deleteScene()
