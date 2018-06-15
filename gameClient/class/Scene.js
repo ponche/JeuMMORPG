@@ -27,7 +27,7 @@ class Scene
 		map.addBehavior( new PlayerControlerKeyBoard(tableauFleche)) ;
 
 		// Player de test sera modifé par la suite
-		let bodyPlayer = world.addActor("Player", 600, 300) ;
+		let bodyPlayer = map.addChildActor("Player",  60, 240) ;
 		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "gameClient/assets/img/sprites/characters/robot.png", 9, 8 ) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		bodyPlayer.animationSprite.reverseAnimation = true
@@ -37,7 +37,7 @@ class Scene
 		bodyPlayer.addBehavior( new PlayerLogDebuger(bodyPlayer)) ;
 
 		//Ajout Player comme enfant de Map
-		map.addChildActor(bodyPlayer) ; 
+		//map.addChildActor(bodyPlayer) ;
 
 		// Cactus de test
 		let cactus = world.addActor("Cactus", 800, 200) ;
@@ -68,11 +68,10 @@ class Scene
 		// supprime la tileMap et la listeActor
 		this.deleteAllActor() ;
 	}
-	addActor(name, x, y)
+	addActor(name, x = 0, y = 0)
 	{
-		// Ajout un actor en position Tuile
-		let newActor = new Actor(name, this) ;
-		newActor.setPosition(x , y) ;
+		let newActor = new Actor(name) ;
+		newActor.setPositionRel(x , y) ;
 		this.listeActor.push(newActor) ;
 		return newActor ;
 	}

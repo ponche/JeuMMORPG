@@ -89,7 +89,7 @@ class ArcadeBody extends BehaviorComposant
 		let ActorB_PointA = otherCollider.pointA ;
 		let ActorB_PointB = otherCollider.pointB ;
 
-		// si tous les test échoue, il à collision
+		// si tous les test échoue, il a collision
 		if(ActorA_PointB.x < ActorB_PointA.x) // right
 			collision = false ;
 		if(ActorA_PointB.y < ActorB_PointA.y) // dowm
@@ -100,7 +100,6 @@ class ArcadeBody extends BehaviorComposant
 			collision = false ;
 
 		return collision ;
-
 	}
 
 	verifCollisionTiles(tableauTile)

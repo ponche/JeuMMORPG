@@ -27,9 +27,8 @@ class Actor
 
 	update()
 	{
-		//Mise à jour de la position absolut. temporaire mon système n'est pas encore pret.
-		//this.positionAbs.x = this.position.x ;
-		//this.positionAbs.y = this.position.y ;
+		// mise a jour position absolut
+		this.updatePositionAbs() ;
 
 		this.positionIso = this.mapPosToTilePos(this.position.x, this.position.y) ;
 
@@ -45,8 +44,26 @@ class Actor
 		this.positionZ = this.positionIso.x + this.positionIso.y * this.diagonalMax ;
 
 		// on met à jour la position Abs après les calcul
-		//this.positionAbs.x = this.position.x ;
-		//this.positionAbs.y = this.position.y ;
+		this.updatePositionAbs() ;
+
+		// mise à jour des enfants
+		for(let i = 0 ; i < this.childrenActor.length ; i++)
+			this.childrenActor[i].update() ;
+	}
+	updatePositionAbs()
+	{
+		if(this.parentActor != undefined)
+		{
+			// on met la position absolut en fontion du parent
+			this.position.x = this.parentActor.position.x + this.positionRel.x ;
+			this.position.y = this.parentActor.position.y + this.positionRel.y ;
+		}
+		else
+		{
+			// il est à la racine, la positon absolut est égale à la position Relative
+			this.position.x = this.positionRel.x ;
+			this.position.y = this.positionRel.y ;
+		}
 	}
 	updateAfterCalcul()
 	{
@@ -57,6 +74,10 @@ class Actor
 		// Mise a jour des composant
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].updateAfterCalcul() ;
+
+		// updateAfterCalcul des enfants
+		for(let i = 0 ; i < this.childrenActor.length ; i++)
+			this.childrenActor[i].updateAfterCalcul() ;
 	}
 	render()
 	{
@@ -64,6 +85,10 @@ class Actor
 			this.animationSprite.render() ;
 		for(let i = 0 ; i < this.behavior.length ; i++)
 			this.behavior[i].render() ;
+
+			// affichage des rendu enfants
+			for(let i = 0 ; i < this.childrenActor.length ; i++)
+				this.childrenActor[i].render() ;
 	}
 	collision(otherActor)
 	{
@@ -74,13 +99,18 @@ class Actor
 	move(x, y)
 	{
 		// changement de la position de Actor
-		this.position.x += x ;
-		this.position.y += y ;
+		this.positionRel.x += x ;
+		this.positionRel.y += y ;
 	}
 	setPosition(x, y)
 	{
 		this.position.x = x ;
 		this.position.y = y ;
+	}
+	setPositionRel(x, y)
+	{
+		this.positionRel.x = x ;
+		this.positionRel.y = y ;
 	}
 	setPositionAbs(x, y)
 	{
@@ -89,7 +119,6 @@ class Actor
 	setPositionGrid(x , y)
 	{
 		// A refaire
-
 	}
 	// Fonction ajoute de composante
 	addBehavior(behavior)
@@ -97,10 +126,13 @@ class Actor
 		this.behavior.push(behavior) ;
 		behavior.actor = this ;
 	}
-	addChildActor(childActor)
+	addChildActor(name, x = 0 , y = 0)
 	{
+		let childActor = new Actor(name) ;
+		childActor.setPositionRel(x, y) ;
 		this.childrenActor.push(childActor) ;
 		childActor.parentActor = this ;
+		return childActor ;
 	}
 	addAnimationSprite(src, nbFrame = 1, nbAnimation = 1, buildCollider = true)
 	{
