@@ -1,9 +1,9 @@
 class Actor
 {
-	constructor(name, scene)
+	constructor(name)
 	{
 		this.name = name ;
-		this.scene = scene ; 
+		//this.scene = scene ;  Supprimer car prefab trop gros. duplication de donnee
 		
 		this.position = { x: 0, y: 0 } ; // positionAbs pour les calcul dans les canvas, et system. 
 		this.positionRel =  {x: 0, y: 0 } ; // Position Abs, sera position . remplacer par positionRel . 

@@ -44,18 +44,27 @@ class Scene
 	}
 	addPrefab(fileJson)
 	{
-		// A Antoire de la crée
-		/*
-		la fonction doit ajouter objet dans la listeActor 
-		*/
 	}
 	getPrefab(fileJson)
 	{
-		// prepare la requete syncrone 
-		xhr.open("GET", "http://localhost/JeuMMORPG/" + fileJson , false) ; 
+		// prepare la requete syncrone, temporaire je la transformerais en insynchrone . 
+		xhr.open("GET", "http://localhost/JeuMMORPG/gameClient/" + fileJson , false) ; 
 		// Envoi de la requette 
 		xhr.send() ; 
 		console.log(xhr.responseText) ; 
+		
+		return undefined ; // plus tard 
+	}
+	testJson(actor)
+	{
+		//let protoActor = actor.__proto__ ; 
+		let actorDecycle = JSON.decycle(actor) ;
+		//let actorString = JSON.stringify(actorDecycle) ; 
+		// actorString peut etre sauver dans un file JSON
+		// opération inverse
+		//let prefabDecycle = JSON.parse(actorString) ; 
+		let prefab = JSON.retrocycle(actorDecycle) ; 
+		return actorDecycle ; 
 	}
 		
 	deleteScene()

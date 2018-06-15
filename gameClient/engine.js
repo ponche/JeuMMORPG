@@ -75,6 +75,7 @@ const update = function(elapsed) {
   for (let i = 0 ; i < listeActor.length ; i++)
   {
 
+	 //console.log(listeActor[i]) ; 
 	  listeActor[i].update() ; // avant la mise a jour des cordonnée
 
 	  // ça sera a MapRenderer de géré ça . 
