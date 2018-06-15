@@ -2,29 +2,26 @@ class PlayerControlerKeyBoard extends BehaviorComposant
 {
 	constructor(arrayKey)
 	{
-		super() ; 
-		// this.actor est mis dans la fonction addBehavior!!! 
-		
+		super() ;
+		// this.actor est mis dans la fonction addBehavior!!!
 		this.arrayKey = arrayKey;
-		
-		
 	}
 	update()
 	{
-		let direction = {x: 0, y:0 } ; 
+		let direction = {x: 0, y:0 } ;
 		if(this.arrayKey[0])
-			direction.y -= 0.5 * this.actor.speed ; 
+			direction.y -= 0.5 * this.actor.speed ;
 		if(this.arrayKey[1])
-			direction.y += 0.5 * this.actor.speed ; 
+			direction.y += 0.5 * this.actor.speed ;
 		if(this.arrayKey[2])
-			direction.x -= 1 * this.actor.speed ; 
+			direction.x -= 1 * this.actor.speed ;
 		if(this.arrayKey[3])
-			direction.x += 1 * this.actor.speed ; 
-		
-		this.actor.move(direction.x, direction.y) ; 
-		
-		// if actor is a robot 
-		if(this.actor.animationSprite != undefined) 
+			direction.x += 1 * this.actor.speed ;
+
+		this.actor.move(direction.x, direction.y) ;
+
+		// if actor is a robot
+		if(this.actor.animationSprite != undefined)
 		{
 			// Changement de animation
 		  if(direction.x > 0 && direction.y == 0)
@@ -45,9 +42,5 @@ class PlayerControlerKeyBoard extends BehaviorComposant
 		  if(direction.x > 0 && direction.y > 0 )
 			  this.actor.animationSprite.setAnimation(7) ;
 		}
-	}
-	
-	
+	}	
 }
-
-	
