@@ -104,12 +104,20 @@ class Scene
 	deleteActor(name)
 	{
 		// supprime actor en cherchant par le noms
+		let actorFound = undefined ;
 		for(let i = 0 ; i < listeActor.length ; i++)
 		{
 			if(listeActor[i].name == name)
 			{
+				actorFound = listeActor[i] ;
 				this.listeActor.splice(i, 1) ;
-				return true ;
+				return actorFound ;
+			}
+			else
+			{
+				actorFound = listeActor[i].deleteChildActor(name);
+				if(actorFound != undefined)
+					return actorFound ; 
 			}
 		}
 		console.log("pas d'actor trouve pour " + name ) ;

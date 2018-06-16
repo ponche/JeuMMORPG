@@ -144,7 +144,26 @@ class Actor
 			{
 				let actorFound = this.childrenActor[i].getChilActor(name) ;
 				if(actorFound != undefined)
-					return actorFound ; 
+					return actorFound ;
+			}
+		}
+	}
+	deleteChildActor(name)
+	{
+		let actorFound = undefined ;
+		for(let i = 0 ; i < this.childrenActor.length ; i++)
+		{
+			if(this.childrenActor[i].name == name)
+			{
+			  actorFound = this.childrenActor[i] ;
+				this.childrenActor.splice(i, 1) ;
+				return actorFound ;
+			}
+			else
+			{
+			 	actorFound = this.childrenActor[i].deleteChildActor(name);
+				if(actorFound != undefined)
+					return actorFound ;
 			}
 		}
 	}
