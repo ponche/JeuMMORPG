@@ -40,7 +40,7 @@ class Scene
 		//map.addChildActor(bodyPlayer) ;
 
 		// Cactus de test
-		let cactus = bodyPlayer.addChildActor("Cactus", 75, 75) ;
+		let cactus = world.addActor("Cactus", 600, 200) ;
 		cactus.addAnimationSprite("gameClient/assets/img/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ;
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite

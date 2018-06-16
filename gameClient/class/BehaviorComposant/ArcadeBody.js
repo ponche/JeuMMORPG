@@ -65,8 +65,8 @@ class ArcadeBody extends BehaviorComposant
 						if(listeActor[i].collider.isSolid)
 						{
 							// on le teleporte
-							this.actor.position.x = this.lastPosition.x ;
-							this.actor.position.y = this.lastPosition.y ;
+							this.actor.positionRel.x = this.lastPosition.x ;
+							this.actor.positionRel.y = this.lastPosition.y ;
 						}
 						else
 							listeActor[i].collision(this.actor) ;
@@ -75,8 +75,8 @@ class ArcadeBody extends BehaviorComposant
 			}
 
 			// On met à jour la dernier position
-			this.lastPosition.x = this.actor.position.x ;
-			this.lastPosition.y = this.actor.position.y ;
+			this.lastPosition.x = this.actor.positionRel.x ;
+			this.lastPosition.y = this.actor.positionRel.y ;
 		}
 	}
 	verifCollisionActor(otherCollider)
