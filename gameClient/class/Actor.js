@@ -81,6 +81,9 @@ class Actor
 	}
 	render()
 	{
+		// mise à jour de la position absolut avant affichage
+		this.updatePositionAbs() ;
+		
 		if(this.animationSprite != undefined)
 			this.animationSprite.render() ;
 		for(let i = 0 ; i < this.behavior.length ; i++)
