@@ -20,7 +20,7 @@ class MapRenderer extends BehaviorComposant
 		for(let i = 0; i < this.tile_quantity; ++i)
 		{
 			let img = new Image();
-			if(i == 0) { img.src = ""; } else { img.src = "gameClient/assets/img/tiles/"+i+".png"; }
+			if(i == 0) { img.src = ""; } else { img.src = "assets/img/tiles/"+i+".png"; }
 			this.tile_images.push(img);
 		}
 	}
@@ -40,7 +40,7 @@ class MapRenderer extends BehaviorComposant
 	updateAfterCalcul()
 	{
 		// update après que tous les actor on fait leurs update classique
-	}	
+	}
 	render()
 	{
 		// fonction de dessin elle sera appeler dans la boucle de rendu

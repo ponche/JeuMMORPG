@@ -28,7 +28,7 @@ class Scene
 
 		// Player de test sera modifé par la suite
 		let bodyPlayer = map.addChildActor("Player",  60, 240) ;
-		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "gameClient/assets/img/sprites/characters/robot.png", 9, 8 ) ;
+		bodyPlayer.animationSprite = new SpriteAnimation(bodyPlayer, "assets/img/sprites/characters/robot.png", 9, 8 ) ;
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		bodyPlayer.animationSprite.reverseAnimation = true
 		// Ajoute des composant a acteur
@@ -41,7 +41,7 @@ class Scene
 
 		// Cactus de test
 		let cactus = world.addActor("Cactus", 600, 200) ;
-		cactus.addAnimationSprite("gameClient/assets/img/sprites/objects/encens.png") ;
+		cactus.addAnimationSprite("assets/img/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ;
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
@@ -117,7 +117,7 @@ class Scene
 			{
 				actorFound = listeActor[i].deleteChildActor(name);
 				if(actorFound != undefined)
-					return actorFound ; 
+					return actorFound ;
 			}
 		}
 		console.log("pas d'actor trouve pour " + name ) ;
