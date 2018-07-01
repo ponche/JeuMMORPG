@@ -1,0 +1,16 @@
+{
+  "name": "gameclient",
+  "version": "1.0.0",
+  "description": "app client for game MMORPG",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "console.log('salut proton')",
+    "start": "electron ." 
+  },
+  "author": "Remi200",
+  "license": "ISC"
+}
