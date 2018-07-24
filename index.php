@@ -1,3 +1,3 @@
 <?php
 
-header('Location: gameClient/index.html'); ?>
+header('Location: gameClient/index.html');
