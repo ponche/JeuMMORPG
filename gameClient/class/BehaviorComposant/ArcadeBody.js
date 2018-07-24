@@ -20,31 +20,6 @@ class ArcadeBody extends BehaviorComposant
 
 	updateAfterCalcul()
 	{
-		// fonction donc les valeur sont calculer après la fonction update
-		//Vérif collision
-		/*if(this.actor.arcadeBody.systemCollisionTile) // à voir comment réactiver  cette partie
-		{
-
-			if(this.verifCollisionTiles(this.arraySolideTile))
-			{
-				console.log("Collision in composant") ;
-				this.testCollision = true ;
-
-				this.actor.position.x = this.lastPosition.x ;
-				this.actor.position.y = this.lastPosition.y ;
-
-			}
-			else
-			{
-				this.testCollision = false ;
-				// on enregistre la position dans lastPositionWorld
-
-				this.lastPosition.x = this.actor.position.x ;
-				this.lastPosition.y = this.actor.position.y ;
-
-			}
-		}*/
-
 
 		// Collision entre actor
 		if(this.actor.arcadeBody.systemCollisionActor)
@@ -52,47 +27,23 @@ class ArcadeBody extends BehaviorComposant
 			// On vérifié tous les actor
 			for(let i = 0 ; i < listeActor.length ; i++ )
 			{
-				if(this.actor === listeActor[i])
-					continue ;
-
-				if(listeActor[i].collider != undefined)
-				{
-					// Actor a bien une boite de collision  on fait le test
-					if(this.verifCollisionActor(listeActor[i].collider))
-					{
-
-						if(listeActor[i].collider.isSolid)
-						{
-							// on le teleporte
-							this.actor.positionRel.x = this.lastPosition.x ;
-							this.actor.positionRel.y = this.lastPosition.y ;
-						}
-						else
-							listeActor[i].collision(this.actor) ;
-
-						// parcours des enfants
-						for(let j = 0 ; j < listeActor[i].childrenActor.length ; j++)
-						{
-							this.searchCollisionActor(this.actor, this.listeActor[i].childrenActor[j]) ;
-						}
-					}
-				}
+				this.searchCollisionActor(this.actor, listeActor[i]) ;
 			}
-
 			// On met à jour la dernier position
 			this.lastPosition.x = this.actor.positionRel.x ;
 			this.lastPosition.y = this.actor.positionRel.y ;
 		}
+
 	}
-	verifCollisionActor(otherCollider)
+	verifCollisionActor(actorA, actorB)
 	{
 		// Test de collision entre les 2 actor
 		let collision = true ;
-		let ActorA_PointA = this.actor.collider.pointA ;
-		let ActorA_PointB = this.actor.collider.pointB ;
+		let ActorA_PointA = actorA.collider.pointA ;
+		let ActorA_PointB = actorA.collider.pointB ;
 
-		let ActorB_PointA = otherCollider.pointA ;
-		let ActorB_PointB = otherCollider.pointB ;
+		let ActorB_PointA = actorB.collider.pointA ;
+		let ActorB_PointB = actorB.collider.pointB ;
 
 		// si tous les test échoue, il a collision
 		if(ActorA_PointB.x < ActorB_PointA.x) // right
@@ -106,41 +57,32 @@ class ArcadeBody extends BehaviorComposant
 
 		return collision ;
 	}
+
 	searchCollisionActor(actorA, actorB)
 	{
-
 			// On vérifié tous les actor
-
-
 				if(actorA !== actorB)
 				{
-
-
-
-				if(actorB.collider != undefined)
-				{
-					// Actor a bien une boite de collision  on fait le test
-					if(this.verifCollisionActor(actorB))
-					{
-
-						if(actorB.collider.isSolid)
+					if(actorB.collider != undefined)
 						{
-							// on le teleporte
-							actorA.positionRel.x = this.lastPosition.x ;
-							actorA.positionRel.y = this.lastPosition.y ;
+							// Actor a bien une boite de collision  on fait le test
+							if(this.verifCollisionActor(actorA, actorB))
+							{
+
+								if(actorB.collider.isSolid)
+								{
+									// on le teleporte
+									actorA.positionRel.x = this.lastPosition.x ;
+									actorA.positionRel.y = this.lastPosition.y ;
+								}
+								else
+									actorB.collision(actorA) ;
+							}
 						}
-						else
-							actorB.collision(actorA) ;
-					}
+
+
+
 				}
-
-
-
-			// On met à jour la dernier position
-			this.lastPosition.x = this.actor.positionRel.x ;
-			this.lastPosition.y = this.actor.positionRel.y ;
-
-		}
 
 			// recursive pour les autre actor
 			for(let i = 0 ; i < actorB.childrenActor.length ; i++)
@@ -149,16 +91,4 @@ class ArcadeBody extends BehaviorComposant
 			}
 
 		}
-
-
-	verifCollisionTiles(tableauTile)
-	{
-		for(let i = 0 ; i < tableauTile.length ; i++)
-		{
-			if(this.actor.tileFeet == tableauTile[i])
-				return true ;
-		}
-		return false ;
 	}
-
-}
