@@ -112,7 +112,7 @@ class ArcadeBody extends BehaviorComposant
 			// On vérifié tous les actor
 
 
-				if(actorA === actorB)
+				if(actorA !== actorB)
 				{
 
 
@@ -134,11 +134,13 @@ class ArcadeBody extends BehaviorComposant
 					}
 				}
 
-			}
+
 
 			// On met à jour la dernier position
 			this.lastPosition.x = this.actor.positionRel.x ;
 			this.lastPosition.y = this.actor.positionRel.y ;
+
+		}
 
 			// recursive pour les autre actor
 			for(let i = 0 ; i < actorB.childrenActor.length ; i++)
