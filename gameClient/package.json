@@ -8,8 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "console.log('salut proton')",
-    "start": "electron ." 
+    "test": "electron .",
+    "start": "electron ."
   },
   "author": "Remi200",
   "license": "ISC"

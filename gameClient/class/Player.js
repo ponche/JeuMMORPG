@@ -27,7 +27,7 @@ class Player
 	recevoirDegats(puissance)
 	{
 		let defenseTotal = this.defense ;
-		if(this.bouclier != undefined)
+		if(this.shield != undefined)
 		{
 			// prise en compte du bouclier
 		}

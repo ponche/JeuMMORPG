@@ -60,7 +60,6 @@ class ArcadeBody extends BehaviorComposant
 					// Actor a bien une boite de collision  on fait le test
 					if(this.verifCollisionActor(listeActor[i].collider))
 					{
-						this.collisionWall = true ;
 
 						if(listeActor[i].collider.isSolid)
 						{
@@ -70,6 +69,12 @@ class ArcadeBody extends BehaviorComposant
 						}
 						else
 							listeActor[i].collision(this.actor) ;
+
+						// parcours des enfants
+						for(let j = 0 ; j < listeActor[i].childrenActor.length ; j++)
+						{
+							this.searchCollisionActor(this.actor, this.listeActor[i].childrenActor[j]) ;
+						}
 					}
 				}
 			}
@@ -101,6 +106,48 @@ class ArcadeBody extends BehaviorComposant
 
 		return collision ;
 	}
+	searchCollisionActor(actorA, actorB)
+	{
+
+			// On vérifié tous les actor
+
+
+				if(actorA === actorB)
+				{
+
+
+
+				if(actorB.collider != undefined)
+				{
+					// Actor a bien une boite de collision  on fait le test
+					if(this.verifCollisionActor(actorB))
+					{
+
+						if(actorB.collider.isSolid)
+						{
+							// on le teleporte
+							actorA.positionRel.x = this.lastPosition.x ;
+							actorA.positionRel.y = this.lastPosition.y ;
+						}
+						else
+							actorB.collision(actorA) ;
+					}
+				}
+
+			}
+
+			// On met à jour la dernier position
+			this.lastPosition.x = this.actor.positionRel.x ;
+			this.lastPosition.y = this.actor.positionRel.y ;
+
+			// recursive pour les autre actor
+			for(let i = 0 ; i < actorB.childrenActor.length ; i++)
+			{
+				this.searchCollisionActor(actorA, actorB.childrenActor[i]) ;
+			}
+
+		}
+
 
 	verifCollisionTiles(tableauTile)
 	{
