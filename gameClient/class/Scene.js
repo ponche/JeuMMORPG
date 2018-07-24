@@ -43,6 +43,7 @@ class Scene
 		let cactus = map.addChildActor("Cactus", 35, 80) ;
 		cactus.addAnimationSprite("assets/img/sprites/objects/encens.png") ;
 		cactus.addBehavior( new PlayerLogDebuger(cactus)) ;
+		cactus.addBehavior( new Teleporteur()) ; 
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
 	addPrefab(fileJson)
