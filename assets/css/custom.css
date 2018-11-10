@@ -1,3 +1,7 @@
+body
+{
+    margin: 0px ; 
+}
 #canvas
 {
 	position: fixed ; 
@@ -14,9 +18,9 @@
     bottom:0px;
     width: 100%;
     display:flex;
-    justify-content: space-around;
+    justify-content: space-around; /* space-between */
     background-color: gray;
-    left: 0px;
+    left: 0px; /* inutiles avec space-between */
 }
 
 #message {
