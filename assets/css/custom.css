@@ -1,9 +1,56 @@
 #canvas
 {
-	position: absolute ; 
+	position: fixed ; 
 	margin: 0px;
 	padding : 0px ; 
 	left: 0px ; 
-	top: 0px ; 
-
+	top: 0px ;
+	height: 70%;
+	width: 100%; 
 }
+
+#panneau {
+    position: fixed;
+    bottom:0px;
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+    background-color: gray;
+    left: 0px;
+}
+
+#message {
+    border: 1px solid black;
+    max-height: 30vh;
+    width: 40vh;
+    overflow-y:scroll;
+}
+
+#entre {
+    max-width:40vh;
+}
+
+#sante {
+    border: 1px solid black;
+    height: 1vh;
+    width: 20vh;
+    background-color: red;
+    border-radius: 10px;
+}
+
+#mana {
+    border: 1px solid black;
+    height: 1vh;
+    width: 20vh;
+    background-color: blue;
+    border-radius: 10px;
+}
+
+#progress_barre  {
+    align-self: center;
+}
+
+#inventaire {
+    align-self: center;
+}
+
