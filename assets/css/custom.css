@@ -20,7 +20,6 @@ body
     display:flex;
     justify-content: space-between;
     background-color: gray;
-    left: 0px; /* inutiles avec space-between */
 }
 
 #message {
