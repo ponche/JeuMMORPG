@@ -13,27 +13,6 @@
 
     <!-- Code ton panneau ici  -->
 
-    <!-- Test librairy JSON.cycle.js -->
-    <script src="../vendor/cycle.js"></script>
-    <script src="../vendor/pathfinding-browser.min.js"></script>
-
-    <script src="class/Player.js"></script>
-    <script src="class/Scene.js"></script>
-
-    <script src="class/BehaviorComposant.js"></script>
-    <script src="class/BehaviorComposant/PlayerControlerKeyBoard.js"></script>
-    <script src="class/BehaviorComposant/PlayerLogDebuger.js"></script>
-    <script src="class/BehaviorComposant/ArcadeBody.js"></script>
-    <script src="class/BehaviorComposant/MapRenderer.js"></script>
-    <script src="class/BehaviorComposant/Teleporteur.js"></script>
-
-
-    <script src="class/Sprite.js"></script>
-    <script src="class/Collider.js"></script>
-    <script src="class/Actor.js"></script>
-
-    <script src="engine.js"></script>
-
     <div id="panneau">
 
         <div id="messagerie">
@@ -89,18 +68,45 @@
 
         <div id="inventaire">
 
-            <div>
+            <div id="vue">
                 <!-- la balise button me semble pas adapter pour des case inventaire, ça n'a pas de sens-->
-                <button>B</button>
-                <button>B</button>
-                <button>B</button>
-                <button>B</button><br> <!-- la balise br tu peux l'éviter, et faire plus propre -->
-                <button>B</button>
-                <button>B</button>
-                <button>B</button>
-                <button>B</button>
+                <div>
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                </div>
+                <div>
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                    <img src="https://via.placeholder.com/40x40" alt="">
+                </div>
             </div>
         </div>
+
+        <!-- Test librairy JSON.cycle.js -->
+        <script src="../vendor/cycle.js"></script>
+        <script src="../vendor/pathfinding-browser.min.js"></script>
+
+        <script src="class/Player.js"></script>
+        <script src="class/Scene.js"></script>
+
+        <script src="class/BehaviorComposant.js"></script>
+        <script src="class/BehaviorComposant/PlayerControlerKeyBoard.js"></script>
+        <script src="class/BehaviorComposant/PlayerLogDebuger.js"></script>
+        <script src="class/BehaviorComposant/ArcadeBody.js"></script>
+        <script src="class/BehaviorComposant/MapRenderer.js"></script>
+        <script src="class/BehaviorComposant/Teleporteur.js"></script>
+
+
+        <script src="class/Sprite.js"></script>
+        <script src="class/Collider.js"></script>
+        <script src="class/Actor.js"></script>
+
+        <script src="engine.js"></script>
+
+
 
 
 </body>

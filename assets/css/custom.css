@@ -18,7 +18,7 @@ body
     bottom:0px;
     width: 100%;
     display:flex;
-    justify-content: space-around; /* space-between */
+    justify-content: space-between;
     background-color: gray;
     left: 0px; /* inutiles avec space-between */
 }
