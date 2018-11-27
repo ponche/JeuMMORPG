@@ -1,4 +1,4 @@
-gameServer/node_modules
+gnode_modules
 gameClient/node_modules
 
 gameClient/package-lock.json
