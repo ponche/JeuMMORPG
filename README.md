@@ -6,9 +6,9 @@ mais les problème rencontrer, et de tomber sur des Os afin d'apprendre en renco
 ## structure des dossier 
 
 voici les dossier principale : 
--**gameClient** : dossier contenant tous le code envoyé au client 
--**gameServeur** : dossier contenant tous le code du serveur Node.js 
--**vendor** : dossier des librairie externe 
+- **gameClient** : dossier contenant tous le code envoyé au client 
+- **gameServeur** : dossier contenant tous le code du serveur Node.js 
+- **vendor** : dossier des librairie externe 
 
 ## organisation du code  
 
@@ -28,5 +28,9 @@ il existe une méthode qui sera executer au moment d'une collision avec un Actor
 
 ## liste des BehaviorComposant 
 
-- **ArcadeBody** : composant a ratacher si on veut que actor detecte les collsion avec les autres Actor ( attention de ne pas en abuser, ça consome ) - **Teleporteur** : composant qui permet de teleporter un Actor quand il rentre en collsion avec, (attention, il faut rajouter les composant qui gere les collision) 
+- **ArcadeBody** : composant a ratacher si on veut que actor detecte les collsion avec les autres Actor ( attention de ne pas en abuser, ça consome )
+- **Teleporteur** : composant qui permet de teleporter un Actor quand il rentre en collsion avec, (attention, il faut rajouter les composant qui gere les collision) 
+- **PlayerLogDebuger** : class utiliser seulement pour le débug, (permet de voir les box de collision, les info position d'un acteur. 
+- **PlayerControlerKeyBoard** : class qui permet de géré le déplacement d'un actor grace au touche du clavier 
+- **MapRenderer** : class qui gere le rendu d'une map 
 
