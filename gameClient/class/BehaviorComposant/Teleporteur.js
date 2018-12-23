@@ -1,4 +1,6 @@
-class Teleporteur extends BehaviorComposant
+import BehaviorComposant from "../BehaviorComposant.js" ; 
+
+export class Teleporteur extends BehaviorComposant
 {
   collision(otherActor)
   {

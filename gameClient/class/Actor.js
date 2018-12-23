@@ -1,4 +1,8 @@
-class Actor
+import Collider from "Collider.js" ; 
+import Sprite from "Sprite.js" ;
+
+
+export class Actor
 {
 	constructor(name)
 	{

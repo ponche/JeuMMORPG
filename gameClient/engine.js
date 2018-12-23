@@ -1,3 +1,4 @@
+import Scene from "Scene.js" ; 
 
 let mousePosition = {x:0,y:0}; 
 

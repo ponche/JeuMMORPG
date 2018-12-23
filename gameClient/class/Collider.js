@@ -1,6 +1,6 @@
 // c'est la class arcadeBody, qui calculera les collision pour les actors
 
-class Collider
+export class Collider
 {
 	constructor(actor, offsetBox, dimensionBox)
 	{

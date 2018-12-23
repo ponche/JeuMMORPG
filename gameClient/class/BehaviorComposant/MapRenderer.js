@@ -1,4 +1,6 @@
-class MapRenderer extends BehaviorComposant
+import BehaviorComposant from "../BehaviorComposant.js" ; 
+
+export class MapRenderer extends BehaviorComposant
 {
 	constructor()
 	{

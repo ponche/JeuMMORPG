@@ -1,4 +1,6 @@
-class SpriteAnimation
+
+
+export class SpriteAnimation
 {
 	constructor(actor, src, nbFrame = 1, nbAnimation = 1,  buildCollider = true)
 	{

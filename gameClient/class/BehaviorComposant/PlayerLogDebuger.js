@@ -1,4 +1,7 @@
-class PlayerLogDebuger extends BehaviorComposant
+import BehaviorComposant from "../BehaviorComposant.js" ; 
+
+
+export class PlayerLogDebuger extends BehaviorComposant
 {
 	constructor(actor)
 	{

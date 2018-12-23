@@ -1,4 +1,6 @@
-class ArcadeBody extends BehaviorComposant
+import BehaviorComposant from "../BehaviorComposant.js" ; 
+
+export class ArcadeBody extends BehaviorComposant
 {
 	constructor(arraySolideTile, actor)
 	{

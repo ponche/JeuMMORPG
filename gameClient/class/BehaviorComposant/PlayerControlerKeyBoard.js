@@ -1,4 +1,7 @@
-class PlayerControlerKeyBoard extends BehaviorComposant
+import BehaviorComposant from "../BehaviorComposant.js" ; 
+
+
+export class PlayerControlerKeyBoard extends BehaviorComposant
 {
 	constructor(arrayKey)
 	{

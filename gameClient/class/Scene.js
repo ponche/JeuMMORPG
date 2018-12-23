@@ -1,4 +1,6 @@
-class Scene
+import Actor from "Actor.js" ; 
+
+export class Scene
 {
 	constructor(listeActor)
 	{
