@@ -22,7 +22,7 @@ class Scene
 		// 3 - chagement de player en récupérant les information dans la class Player
 
 		// Creation de la scene
-		let map = world.addActor("Map" , 600, 150) ;
+		let map = this.addActor("Map" , 600, 150) ;
 		map.addBehavior( new MapRenderer()) ;
 		map.addBehavior( new PlayerControlerKeyBoard(tableauFleche)) ;
 
