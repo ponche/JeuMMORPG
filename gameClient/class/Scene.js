@@ -77,10 +77,10 @@ export default class Scene {
 	}
 	getActor(name) {
 		for (let i = 0; i < this.listeActor.length; i++) {
-			if (listeActor[i].name == name)
-				return listeActor[i];
+			if (this.listeActor[i].name == name)
+				return this.listeActor[i];
 			else {
-				let actorFound = listeActor[i].getChilActor(name);
+				let actorFound = this.listeActor[i].getChilActor(name);
 				if (actorFound != undefined)
 					return actorFound;
 			}

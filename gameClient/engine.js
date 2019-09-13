@@ -219,4 +219,8 @@ function tilePosToMapPos(tileX, tileY) {
 
 export { tableauFleche, tableauKey, mousePosition, ctx } ; 
 
+// rendre accesible la scene dans la console du navigateur 
+window.world = world ; 
+
+
 
