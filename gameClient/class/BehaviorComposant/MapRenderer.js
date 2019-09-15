@@ -38,16 +38,13 @@ export default class MapRenderer extends BehaviorComposant {
 		this.hoverTileY = Math.floor((-mouse_x / tile_width) + (mouse_y / tile_height));
 
 	}
-	updateAfterCalcul() {
-		// update après que tous les actor on fait leurs update classique
-	}
 	render() {
 		// fonction de dessin elle sera appeler dans la boucle de rendu
 		this.renderTiles(this.actor.position.x, this.actor.position.y);
 	}
 	renderTiles(x, y) {
-		let tileWidth = 96;
-		let tileHeight = 48;
+		let tileWidth = 96;  // Magic Number, à Supprimer
+		let tileHeight = 48; // Magic Number, à Supprimer 
 		let tile_half_width = tileWidth / 2;
 		let tile_half_height = tileHeight / 2;
 		for (let tileX = 0; tileX < this.gridSize; ++tileX) {

@@ -4,24 +4,18 @@ import PlayerControlerKeyBoard from './BehaviorComposant/PlayerControlerKeyBoard
 import MapRenderer from './BehaviorComposant/MapRenderer.js';
 import PlayerLogDebuger from './BehaviorComposant/PlayerLogDebuger.js';
 import Teleporteur from './BehaviorComposant/Teleporteur.js';
-import SpriteAnimation from './Sprite.js' ; 
+import SpriteAnimation from './Sprite.js';
 import '../engine.js';
 import { tableauFleche, tableauKey } from '../engine.js';
 
 export default class Scene {
 	constructor(listeActor) {
 
-
-		this.listeActor = listeActor; // temporaire pour les test
-
-
-
-		// Référence au player
+		this.listeActor = listeActor;
 		this.player = undefined;
-
 	}
 
-	loadScene(fileJson) {
+	loadScene() {
 		// 1 - suppression de tous les actor
 		this.deleteScene();
 		// 2 - chargement des actor de la maps (idem fichier JSON)
@@ -53,17 +47,7 @@ export default class Scene {
 		cactus.addBehavior(new Teleporteur());
 		// 4 - chargement des ghost Player (Node.js) c'est pas pour tout de suite
 	}
-	addPrefab(fileJson) {
-	}
-	getPrefab(fileJson) {
-		// prepare la requete syncrone, temporaire je la transformerais en insynchrone .
-		xhr.open("GET", "http://localhost/JeuMMORPG/gameClient/" + fileJson, false);
-		// Envoi de la requette
-		xhr.send();
-		console.log(xhr.responseText);
 
-		return undefined; // plus tard
-	}
 
 	deleteScene() {
 		// supprime la tileMap et la listeActor
@@ -89,12 +73,10 @@ export default class Scene {
 		console.log("pas d'actor trouve pour " + name);
 	}
 	getListActor() {
-		return this.listeActor ; 
+		return this.listeActor;
 	}
 
-	addActorCanvas(x, y) {
-		// cette fois ci en position canvas
-	}
+
 	deleteAllActor() {
 		// Supprime tous les actor
 		this.listeActor.splice(0, this.listeActor.length);

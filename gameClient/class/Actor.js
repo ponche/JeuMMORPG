@@ -19,14 +19,12 @@ export default class Actor {
 
 		this.speed = 2;
 
-
 		// Gestion des composant
 		this.behavior = [];
 		this.sound = undefined;
 		this.collider = undefined; // Définir la boite de collision
 		this.animationSprite = undefined;
 		this.player = undefined;
-
 	}
 
 	update() {

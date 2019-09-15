@@ -2,17 +2,12 @@
 import './class/Actor.js';
 import Scene from './class/Scene.js';
 
-
-
-
 let mousePosition = { x: 0, y: 0 };
 
 let isMouseDown = false; // variable global peut accéder partous 
 
-
 let tableauKey = [false, false, false, false]; // touche de controle mouvement 
 let tableauFleche = [false, false, false, false];
-let xhr = new XMLHttpRequest();
 let listeActor = [];
 
 // recupération du canvas et du context 
@@ -37,12 +32,10 @@ canvas.addEventListener('mouseup', mouseUp, false);
 window.addEventListener('resize', () => {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-
-
 }, false);
 
 
-// fonction de trie de tableau 
+// fonction de trie de tableau ( pour affichage premier plan, arrière plan )
 function comparateurListeObjet(a, b) {
 	if (a.positionZ < b.positionZ)
 		return -1;
@@ -81,25 +74,12 @@ const update = function (elapsed) {
 		//console.log(listeActor[i]) ; 
 		listeActor[i].update(); // avant la mise a jour des cordonnée
 
-		// ça sera a MapRenderer de géré ça . 
-		/*listeActor[i].positionMap.x = Math.floor((actor_y / tile_height) + (actor_x / tile_width)) -1;
-		listeActor[i].positionMap.y = Math.floor((-actor_x / tile_width) + (actor_y / tile_height));
-  
-		listeActor[i].positionMapDecimal.x = (actor_y / tile_height) + (actor_x / tile_width) -1;
-		listeActor[i].positionMapDecimal.y = (-actor_x / tile_width) + (actor_y / tile_height);
-  
-		listeActor[i].tile_heigthWorld = tile_height ;
-		listeActor[i].tile_widthWorld = tile_width ;*/
-
 		// après les calcul effectuer
 		listeActor[i].updateAfterCalcul();
-
 
 		// trie du tableau pour le rendu
 		listeActor.sort(comparateurListeObjet);
 	}
-
-
 };
 
 const render = function () {
@@ -209,14 +189,7 @@ window.addEventListener('keyup', function (event) {
 	}
 }, false);
 
-function tilePosToMapPos(tileX, tileY) {
-	let posX = -48 * tileY + 48 * tileX + 48;
-	let posY = (48 * tileX + 48 * tileY + 48) / 2;
-	return { x: posX, y: posY };
-}
-
 // export des variable 
-
 export { tableauFleche, tableauKey, mousePosition, ctx } ; 
 
 // rendre accesible la scene dans la console du navigateur 

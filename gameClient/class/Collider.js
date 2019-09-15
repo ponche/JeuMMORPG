@@ -1,8 +1,5 @@
 import './Actor.js';
 
-// c'est la class arcadeBody, qui calculera les collision pour les actors
-
-
 export default class Collider {
 	constructor(actor, offsetBox, dimensionBox) {
 		this.actor = actor;

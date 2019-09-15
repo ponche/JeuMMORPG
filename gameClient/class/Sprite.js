@@ -75,9 +75,10 @@ export default class SpriteAnimation {
 	setAnimation(newAnimation) {
 		if (this.currentAnimation != newAnimation) {
 			this.currentAnimation = newAnimation;
-			this.currentFrame = 0;
+            this.currentFrame = 0;
+            // Condition a refaire. 
 			if (this.currentAnimation >= this.nbAnimation) {
-				console.log("Erreur pas d'animation trouver");
+				console.log("Erreur pas d'animation trouvé");
 				this.currentAnimation = 0;
 			}
 		}
@@ -87,7 +88,7 @@ export default class SpriteAnimation {
 	}
 	render() {
 
-		let spriteActor = this.sprite;
+		let spriteActor = this.sprite; // inutile de passer par une variable 
 
 		let hauteurActor = spriteActor.height / this.nbAnimation;
 		let largeurActor = spriteActor.width / this.nbFrame;

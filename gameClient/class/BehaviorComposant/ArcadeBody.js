@@ -9,7 +9,6 @@ export default class ArcadeBody extends BehaviorComposant {
 		this.actor = actor;
 		this.scene = scene;
 
-
 		// Creation d'une variable dans Actor pour pourvoir la commander de l'extérieur
 		this.actor.arcadeBody = {};
 		//this.actor.arcadeBody.systemCollisionTile = false ; // système desactiver. des adaptation a faire pour le remettre en route.
@@ -17,13 +16,9 @@ export default class ArcadeBody extends BehaviorComposant {
 
 		this.lastPosition = { x: -1, y: -1 };
 		//this.arraySolideTile = arraySolideTile ;
-
-
 	}
 
-
 	updateAfterCalcul() {
-
 		// Collision entre actor
 		if (this.actor.arcadeBody.systemCollisionActor) {
 			// On vérifié tous les actor
@@ -34,7 +29,6 @@ export default class ArcadeBody extends BehaviorComposant {
 			this.lastPosition.x = this.actor.positionRel.x;
 			this.lastPosition.y = this.actor.positionRel.y;
 		}
-
 	}
 	verifCollisionActor(actorA, actorB) {
 		// Test de collision entre les 2 actor
@@ -74,15 +68,11 @@ export default class ArcadeBody extends BehaviorComposant {
 						actorB.collision(actorA);
 				}
 			}
-
-
-
 		}
 
 		// recursive pour les autre actor
 		for (let i = 0; i < actorB.childrenActor.length; i++) {
 			this.searchCollisionActor(actorA, actorB.childrenActor[i]);
 		}
-
 	}
 }
