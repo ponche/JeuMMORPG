@@ -6,7 +6,7 @@ import PlayerLogDebuger from './BehaviorComposant/PlayerLogDebuger.js';
 import Teleporteur from './BehaviorComposant/Teleporteur.js';
 import SpriteAnimation from './Sprite.js';
 import '../engine.js';
-import { tableauFleche, tableauKey } from '../engine.js';
+import { keyboard } from '../engine.js';
 
 export default class Scene {
 	constructor(listeActor) {
@@ -25,7 +25,7 @@ export default class Scene {
 		// Creation de la scene
 		let map = this.addActor("Map", 600, 150);
 		map.addBehavior(new MapRenderer());
-		map.addBehavior(new PlayerControlerKeyBoard(tableauFleche));
+		//map.addBehavior(new PlayerControlerKeyBoard(keyboard));
 
 		// Player de test sera modifé par la suite
 		let bodyPlayer = map.addChildActor("Player", 60, 240);
@@ -33,7 +33,7 @@ export default class Scene {
 		bodyPlayer.animationSprite.runAnimationSprite = true;
 		bodyPlayer.animationSprite.reverseAnimation = true
 		// Ajoute des composant a acteur
-		bodyPlayer.addBehavior(new PlayerControlerKeyBoard(tableauKey));
+		bodyPlayer.addBehavior(new PlayerControlerKeyBoard(keyboard));
 		bodyPlayer.addBehavior(new ArcadeBody([22, 23], bodyPlayer, this));
 		bodyPlayer.addBehavior(new PlayerLogDebuger(bodyPlayer));
 

@@ -3,11 +3,11 @@ import './class/Actor.js';
 import Scene from './class/Scene.js';
 
 let mousePosition = { x: 0, y: 0 };
+let keyboard = {} ; 
+
 
 let isMouseDown = false; // variable global peut accéder partous 
 
-let tableauKey = [false, false, false, false]; // touche de controle mouvement 
-let tableauFleche = [false, false, false, false];
 let listeActor = [];
 
 // recupération du canvas et du context 
@@ -122,35 +122,34 @@ let world = new Scene(listeActor, ctx); // création de l'univers ( Big bang )
 setup();
 run();
 
+
+
 window.addEventListener('keydown', function (event) {
 	switch (event.keyCode) {
 		case 37: // Left
-			tableauFleche[2] = true;
+			keyboard.left = true;
 			break;
-
 		case 38: // Up
-			tableauFleche[0] = true;
+			keyboard.up = true;
 			break;
-
 		case 39: // Right
-			tableauFleche[3] = true;
+			keyboard.right = true;
 			break;
-
 		case 40: // Down
-			tableauFleche[1] = true;
+			keyboard.down = true;
 			break;
 
 		case 81:
-			tableauKey[2] = true;
+			keyboard.q = true;
 			break;
 		case 68:
-			tableauKey[3] = true;
+			keyboard.d = true;
 			break;
 		case 90:
-			tableauKey[0] = true;
+			keyboard.z = true;
 			break;
 		case 83:
-			tableauKey[1] = true;
+			keyboard.s = true;
 			break;
 	}
 
@@ -160,37 +159,35 @@ window.addEventListener('keydown', function (event) {
 window.addEventListener('keyup', function (event) {
 	switch (event.keyCode) {
 		case 81:
-			tableauKey[2] = false;
+			keyboard.q = false;
 			break;
 		case 68:
-			tableauKey[3] = false;
+			keyboard.d = false;
 			break;
 		case 90:
-			tableauKey[0] = false;
+			keyboard.z = false;
 			break;
 		case 83:
-			tableauKey[1] = false;
+			keyboard.s = false;
 			break;
+
 		case 37: // Left
-			tableauFleche[2] = false;
+			keyboard.left = false;
 			break;
-
 		case 38: // Up
-			tableauFleche[0] = false;
+			keyboard.up = false;
 			break;
-
 		case 39: // Right
-			tableauFleche[3] = false;
+			keyboard.right = false;
 			break;
-
 		case 40: // Down
-			tableauFleche[1] = false;
+			keyboard.down = false;
 			break;
 	}
 }, false);
 
 // export des variable 
-export { tableauFleche, tableauKey, mousePosition, ctx } ; 
+export { keyboard, mousePosition, ctx } ; 
 
 // rendre accesible la scene dans la console du navigateur 
 window.world = world ; 
