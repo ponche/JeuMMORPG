@@ -77,7 +77,7 @@ export default class SpriteAnimation {
 			this.currentAnimation = newAnimation;
 			this.currentFrame = 0;
 			if (this.currentAnimation >= this.nbAnimation) {
-				console.log("Erreur par d'animation trouver");
+				console.log("Erreur pas d'animation trouver");
 				this.currentAnimation = 0;
 			}
 		}

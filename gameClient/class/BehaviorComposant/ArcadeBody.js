@@ -61,7 +61,7 @@ export default class ArcadeBody extends BehaviorComposant {
 	searchCollisionActor(actorA, actorB) {
 		// On vérifié tous les actor
 		if (actorA !== actorB) {
-			if (actorB.collider != undefined) {
+			if (actorB.collider != undefined && actorA.collider != undefined) {
 				// Actor a bien une boite de collision  on fait le test
 				if (this.verifCollisionActor(actorA, actorB)) {
 
