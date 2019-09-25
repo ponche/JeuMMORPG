@@ -31,6 +31,9 @@ export default class Actor {
 		// mise a jour position absolut
 		this.updatePositionAbs();
 
+		//Trie le tableau des enfants pour affichage 
+		this.childrenActor.sort(this.comparateurListeObjet); 
+
 		this.positionIso = this.mapPosToTilePos(this.position.x, this.position.y);
 
 		// Mise a jour des composant
@@ -171,5 +174,15 @@ export default class Actor {
 		positionIso.x = (actor_y / tile_height) + (actor_x / tile_width);
 		positionIso.y = (-actor_x / tile_width) + (actor_y / tile_height);
 		return positionIso;
+	}
+
+	// fonction de trie de tableau ( pour affichage premier plan, arrière plan )
+	comparateurListeObjet(a, b) {
+		if (a.positionZ < b.positionZ)
+			return -1;
+		if (a.positionZ > b.positionZ)
+			return 1;
+		// en cas egalite
+		return 0
 	}
 }
