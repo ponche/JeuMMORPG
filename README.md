@@ -7,8 +7,7 @@ mais les problème rencontrer, et de tomber sur des Os afin d'apprendre en renco
 
 voici les dossier principale : 
 - **gameClient** : dossier contenant tous le code envoyé au client 
-- **gameServeur** : dossier contenant tous le code du serveur Node.js 
-- **vendor** : dossier des librairie externe 
+- **gameServeur** : dossier contenant tous le code du serveur Node.js ( pas encore dévelloper ) 
 
 ## organisation du code  
 
@@ -33,4 +32,23 @@ il existe une méthode qui sera executer au moment d'une collision avec un Actor
 - **PlayerLogDebuger** : class utiliser seulement pour le débug, (permet de voir les box de collision, les info position d'un acteur. 
 - **PlayerControlerKeyBoard** : class qui permet de géré le déplacement d'un actor grace au touche du clavier 
 - **MapRenderer** : class qui gere le rendu d'une map 
+
+## Comment lancer application client
+
+1. placer vous dans le dossier gameClient
+2. installer tous les dépendance en tapant la commande `npm install` 
+3. lancer application en tapant la commande `npm start` pour le mode devellopement ( non optimisé pour la production ) 
+
+## Prérequie 
+
+- Node.js & NPM 
+
+## reste à faire 
+
+- trouver un moyen pour serialisez les object (Actor, BehaviorComposant ) pour faire un chargement de map avec le format Json . ( problème de référence circulaire ) 
+- crée un editeur de map ( une map = Actor )  
+- crée un panneau de controlle pour voir les information du joueur ( vie du personnage, inventaire, chat, etc ) 
+- crée le serveur Node.js et les interraction avec le client 
+- Utilisé Electron pour en faire une Application de bureau 
+
 
