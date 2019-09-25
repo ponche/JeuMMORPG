@@ -84,14 +84,14 @@ export default class Scene {
 	deleteActor(name) {
 		// supprime actor en cherchant par le noms
 		let actorFound = undefined;
-		for (let i = 0; i < listeActor.length; i++) {
-			if (listeActor[i].name == name) {
-				actorFound = listeActor[i];
+		for (let i = 0; i < this.listeActor.length; i++) {
+			if (this.listeActor[i].name == name) {
+				actorFound = this.listeActor[i];
 				this.listeActor.splice(i, 1);
 				return actorFound;
 			}
 			else {
-				actorFound = listeActor[i].deleteChildActor(name);
+				actorFound = this.listeActor[i].deleteChildActor(name);
 				if (actorFound != undefined)
 					return actorFound;
 			}
