@@ -2,6 +2,8 @@
 import './class/Actor.js';
 import Scene from './class/Scene.js';
 
+require.context('./assets/img/', true, /\.(png|svg|jpg|gif)$/);
+
 let mousePosition = { x: 0, y: 0 };
 let keyboard = {} ; 
 
