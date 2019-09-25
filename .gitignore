@@ -1,7 +1,6 @@
-gameServer/node_modules
-gameClient/node_modules
+node_modules
 
-gameClient/package-lock.json
+dist
 
 
 *.htaccess
