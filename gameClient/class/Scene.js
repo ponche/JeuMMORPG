@@ -59,6 +59,55 @@ export default class Scene {
 		this.listeActor.push(newActor);
 		return newActor;
 	}
+	saveActor(actorOrigin) {
+		// on supprime la référence a Actor parent 
+		let actor = { ...actorOrigin }
+
+		delete actor.parentActor;
+
+		// on supprimer les position inutile 
+		delete actor.positionRel;
+		delete actor.positionIso;
+		delete actor.positionZ;
+		delete actor.diagonalMax;
+
+		actor.childrenJson = [];
+		actor.behaviorJson = [];
+
+		// on parcour les actor enfants 
+		actor.childrenActor.forEach(actorChild => {
+			actor.childrenJson.push(this.saveActor(actorChild));
+
+		});
+
+		// on supprime le tableau des enfants 
+		delete actor.childrenActor;
+
+		// on parcours les composant 
+		actor.behavior.forEach(behavior => {
+			// on crée une copy 
+			let copyBehavior = { ...behavior };
+			delete copyBehavior.actor;
+			// j'appele une fonction que je vais develloper ensuite 
+			let copyBehaviorJson = copyBehavior.stringify(); 
+
+			// je push ma copy adapter dans le tableau 
+			actor.behaviorJson.push(copyBehaviorJson); 
+
+		})
+		delete actor.behavior;
+
+		//on supprime animationSprite et la boite de collsion 
+		delete actor.animationSprite;
+		delete actor.collider;
+		delete actor.player;
+
+		// on serialise objet 
+		let actorJson = JSON.stringify(actor);
+
+		return actorJson;
+	}
+
 	getActor(name) {
 		for (let i = 0; i < this.listeActor.length; i++) {
 			if (this.listeActor[i].name == name)
